@@ -6,8 +6,12 @@
   "bin": "bin/trillo",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
+    "es6-promise": "^3.2.1",
     "expect": "^1.20.2",
-    "mocha": "^2.5.3"
+    "jsonfile": "^2.3.1",
+    "lodash": "^4.13.1",
+    "mocha": "^2.5.3",
+    "restler": "^3.4.0"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",

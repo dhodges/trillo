@@ -9,3 +9,5 @@ describe('trillo', () => {
         return expect('black').toNotEqual('white')
     })
 })
+
+trillo.run()

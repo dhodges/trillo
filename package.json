@@ -1,0 +1,24 @@
+{
+  "name": "trillo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "bin": "bin/trillo",
+  "dependencies": {
+    "babel-polyfill": "^6.9.1",
+    "expect": "^1.20.2",
+    "mocha": "^2.5.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-preset-es2015": "^6.9.0"
+  },
+  "scripts": {
+    "test": "mocha --compilers js:babel-register",
+    "test-watch": "mocha --compilers js:babel-register --recursive --watch",
+    "compile": "babel src/ -d dist/ --source-maps",
+    "compile-watch": "babel -w src/ -d dist/ --source-maps"
+  },
+  "keywords": [],
+  "author": "David Hodges"
+}

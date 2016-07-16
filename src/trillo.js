@@ -1,17 +1,17 @@
 'use strict';
 
-const config   = require('../config.json'),
+require('dotenv').config()
+
+const _        = require('lodash'),
       jsonfile = require('jsonfile'),
       Trello   = require('./trello').Trello,
-      _        = require('lodash')
+      trello   = new Trello({
+        key:   process.env.TRELLO_API_KEY,
+        token: process.env.TRELLO_API_TOKEN
+      })
 
-const parseCardActions = (actions) => ({
-  card: {
-    id:   actions[0].data.card.id,
-    name: actions[0].data.card.name
-  },
-  actions: _.map(
-    _.filter(actions, (a) => a.type == 'updateCard'),
+const parseCardActions = (actions) => {
+  return _.map(actions,
     (action) => ({
       id:         action.id,
       date:       action.date,
@@ -22,16 +22,14 @@ const parseCardActions = (actions) => ({
         id:       action.memberCreator.id,
         fullName: action.memberCreator.fullName
       },
-    }))})
+    }))
+}
 
 const run = function() {
-  const listId = config.lists[3].id
-  const trello = new Trello(config)
+  const doingListId = process.env.TRELLO_DOING_LIST_ID
 
-  trello.getCardsOnList(listId).then((cards) => {
-    console.log('Deployed to Prod')
-    console.log('----------------')
-    cards.forEach((card) => console.log('* ' + card.name))
+  trello.getCardsOnList(doingListId).then((cards) => {
+    _.map(cards, (card) => {
   })
 }
 

@@ -4,6 +4,9 @@ require('es6-promise').polyfill()
 const rest = require('restler'),
          _ = require('lodash')
 
+const {validFields, validActions} = require('./trello_arguments')
+
+
 class Trello {
   constructor(opts) {
     this.auth = {key: opts.key, token: opts.token}
@@ -31,8 +34,17 @@ class Trello {
     return this.get(`/1/lists/${listId}/cards`)
   }
 
-  getCardActions(cardId) {
-    return this.get(`/1/cards/${cardId}/actions`)
+  getCardActions(cardId, opts={}) {
+    return this.get(`/1/cards/${cardId}/actions`, opts)
+  }
+
+  getCardField(cardId, field) {
+    if (!validFields.includes(field)) {
+      throw(new Error(`field: '${field}' is invalid.`))
+    }
+    return this.get(`/1/cards/${cardId}/${field}`)
+  }
+
   }
 }
 

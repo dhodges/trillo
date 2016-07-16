@@ -3,6 +3,8 @@
   "bin": "bin/trillo",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
+    "db-migrate": "^0.10.0-beta.15",
+    "db-migrate-pg": "^0.1.10",
     "dotenv": "^2.0.0",
     "es6-promise": "^3.2.1",
     "jsonfile": "^2.3.1",

@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "user": {"ENV": "USER"},
+    "host": "localhost",
+    "driver": "pg",
+    "database": "trillo"
+  },
+  "test": {
+    "user": {"ENV": "USER"},
+    "host": "localhost",
+    "driver": "pg",
+    "database": "trillo_test"
+  },
+  "sql-file" : true
+}

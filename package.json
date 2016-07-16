@@ -1,28 +1,29 @@
 {
-  "name": "trillo",
-  "version": "0.0.1",
-  "description": "",
-  "main": "main.js",
+  "author": "David Hodges",
   "bin": "bin/trillo",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "es6-promise": "^3.2.1",
-    "expect": "^1.20.2",
     "jsonfile": "^2.3.1",
     "lodash": "^4.13.1",
-    "mocha": "^2.5.3",
     "restler": "^3.4.0"
   },
+  "description": "playing with the Trello API",
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-preset-es2015": "^6.9.0"
   },
-  "scripts": {
-    "test": "mocha --compilers js:babel-register",
-    "test-watch": "mocha --compilers js:babel-register --recursive --watch",
-    "compile": "babel src/ -d dist/ --source-maps",
-    "compile-watch": "babel -w src/ -d dist/ --source-maps"
-  },
   "keywords": [],
-  "author": "David Hodges"
+  "main": "main.js",
+  "name": "trillo",
+  "repository": "git@github.com:dhodges/trillo.git",
+  "scripts": {
+    "compile": "babel src/ -d dist/ --source-maps",
+    "compile-watch": "babel -w src/ -d dist/ --source-maps",
+    "expect": "^1.20.2",
+    "mocha": "^2.5.3",
+    "test": "mocha --compilers js:babel-register",
+    "test-watch": "mocha --compilers js:babel-register --recursive --watch"
+  },
+  "version": "0.0.1"
 }

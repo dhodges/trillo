@@ -38,6 +38,10 @@ class Trello {
     return this.get(`/1/cards/${cardId}/actions`, opts)
   }
 
+  getCardMembers(cardId) {
+    return this.get(`/1/cards/${cardId}/members`)
+  }
+
   getCardField(cardId, field) {
     if (!validFields.includes(field)) {
       throw(new Error(`field: '${field}' is invalid.`))
@@ -45,6 +49,8 @@ class Trello {
     return this.get(`/1/cards/${cardId}/${field}`)
   }
 
+  getCardLabels(cardId) {
+    return this.getCardField(cardId, 'labels')
   }
 }
 

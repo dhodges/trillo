@@ -25,13 +25,42 @@ const parseCardActions = (actions) => {
     }))
 }
 
+const parseCardLabels = (labels) => {
+  return _.map(labels, (label) => label.name)
+}
+
+const parseCardMembers = (members) => {
+  return _.map(members, (member) => ({
+    fullName:   member.fullName,
+    avatarHash: member.avatarHash
+  }))
+}
+
 const run = function() {
   const doingListId = process.env.TRELLO_DOING_LIST_ID
 
   trello.getCardsOnList(doingListId).then((cards) => {
     _.map(cards, (card) => {
+      trello.getCardActions(card.id, {filter:'updateCard'}).then((actions) => {
+        trello.getCardLabels(card.id).then((labels) => {
+          trello.getCardMembers(card.id).then((members) => {
+            jsonfile.writeFileSync(__dirname+`/${card.id}.json`, {
+              card: {
+                id:      card.id,
+                name:    card.name,
+                labels:  parseCardLabels(labels),
+                members: parseCardMembers(members),
+                actions: parseCardActions(actions)
+              }
+            }, {spaces:2})
+          })
+        })
+      })
+    })
   })
 }
 
 module.exports.run = run
 module.exports.parseCardActions = parseCardActions
+module.exports.parseCardLabels  = parseCardLabels
+module.exports.parseCardMembers = parseCardMembers

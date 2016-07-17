@@ -75,4 +75,8 @@ describe ('selecting fields', () => {
   it ('gets the description', () => {
     expect(card.description).to.equal('https://github.com/lonelyplanet/spp_dashboard/issues/15\nhttps://github.com/lonelyplanet/spp_aws/issues/34\n\nThe auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update')
   })
+
+  it ('gets the last activity date', () => {
+    expect(card.dateLastActivity).to.equal('2016-07-04T12:45:06.207Z')
+  })
 })

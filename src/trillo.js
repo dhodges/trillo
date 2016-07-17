@@ -2,8 +2,7 @@
 
 require('dotenv').config()
 
-const jsonfile = require('jsonfile'),
-      db_query = require('./trillo_pg_query').query,
+const db_query = require('./trillo_pg_query').query,
       Trello   = require('./trello').Trello,
       trello   = new Trello({
         key:   process.env.TRELLO_API_KEY,
@@ -42,6 +41,7 @@ const selectFields = (card) => {
     id:      card.id,
     name:    card.name,
     description: card.desc,
+    dateLastActivity: card.dateLastActivity,
     labels:  card.labels.map((label) => label.name),
     members: card.members.map((member) => selectMemberFields(member)),
     actions: selectActionFields(card.actions)
@@ -53,10 +53,10 @@ const updateDb = (card) => {
     if (err) throw err
 
     const sql = (rows.length > 0)
-      ? "UPDATE archived_cards SET name = $2::varchar(255), data = $3::json WHERE id = $1::varchar(24)"
-      : "INSERT INTO archived_cards (id, name, data) VALUES ($1::varchar(24), $2::varchar(255), $3::json)"
+      ? "UPDATE archived_cards SET name = $2::varchar(255), archived = $3::timestamp, data = $4::json WHERE id = $1::varchar(24)"
+      : "INSERT INTO archived_cards (id, name, archived, data) VALUES ($1::varchar(24), $2::varchar(255), $3::timestamp, $4::json)"
 
-    db_query(sql, [card.id, card.name, card], (err, rows) => {if (err) throw err})
+    db_query(sql, [card.id, card.name, card.dateLastActivity, card], (err, rows) => {if (err) throw err})
   })
 }
 
@@ -78,7 +78,7 @@ const gatherArchivedCards = (boardId) => {
   trello.getArchivedCards(boardId, {
     actions: 'updateCard',
     members: 'true',
-    fields:  'desc,labels,name,',
+    fields:  'desc,labels,name,dateLastActivity',
     since:   '2016-06-17'
   }).then((cards) => {
     cards.forEach((card) => updateDb(selectFields(card)))

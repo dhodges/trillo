@@ -4,7 +4,7 @@ import 'babel-polyfill'
 require('dotenv').config()
 
 const _      = require('lodash'),
-      expect = require('expect'),
+      expect = require('chai').expect,
       jsonf  = require('jsonfile'),
       trillo = require('../dist/trillo'),
       Trello = require('../dist/trello').Trello,

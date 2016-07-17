@@ -1,6 +1,6 @@
 'use strict'
 
-const {_, expect, jsonf, trello, trillo} = require('./spec_helper')
+const {expect, trello} = require('./spec_helper')
 
 describe('getting card field', () => {
   it ('for an invalid field', () => {

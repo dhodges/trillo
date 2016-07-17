@@ -1,67 +1,67 @@
 'use strict'
 
-const {_, expect, jsonf, trello, trillo} = require('./spec_helper')
+const {_, expect, jsonf, trillo} = require('./spec_helper')
 
-const inputActions = jsonf.readFileSync(__dirname+'/fixtures/example_card_actions.json')
-const cardActions  = trillo.parseCardActions(inputActions)
+const fixture = (fname) => {
+  return jsonf.readFileSync(__dirname+'/fixtures/'+fname)
+}
 
-describe('parsing card actions', () => {
+describe ('selecting fields', () => {
+  const card = trillo.selectFields(fixture('example_card_fields.json'))
+
   it ('gets the action count', () => {
-    expect(cardActions.length).toEqual(4)
+    expect(card.actions.length).toEqual(7)
   })
 
   it ('gets the action IDs', () => {
-    expect(_.map(cardActions, (action) => action.id)).toEqual([
-      "577cc0528fe1e57585963024",
-      "577bd6b69f353352d6d5ac90",
-      "577bd5df0e95b6bcf0631988",
-      "577bc5859e884837269c4240"
-    ])})
+    expect(card.actions.map((action) => action.id)).toEqual([
+      '5786d1362ae470b9c1fe2f12',
+      '5786d12fe8d60c0af241e15a',
+      '57849238a57a9eddca81fb4e',
+      '578492348282ec24d843e391',
+      '578439d58c96e01ba3bf7494',
+      '57833c62cd950e7e15457953',
+      '5783166f43ba1ee7b63ec823'
+    ])
+  })
 
   it ('gets the main properties', () => {
-    expect(_.keys(cardActions[0])).toEqual([
-      "id",
-      "date",
-      "type",
-      "listAfter",
-      "listBefore",
-      "memberCreator"
-    ])})
-})
-
-describe('parsing card labels', () => {
-  const inputLabels = jsonf.readFileSync(__dirname+'/fixtures/57174a04af4e40dea638e79f_labels.json')
-  const cardLabels  = trillo.parseCardLabels(inputLabels)
+    expect(_.keys(card.actions[0])).toEqual([
+      'id',
+      'date',
+      'type',
+      'listBefore',
+      'listAfter',
+      'member'
+    ])
+  })
 
   it ('gets the label count', () => {
-    expect(cardLabels.length).toEqual(2)
+    expect(card.labels.length).toEqual(1)
   })
 
-  it ('gets the right labels', () => {
-    expect(cardLabels).toInclude('SPP')
-    expect(cardLabels).toInclude('Bug or Minor Feature')
+  it ('gets the labels', () => {
+    expect(card.labels).toInclude('Tech')
   })
-})
-
-describe('parsing card members', () => {
-  const inputMembers = jsonf.readFileSync(__dirname+'/fixtures/57174a04af4e40dea638e79f_members.json')
-  const cardMembers  = trillo.parseCardMembers(inputMembers)
 
   it ('gets the member count', () => {
-    expect(cardMembers.length).toEqual(2)
+    expect(card.members.length).toEqual(2)
   })
 
-  it ('gets the right members', () => {
-    expect(cardMembers).toInclude({avatarHash: '3b492718da8409aae8ecbf715ea17d6e', fullName: 'spp_kicked_off'})
-    expect(cardMembers).toInclude({avatarHash: '1d027b05589ea204bf493f0bbb11366a', fullName: 'spp_peer_reviewed'})
+  it ('gets the members', () => {
+    expect(card.members).toInclude({
+      avatarHash: '0ff01919582c01e27a00a52efa8c44c3',
+      fullName:   'Spaceman Bob',
+      id:         '56a0366d1c8b64d1d477d604'
+    })
+    expect(card.members).toInclude({
+      avatarHash: 'abd86914d8819e57f2255bff9e84cf14',
+      fullName:   'Minnie Mouse',
+      id:         '576778eb76ced9768807e083'
+    })
   })
-})
 
-describe('parsing card description', () => {
-  const inputDescription = jsonf.readFileSync(__dirname+'/fixtures/573485f831d2fdde5faced83_description.json')
-  const cardDescription  = trillo.parseCardDescription(inputDescription)
-
-  it ('', () => {
-    expect(cardDescription).toEqual('https://github.com/lonelyplanet/atlas/issues/1791')
+  it ('gets the description', () => {
+    expect(card.description).toEqual('https://github.com/lonelyplanet/spp_dashboard/issues/15\nhttps://github.com/lonelyplanet/spp_aws/issues/34\n\nThe auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update')
   })
 })

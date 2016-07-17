@@ -1,0 +1,272 @@
+{
+  "id": "5783157743e6a7a9bd74263a",
+  "desc": "https://github.com/lonelyplanet/spp_dashboard/issues/15\nhttps://github.com/lonelyplanet/spp_aws/issues/34\n\nThe auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update",
+  "labels": [
+    {
+      "id": "545ca4ba74d650d567a48767",
+      "idBoard": "5216845a71c39a6f640005d0",
+      "name": "Tech",
+      "color": "yellow",
+      "uses": 357
+    }
+  ],
+  "name": "#15/#34 SPP Dashboard - update devboxes",
+  "members": [
+    {
+      "id": "56a0366d1c8b64d1d477d604",
+      "avatarHash": "0ff01919582c01e27a00a52efa8c44c3",
+      "fullName": "Spaceman Bob",
+      "initials": "YW",
+      "username": "bobInSpace@kozmik.com"
+    },
+    {
+      "id": "576778eb76ced9768807e083",
+      "avatarHash": "abd86914d8819e57f2255bff9e84cf14",
+      "fullName": "Minnie Mouse",
+      "initials": "BH",
+      "username": "minne@rodentsRock.com"
+    }
+  ],
+  "actions": [
+    {
+      "id": "5786d1362ae470b9c1fe2f12",
+      "idMemberCreator": "56a0366d1c8b64d1d477d604",
+      "data": {
+        "list": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "board": {
+          "shortLink": "r77DTWxo",
+          "name": "SPP & Product WIP",
+          "id": "5216845a71c39a6f640005d0"
+        },
+        "card": {
+          "shortLink": "VR7tRc3n",
+          "idShort": 1681,
+          "id": "5783157743e6a7a9bd74263a",
+          "name": "#15/#34 SPP Dashboard - update devboxes"
+        },
+        "old": {
+          "name": "#15 SPP Dashboard - update devboxes"
+        }
+      },
+      "type": "updateCard",
+      "date": "2016-07-13T23:39:34.943Z",
+      "memberCreator": {
+        "id": "56a0366d1c8b64d1d477d604",
+        "avatarHash": "0ff01919582c01e27a00a52efa8c44c3",
+        "fullName": "Spaceman Bob",
+        "initials": "YW",
+        "username": "bobInSpace@kozmik.com"
+      }
+    },
+    {
+      "id": "5786d12fe8d60c0af241e15a",
+      "idMemberCreator": "56a0366d1c8b64d1d477d604",
+      "data": {
+        "list": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "board": {
+          "shortLink": "r77DTWxo",
+          "name": "SPP & Product WIP",
+          "id": "5216845a71c39a6f640005d0"
+        },
+        "card": {
+          "shortLink": "VR7tRc3n",
+          "idShort": 1681,
+          "name": "#15 SPP Dashboard - update devboxes",
+          "id": "5783157743e6a7a9bd74263a",
+          "desc": "https://github.com/lonelyplanet/spp_dashboard/issues/15\nhttps://github.com/lonelyplanet/spp_aws/issues/34\n\nThe auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update"
+        },
+        "old": {
+          "desc": "https://github.com/lonelyplanet/spp_dashboard/issues/15\n\nThe auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update"
+        }
+      },
+      "type": "updateCard",
+      "date": "2016-07-13T23:39:27.131Z",
+      "memberCreator": {
+        "id": "56a0366d1c8b64d1d477d604",
+        "avatarHash": "0ff01919582c01e27a00a52efa8c44c3",
+        "fullName": "Spaceman Bob",
+        "initials": "YW",
+        "username": "bobInSpace@kozmik.com"
+      }
+    },
+    {
+      "id": "57849238a57a9eddca81fb4e",
+      "idMemberCreator": "56a0366d1c8b64d1d477d604",
+      "data": {
+        "list": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "board": {
+          "shortLink": "r77DTWxo",
+          "name": "SPP & Product WIP",
+          "id": "5216845a71c39a6f640005d0"
+        },
+        "card": {
+          "shortLink": "VR7tRc3n",
+          "idShort": 1681,
+          "id": "5783157743e6a7a9bd74263a",
+          "name": "#15 SPP Dashboard - update devboxes"
+        },
+        "old": {
+          "name": "SPP Dashboard - update devboxes"
+        }
+      },
+      "type": "updateCard",
+      "date": "2016-07-12T06:46:16.434Z",
+      "memberCreator": {
+        "id": "56a0366d1c8b64d1d477d604",
+        "avatarHash": "0ff01919582c01e27a00a52efa8c44c3",
+        "fullName": "Spaceman Bob",
+        "initials": "YW",
+        "username": "bobInSpace@kozmik.com"
+      }
+    },
+    {
+      "id": "578492348282ec24d843e391",
+      "idMemberCreator": "56a0366d1c8b64d1d477d604",
+      "data": {
+        "list": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "board": {
+          "shortLink": "r77DTWxo",
+          "name": "SPP & Product WIP",
+          "id": "5216845a71c39a6f640005d0"
+        },
+        "card": {
+          "shortLink": "VR7tRc3n",
+          "idShort": 1681,
+          "name": "SPP Dashboard - update devboxes",
+          "id": "5783157743e6a7a9bd74263a",
+          "desc": "https://github.com/lonelyplanet/spp_dashboard/issues/15\n\nThe auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update"
+        },
+        "old": {
+          "desc": "The auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update"
+        }
+      },
+      "type": "updateCard",
+      "date": "2016-07-12T06:46:12.547Z",
+      "memberCreator": {
+        "id": "56a0366d1c8b64d1d477d604",
+        "avatarHash": "0ff01919582c01e27a00a52efa8c44c3",
+        "fullName": "Spaceman Bob",
+        "initials": "YW",
+        "username": "bobInSpace@kozmik.com"
+      }
+    },
+    {
+      "id": "578439d58c96e01ba3bf7494",
+      "idMemberCreator": "56a0366d1c8b64d1d477d604",
+      "data": {
+        "listAfter": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "listBefore": {
+          "name": "Product Queue",
+          "id": "56a81c34da689e41e08b9ab4"
+        },
+        "board": {
+          "shortLink": "r77DTWxo",
+          "name": "SPP & Product WIP",
+          "id": "5216845a71c39a6f640005d0"
+        },
+        "card": {
+          "shortLink": "VR7tRc3n",
+          "idShort": 1681,
+          "name": "SPP Dashboard - update devboxes",
+          "id": "5783157743e6a7a9bd74263a",
+          "idList": "5216845a71c39a6f640005d2"
+        },
+        "old": {
+          "idList": "56a81c34da689e41e08b9ab4"
+        }
+      },
+      "type": "updateCard",
+      "date": "2016-07-12T00:29:09.615Z",
+      "memberCreator": {
+        "id": "56a0366d1c8b64d1d477d604",
+        "avatarHash": "0ff01919582c01e27a00a52efa8c44c3",
+        "fullName": "Spaceman Bob",
+        "initials": "YW",
+        "username": "bobInSpace@kozmik.com"
+      }
+    },
+    {
+      "id": "57833c62cd950e7e15457953",
+      "idMemberCreator": "56a0366d1c8b64d1d477d604",
+      "data": {
+        "list": {
+          "name": "Product Queue",
+          "id": "56a81c34da689e41e08b9ab4"
+        },
+        "board": {
+          "shortLink": "r77DTWxo",
+          "name": "SPP & Product WIP",
+          "id": "5216845a71c39a6f640005d0"
+        },
+        "card": {
+          "shortLink": "VR7tRc3n",
+          "idShort": 1681,
+          "name": "SPP Dashboard - update devboxes",
+          "id": "5783157743e6a7a9bd74263a",
+          "pos": 747377.2795581818
+        },
+        "old": {
+          "pos": 8247821.6486206055
+        }
+      },
+      "type": "updateCard",
+      "date": "2016-07-11T06:27:46.277Z",
+      "memberCreator": {
+        "id": "56a0366d1c8b64d1d477d604",
+        "avatarHash": "0ff01919582c01e27a00a52efa8c44c3",
+        "fullName": "Spaceman Bob",
+        "initials": "YW",
+        "username": "bobInSpace@kozmik.com"
+      }
+    },
+    {
+      "id": "5783166f43ba1ee7b63ec823",
+      "idMemberCreator": "56a0366d1c8b64d1d477d604",
+      "data": {
+        "list": {
+          "name": "Product Queue",
+          "id": "56a81c34da689e41e08b9ab4"
+        },
+        "board": {
+          "shortLink": "r77DTWxo",
+          "name": "SPP & Product WIP",
+          "id": "5216845a71c39a6f640005d0"
+        },
+        "card": {
+          "shortLink": "VR7tRc3n",
+          "idShort": 1681,
+          "name": "SPP Dashboard - update devboxes",
+          "id": "5783157743e6a7a9bd74263a",
+          "desc": "The auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update"
+        },
+        "old": {
+          "desc": ""
+        }
+      },
+      "type": "updateCard",
+      "date": "2016-07-11T03:45:51.334Z",
+      "memberCreator": {
+        "id": "56a0366d1c8b64d1d477d604",
+        "avatarHash": "0ff01919582c01e27a00a52efa8c44c3",
+        "fullName": "Spaceman Bob",
+        "initials": "YW",
+        "username": "bobInSpace@kozmik.com"
+      }
+    }
+  ]
+}

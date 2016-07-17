@@ -2,8 +2,7 @@
 
 require('dotenv').config()
 
-const _        = require('lodash'),
-      jsonfile = require('jsonfile'),
+const jsonfile = require('jsonfile'),
       db_query = require('./trillo_pg_query').query,
       Trello   = require('./trello').Trello,
       trello   = new Trello({
@@ -11,34 +10,34 @@ const _        = require('lodash'),
         token: process.env.TRELLO_API_TOKEN
       })
 
-const parseCardActions = (actions) => {
-  return _.map(actions,
-    (action) => ({
-      id:         action.id,
-      date:       action.date,
-      type:       action.type,
-      listAfter:  action.data.listAfter,
-      listBefore: action.data.listBefore,
-      memberCreator: {
-        id:       action.memberCreator.id,
-        fullName: action.memberCreator.fullName
-      },
-    }))
-}
-
-const parseCardLabels = (labels) => {
-  return _.map(labels, (label) => label.name)
-}
-
-const parseCardMembers = (members) => {
-  return _.map(members, (member) => ({
+const selectMemberFields = (member) => {
+  return {
+    id:         member.id,
     fullName:   member.fullName,
     avatarHash: member.avatarHash
+  }
+}
+
+const selectActionFields = (actions) => {
+  return actions.map((action) => ({
+    id:         action.id,
+    date:       action.date,
+    type:       action.type,
+    listBefore: action.data.listBefore,
+    listAfter:  action.data.listAfter,
+    member:     selectMemberFields(action.memberCreator)
   }))
 }
 
-const parseCardDescription = (description) => {
-  return description._value
+const selectFields = (card) => {
+  return {
+    id:      card.id,
+    name:    card.name,
+    labels:  card.labels.map((label) => label.name),
+    members: card.members.map((member) => selectMemberFields(member)),
+    actions: selectActionFields(card.actions),
+    description: card.desc
+  }
 }
 
 const updateDb = (card) => {
@@ -55,20 +54,13 @@ const updateDb = (card) => {
 
 const gatherCardsFromList = (listId) => {
   trello.getCardsOnList(listId).then((cards) => {
-    _.map(cards, (c) => {
+    cards.map((c) => {
       trello.getCard(c.id, {
         actions: 'updateCard',
         members: 'true',
         fields:  'desc,labels,name,'
       }).then((card) => {
-        updateDb({
-          id:      card.id,
-          name:    card.name,
-          labels:  parseCardLabels(card.labels),
-          members: parseCardMembers(card.members),
-          actions: parseCardActions(card.actions),
-          description: parseCardDescription(card.desc)
-        })
+        updateDb(selectFields(card))
       })
     })
   })
@@ -79,7 +71,4 @@ const run = function() {
 }
 
 module.exports.run = run
-module.exports.parseCardActions = parseCardActions
-module.exports.parseCardLabels  = parseCardLabels
-module.exports.parseCardMembers = parseCardMembers
-module.exports.parseCardDescription = parseCardDescription
+module.exports.selectFields = selectFields

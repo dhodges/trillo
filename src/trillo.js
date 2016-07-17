@@ -49,12 +49,12 @@ const selectFields = (card) => {
 }
 
 const updateDb = (card) => {
-  db_query("SELECT * FROM cards WHERE id = $1::varchar(24)", [card.id], (err, rows) => {
+  db_query("SELECT * FROM archived_cards WHERE id = $1::varchar(24)", [card.id], (err, rows) => {
     if (err) throw err
 
     const sql = (rows.length > 0)
-      ? "UPDATE cards SET name = $2::varchar(255), data = $3::json WHERE id = $1::varchar(24)"
-      : "INSERT INTO cards (id, name, data) VALUES ($1::varchar(24), $2::varchar(255), $3::json)"
+      ? "UPDATE archived_cards SET name = $2::varchar(255), data = $3::json WHERE id = $1::varchar(24)"
+      : "INSERT INTO archived_cards (id, name, data) VALUES ($1::varchar(24), $2::varchar(255), $3::json)"
 
     db_query(sql, [card.id, card.name, card], (err, rows) => {if (err) throw err})
   })

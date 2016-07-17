@@ -26,8 +26,8 @@ class Trello {
     return this.request(rest.get, path, opts)
   }
 
-  getCard(boardId, cardId) {
-    return this.get(`/1/boards/${boardId}/cards/${cardId}`)
+  getCard(cardId, opts={}) {
+    return this.get(`/1/cards/${cardId}`, opts)
   }
 
   getCardsOnList(listId) {

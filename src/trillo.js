@@ -55,21 +55,19 @@ const updateDb = (card) => {
 
 const gatherCardsFromList = (listId) => {
   trello.getCardsOnList(listId).then((cards) => {
-    _.map(cards, (card) => {
-      trello.getCardActions(card.id, {filter:'updateCard'}).then((actions) => {
-        trello.getCardLabels(card.id).then((labels) => {
-          trello.getCardMembers(card.id).then((members) => {
-            trello.getCardDescription(card.id).then((description) => {
-              updateDb({
-                id:      card.id,
-                name:    card.name,
-                labels:  parseCardLabels(labels),
-                members: parseCardMembers(members),
-                actions: parseCardActions(actions),
-                description: parseCardDescription(description)
-              })
-            })
-          })
+    _.map(cards, (c) => {
+      trello.getCard(c.id, {
+        actions: 'updateCard',
+        members: 'true',
+        fields:  'desc,labels,name,'
+      }).then((card) => {
+        updateDb({
+          id:      card.id,
+          name:    card.name,
+          labels:  parseCardLabels(card.labels),
+          members: parseCardMembers(card.members),
+          actions: parseCardActions(card.actions),
+          description: parseCardDescription(card.desc)
         })
       })
     })

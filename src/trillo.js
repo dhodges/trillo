@@ -72,8 +72,19 @@ const gatherCardsFromList = (listId) => {
   })
 }
 
+const gatherArchivedCards = (boardId) => {
+  trello.getArchivedCards(boardId, {
+    actions: 'updateCard',
+    members: 'true',
+    fields:  'desc,labels,name,',
+    since:   '2016-06-17'
+  }).then((cards) => {
+    cards.forEach((card) => updateDb(selectFields(card)))
+  })
+}
+
 const run = function() {
-  gatherCardsFromList(process.env.TRELLO_DOING_LIST_ID)
+  gatherArchivedCards(process.env.TRELLO_BOARD_ID)
 }
 
 module.exports.run = run

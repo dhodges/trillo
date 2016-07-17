@@ -34,6 +34,10 @@ class Trello {
     return this.get(`/1/lists/${listId}/cards`)
   }
 
+  getArchivedCards(boardId, opts={}) {
+    return this.get(`/1/boards/${boardId}/cards`, _.extend(opts, {filter:'closed'}))
+  }
+
   getCardActions(cardId, opts={}) {
     return this.get(`/1/cards/${cardId}/actions`, opts)
   }

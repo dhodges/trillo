@@ -56,3 +56,12 @@ describe('parsing card members', () => {
     expect(cardMembers).toInclude({avatarHash: '1d027b05589ea204bf493f0bbb11366a', fullName: 'spp_peer_reviewed'})
   })
 })
+
+describe('parsing card description', () => {
+  const inputDescription = jsonf.readFileSync(__dirname+'/fixtures/573485f831d2fdde5faced83_description.json')
+  const cardDescription  = trillo.parseCardDescription(inputDescription)
+
+  it ('', () => {
+    expect(cardDescription).toEqual('https://github.com/lonelyplanet/atlas/issues/1791')
+  })
+})

@@ -52,6 +52,10 @@ class Trello {
   getCardLabels(cardId) {
     return this.getCardField(cardId, 'labels')
   }
+
+  getCardDescription(cardId) {
+    return this.getCardField(cardId, 'desc')
+  }
 }
 
 module.exports.Trello = Trello

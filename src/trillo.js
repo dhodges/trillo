@@ -19,7 +19,9 @@ const selectMemberFields = (member) => {
 }
 
 const selectActionFields = (actions) => {
-  return actions.map((action) => ({
+  return actions.filter((action) => {
+    return (action.data.listBefore && action.data.listAfter)
+  }).map((action) => ({
     id:         action.id,
     date:       action.date,
     type:       action.type,

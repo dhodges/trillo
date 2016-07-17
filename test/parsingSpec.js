@@ -10,16 +10,14 @@ describe ('selecting fields', () => {
   const card = trillo.selectFields(fixture('example_card_fields.json'))
 
   it ('gets the action count', () => {
-    expect(card.actions.length).to.equal(7)
+    expect(card.actions.length).to.equal(5)
   })
 
   it ('gets the action IDs', () => {
     expect(card.actions.map((action) => action.id)).to.deep.equal([
-      '5783166f43ba1ee7b63ec823',
       '57833c62cd950e7e15457953',
       '578439d58c96e01ba3bf7494',
       '578492348282ec24d843e391',
-      '57849238a57a9eddca81fb4e',
       '5786d12fe8d60c0af241e15a',
       '5786d1362ae470b9c1fe2f12'
     ])
@@ -31,8 +29,11 @@ describe ('selecting fields', () => {
     expect(dates[1]).to.be.below(dates[2])
     expect(dates[2]).to.be.below(dates[3])
     expect(dates[3]).to.be.below(dates[4])
-    expect(dates[4]).to.be.below(dates[5])
-    expect(dates[5]).to.be.below(dates[6])
+  })
+
+  it ('only returns actions with "listBefore" and "listAfter"', () => {
+    const actions = card.actions.filter((action) => (action.listBefore && action.listAfter))
+    expect(actions.length).to.equal(5)
   })
 
   it ('gets the main properties', () => {

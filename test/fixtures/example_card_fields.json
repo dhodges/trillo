@@ -32,9 +32,13 @@
       "id": "5786d1362ae470b9c1fe2f12",
       "idMemberCreator": "56a0366d1c8b64d1d477d604",
       "data": {
-        "list": {
+        "listAfter": {
           "name": "DOING",
           "id": "5216845a71c39a6f640005d2"
+        },
+        "listBefore": {
+          "name": "Product Queue",
+          "id": "56a81c34da689e41e08b9ab4"
         },
         "board": {
           "shortLink": "r77DTWxo",
@@ -65,9 +69,13 @@
       "id": "5786d12fe8d60c0af241e15a",
       "idMemberCreator": "56a0366d1c8b64d1d477d604",
       "data": {
-        "list": {
-          "name": "DOING",
+        "listAfter": {
+          "name": "TESTING",
           "id": "5216845a71c39a6f640005d2"
+        },
+        "listBefore": {
+          "name": "DOING",
+          "id": "56a81c34da689e41e08b9ab4"
         },
         "board": {
           "shortLink": "r77DTWxo",
@@ -99,10 +107,6 @@
       "id": "57849238a57a9eddca81fb4e",
       "idMemberCreator": "56a0366d1c8b64d1d477d604",
       "data": {
-        "list": {
-          "name": "DOING",
-          "id": "5216845a71c39a6f640005d2"
-        },
         "board": {
           "shortLink": "r77DTWxo",
           "name": "SPP & Product WIP",
@@ -132,9 +136,13 @@
       "id": "578492348282ec24d843e391",
       "idMemberCreator": "56a0366d1c8b64d1d477d604",
       "data": {
-        "list": {
-          "name": "DOING",
+        "listAfter": {
+          "name": "TESTING",
           "id": "5216845a71c39a6f640005d2"
+        },
+        "listBefore": {
+          "name": "DOING",
+          "id": "56a81c34da689e41e08b9ab4"
         },
         "board": {
           "shortLink": "r77DTWxo",
@@ -167,11 +175,11 @@
       "idMemberCreator": "56a0366d1c8b64d1d477d604",
       "data": {
         "listAfter": {
-          "name": "DOING",
+          "name": "Waiting for DC to merge",
           "id": "5216845a71c39a6f640005d2"
         },
         "listBefore": {
-          "name": "Product Queue",
+          "name": "TESTING",
           "id": "56a81c34da689e41e08b9ab4"
         },
         "board": {
@@ -204,9 +212,13 @@
       "id": "57833c62cd950e7e15457953",
       "idMemberCreator": "56a0366d1c8b64d1d477d604",
       "data": {
-        "list": {
-          "name": "Product Queue",
+        "listAfter": {
+          "name": "Sent to Master",
           "id": "56a81c34da689e41e08b9ab4"
+        },
+        "listBefore": {
+          "name": "Waiting for DC to merge",
+          "id": "5216845a71c39a6f640005d2"
         },
         "board": {
           "shortLink": "r77DTWxo",

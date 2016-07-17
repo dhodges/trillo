@@ -4,6 +4,7 @@ require('dotenv').config()
 
 const _        = require('lodash'),
       jsonfile = require('jsonfile'),
+      db_query = require('./trillo_pg_query').query,
       Trello   = require('./trello').Trello,
       trello   = new Trello({
         key:   process.env.TRELLO_API_KEY,

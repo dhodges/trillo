@@ -15,14 +15,24 @@ describe ('selecting fields', () => {
 
   it ('gets the action IDs', () => {
     expect(card.actions.map((action) => action.id)).to.deep.equal([
-      '5786d1362ae470b9c1fe2f12',
-      '5786d12fe8d60c0af241e15a',
-      '57849238a57a9eddca81fb4e',
-      '578492348282ec24d843e391',
-      '578439d58c96e01ba3bf7494',
+      '5783166f43ba1ee7b63ec823',
       '57833c62cd950e7e15457953',
-      '5783166f43ba1ee7b63ec823'
+      '578439d58c96e01ba3bf7494',
+      '578492348282ec24d843e391',
+      '57849238a57a9eddca81fb4e',
+      '5786d12fe8d60c0af241e15a',
+      '5786d1362ae470b9c1fe2f12'
     ])
+  })
+
+  it ('sorts the actions', () => {
+    const dates = card.actions.map((action) => action.date)
+    expect(dates[0]).to.be.below(dates[1])
+    expect(dates[1]).to.be.below(dates[2])
+    expect(dates[2]).to.be.below(dates[3])
+    expect(dates[3]).to.be.below(dates[4])
+    expect(dates[4]).to.be.below(dates[5])
+    expect(dates[5]).to.be.below(dates[6])
   })
 
   it ('gets the main properties', () => {

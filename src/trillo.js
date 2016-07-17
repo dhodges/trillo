@@ -53,10 +53,8 @@ const updateDb = (card) => {
   })
 }
 
-const doingListId = process.env.TRELLO_DOING_LIST_ID
-
-const run = function() {
-  trello.getCardsOnList(doingListId).then((cards) => {
+const gatherCardsFromList = (listId) => {
+  trello.getCardsOnList(listId).then((cards) => {
     _.map(cards, (card) => {
       trello.getCardActions(card.id, {filter:'updateCard'}).then((actions) => {
         trello.getCardLabels(card.id).then((labels) => {
@@ -76,6 +74,10 @@ const run = function() {
       })
     })
   })
+}
+
+const run = function() {
+  gatherCardsFromList(process.env.TRELLO_DOING_LIST_ID)
 }
 
 module.exports.run = run

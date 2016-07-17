@@ -33,10 +33,10 @@ const selectFields = (card) => {
   return {
     id:      card.id,
     name:    card.name,
+    description: card.desc,
     labels:  card.labels.map((label) => label.name),
     members: card.members.map((member) => selectMemberFields(member)),
-    actions: selectActionFields(card.actions),
-    description: card.desc
+    actions: selectActionFields(card.actions)
   }
 }
 

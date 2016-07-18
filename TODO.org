@@ -1,0 +1,19 @@
+
+*  Tasks
+** TODO extract a decent amount of archived cards (>= six months?)
+** TODO script to pg_dump
+** TODO how to get an image from a member avatarHash?
+** TODO how to get the colour from a label?
+
+
+*  Features
+** group by epic?
+** filter by:
+  - label
+  - member
+  - blue bug
+  - spp
+  - remixer
+** stats:
+  - duration
+  - number of times moved from testing to doing

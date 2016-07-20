@@ -5,6 +5,7 @@ require('dotenv').config()
 const db_query = require('./trillo_pg_query').query,
       jsonf    = require('jsonfile'),
       Trello   = require('./trello').Trello,
+      utils    = require('./utils'),
       trello   = new Trello({
         key:   process.env.TRELLO_API_KEY,
         token: process.env.TRELLO_API_TOKEN
@@ -29,13 +30,7 @@ const selectActionFields = (actions) => {
     listBefore: action.data.listBefore,
     listAfter:  action.data.listAfter,
     member:     selectMemberFields(action.memberCreator)
-  })).sort((a1, a2) => {
-    const d1 = new Date(a1.date)
-    const d2 = new Date(a2.date)
-    if (d1 < d2) {return -1}
-    if (d1 > d2) {return 1}
-    return 0
-  })
+  })).sort((a1, a2) => utils.dateComparator(a1.date, a2.date))
 }
 
 const selectFields = (card) => {

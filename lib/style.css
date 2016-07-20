@@ -1,0 +1,90 @@
+#main_graph, #test_names {
+  width: 520px;
+  height: 430px;
+  float: left;
+  border: solid steelblue 1px;
+  border-radius: 5px;
+}
+
+#main_graph {
+  overflow-x: scroll; }
+
+#y_axis {
+  width: 55px;
+  height: 400px;
+  float: left; }
+
+#test_names {
+  padding-left: 10px; }
+
+.test_chart {
+  width: 3000px;
+  font: 14px sans-serif;
+  text-align: left; }
+
+svg {
+  height: 400px;
+  width: 450px;
+  padding: 10px; }
+  svg text {
+    fill: steelblue; }
+  svg line {
+    stroke: steelblue;
+    shape-rendering: crispEdges; }
+  svg rect {
+    fill: steelblue; }
+    svg rect:hover {
+      cursor: pointer;
+      fill: lightsteelblue; }
+    svg rect.excess {
+      fill: red; }
+      svg rect.excess:hover {
+        fill: pink; }
+  svg rect.std_deviation {
+    fill: lightsteelblue; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: steelblue;
+  shape-rendering: crispEdges; }
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px; }
+
+.name_list {
+  padding-left: 0px; }
+  .name_list rect {
+    fill: none; }
+  .name_list text.test_name {
+    fill: lightsteelblue;
+    cursor: pointer; }
+    .name_list text.test_name.excess {
+      fill: pink; }
+  .name_list text.test_name.selected {
+    fill: steelblue;
+    font-weight: bold; }
+    .name_list text.test_name.selected.excess {
+      fill: red; }
+
+.build_info {
+  font: 10px sans-serif;
+  fill: white;
+  text-align: center;
+  border: solid steelblue 1px;
+  border-radius: 5px;
+  background-color: lightsteelblue;
+  height: 48px;
+  width: 100px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  margin-top: 335px;
+  pointer-events: none; }
+  .build_info.excess {
+    background-color: pink; }

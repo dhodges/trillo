@@ -19,6 +19,7 @@ const selectMemberFields = (member) => {
 
 const selectActionFields = (actions) => {
   return actions.filter((action) => {
+    // only want actions that move cards between lists
     return (action.data.listBefore && action.data.listAfter)
   }).map((action) => ({
     id:         action.id,

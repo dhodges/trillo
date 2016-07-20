@@ -1,6 +1,5 @@
 {
   "author": "David Hodges",
-  "bin": "bin/trillo",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "db-migrate": "^0.10.0-beta.15",
@@ -31,7 +30,8 @@
     "http-server": "node ./node_modules/http-server/bin/http-server -o",
     "mocha": "^2.5.3",
     "test": "mocha --compilers js:babel-register",
-    "test-watch": "mocha --compilers js:babel-register --recursive --watch"
+    "test-watch": "mocha --compilers js:babel-register --recursive --watch",
+    "updatedb": "bin/updatedb"
   },
   "version": "0.0.1"
 }

@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+process.title = 'trillo';
+require(__dirname+'/../dist/trillo').dumpjson(process.argv.slice(2));

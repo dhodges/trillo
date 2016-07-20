@@ -3,6 +3,7 @@
 require('dotenv').config()
 
 const db_query = require('./trillo_pg_query').query,
+      jsonf    = require('jsonfile'),
       Trello   = require('./trello').Trello,
       trello   = new Trello({
         key:   process.env.TRELLO_API_KEY,
@@ -61,6 +62,16 @@ const updateDb = (card) => {
   })
 }
 
+const oneMonthAgo = () => new Date(new Date() - 86400000*30)
+
+const dumpjson = () => {
+  db_query("SELECT data FROM archived_cards WHERE archived < $1::timestamp",
+           [oneMonthAgo().toISOString()], (err, rows) => {
+    if (err) throw err
+    jsonf.writeFileSync('archived_cards.json', utils.prepare(rows.map((row) => row.data)))
+  })
+}
+
 const gatherCardsFromList = (listId) => {
   trello.getCardsOnList(listId).then((cards) => {
     cards.map((c) => {
@@ -95,3 +106,4 @@ const updateDbWithArchivedCards = function() {
 
 module.exports.updateDbWithArchivedCards = updateDbWithArchivedCards
 module.exports.selectFields = selectFields
+module.exports.dumpjson = dumpjson

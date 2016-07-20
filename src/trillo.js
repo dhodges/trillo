@@ -76,19 +76,22 @@ const gatherCardsFromList = (listId) => {
 }
 
 const gatherArchivedCards = (boardId) => {
-  trello.getArchivedCards(boardId, {
+  return trello.getArchivedCards(boardId, {
     actions: 'updateCard',
     members: 'true',
     fields:  'desc,labels,name,dateLastActivity',
     since:   '2016-06-17'
-  }).then((cards) => {
+  })
+}
+
+const updateDbWithArchivedCards = function() {
+  console.log('gathering archived cards from trello...')
+
+  gatherArchivedCards(process.env.TRELLO_BOARD_ID).then((cards) => {
+    console.log('updating the db...')
     cards.forEach((card) => updateDb(selectFields(card)))
   })
 }
 
-const run = function() {
-  gatherArchivedCards(process.env.TRELLO_BOARD_ID)
-}
-
-module.exports.run = run
+module.exports.updateDbWithArchivedCards = updateDbWithArchivedCards
 module.exports.selectFields = selectFields

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+DUMP_FILE=trello_archived_cards.dump
+
+# need to source these from ENV
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=trillo
+DB_USER=$USER
+
+echo "dumping trello archived cards schema to $DUMP_FILE.schema..."
+pg_dump --schema-only \
+        -h $DB_HOST \
+        -p $DB_PORT \
+        -U $DB_USER \
+        -f $DUMP_FILE.schema \
+        $DB_NAME \
+        2>&1 > $DUMP_FILE.log
+
+echo "dumping trello archived cards data to $DUMP_FILE.data..."
+pg_dump --data-only \
+        -h $DB_HOST \
+        -p $DB_PORT \
+        -U $DB_USER \
+        -f $DUMP_FILE.data \
+        $DB_NAME \
+        2>&1 >> $DUMP_FILE.log
+
+echo "done."

@@ -26,6 +26,7 @@
   "scripts": {
     "compile": "babel src/ -d dist/ --source-maps",
     "compile-watch": "babel -w src/ -d dist/ --source-maps",
+    "dumpdb": "bin/dumpdb",
     "expect": "^1.20.2",
     "http-server": "node ./node_modules/http-server/bin/http-server -o",
     "mocha": "^2.5.3",

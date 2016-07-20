@@ -3,3 +3,6 @@ node_modules/*
 npm-debug.log
 **/*.js.map
 **/.env
+*.data
+*.log
+*.schema

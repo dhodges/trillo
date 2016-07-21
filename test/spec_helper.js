@@ -13,8 +13,13 @@ const _      = require('lodash'),
         token: process.env.TRELLO_API_TOKEN
       })
 
+const fixture = (fname) => {
+  return jsonf.readFileSync(__dirname+'/fixtures/'+fname)
+}
+
 module.exports._      = _
 module.exports.expect = expect
 module.exports.jsonf  = jsonf
 module.exports.trillo = trillo
 module.exports.trello = trello
+module.exports.fixture = fixture

@@ -1,0 +1,680 @@
+[
+  {
+    "id": "575a6d3c36d47c519aed4974",
+    "name": "(#1756) [CHRISTO] Allow users to verify, publish and delete narrative pages that match a current filter",
+    "description": "https://github.com/lonelyplanet/atlas/issues/1756",
+    "dateLastActivity": "2016-06-20T07:42:57.407Z",
+    "labels": [
+      "Epic",
+      "SPP"
+    ],
+    "members": [
+      {
+        "id": "5241059f00b76d0f03002aff",
+        "fullName": "spp_kicked_off",
+        "avatarHash": "3b492718da8409aae8ecbf715ea17d6e"
+      },
+      {
+        "id": "5253449c782668513e005ee6",
+        "fullName": "spp_peer_reviewed",
+        "avatarHash": "1d027b05589ea204bf493f0bbb11366a"
+      }
+    ],
+    "actions": [
+      {
+        "id": "575a7ef4d8dcbb1c9a257a47",
+        "date": "2016-06-10T08:48:52.445Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "SPP Queue (priority order)",
+          "id": "5371b2e896298ed4704f0c32"
+        },
+        "listAfter": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "member": {
+          "id": "522448fd236fd3ef12001a40",
+          "fullName": "David Hodges",
+          "avatarHash": "8146e98e4c346be9c1476147af11f8e1"
+        }
+      },
+      {
+        "id": "5760196d78e4258929b26c52",
+        "date": "2016-06-14T14:49:17.190Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "listAfter": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "member": {
+          "id": "522448fd236fd3ef12001a40",
+          "fullName": "David Hodges",
+          "avatarHash": "8146e98e4c346be9c1476147af11f8e1"
+        }
+      },
+      {
+        "id": "57613efd50d0b7e144219324",
+        "date": "2016-06-15T11:41:49.051Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "listAfter": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "member": {
+          "id": "55afaa04963bca7c7c9f02ba",
+          "fullName": "Jane Grisman",
+          "avatarHash": "bdf2c9d99b8253c3559d97238fd24b70"
+        }
+      },
+      {
+        "id": "57617de993377671a2e7a4da",
+        "date": "2016-06-15T16:10:17.385Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "listAfter": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      },
+      {
+        "id": "57634c6591155aecbf9bc4e0",
+        "date": "2016-06-17T01:03:33.898Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "listAfter": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "member": {
+          "id": "52deedfc7ba097f3143d4f1d",
+          "fullName": "Ruth Cosgrove",
+          "avatarHash": "25d65528d73be698a87c4901197413de"
+        }
+      },
+      {
+        "id": "5763d48521249b0439bcf371",
+        "date": "2016-06-17T10:44:21.155Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "listAfter": {
+          "name": "Deployed to Prod",
+          "id": "53b21ccb852c02f7dc55a6f0"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      }
+    ]
+  },
+  {
+    "id": "575e7b0fb28969dd3f0aac04",
+    "name": "#1758 [ATLAS] read/write API_KEY for Open Planet",
+    "description": "https://github.com/lonelyplanet/atlas/pull/1758",
+    "dateLastActivity": "2016-06-20T07:42:57.409Z",
+    "labels": [
+      "Open Planet",
+      "SPP"
+    ],
+    "members": [
+      {
+        "id": "5253449c782668513e005ee6",
+        "fullName": "spp_peer_reviewed",
+        "avatarHash": "1d027b05589ea204bf493f0bbb11366a"
+      },
+      {
+        "id": "5241059f00b76d0f03002aff",
+        "fullName": "spp_kicked_off",
+        "avatarHash": "3b492718da8409aae8ecbf715ea17d6e"
+      },
+      {
+        "id": "524106562137992d770090eb",
+        "fullName": "spp_no_release_required",
+        "avatarHash": "cc1d0037059959d12a40ce5a2f45c488"
+      }
+    ],
+    "actions": [
+      {
+        "id": "575ea0dbbfe6347d48f7b1bc",
+        "date": "2016-06-13T12:02:35.721Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "listAfter": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "member": {
+          "id": "522448fd236fd3ef12001a40",
+          "fullName": "David Hodges",
+          "avatarHash": "8146e98e4c346be9c1476147af11f8e1"
+        }
+      },
+      {
+        "id": "576169024171f039416d4800",
+        "date": "2016-06-15T14:41:06.884Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "listAfter": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      },
+      {
+        "id": "5762b95ac59a4bf28cd1d765",
+        "date": "2016-06-16T14:36:10.161Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "listAfter": {
+          "name": "Deployed to Prod",
+          "id": "53b21ccb852c02f7dc55a6f0"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      },
+      {
+        "id": "576343c544fc3b0a12f39226",
+        "date": "2016-06-17T00:26:45.809Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Deployed to Prod",
+          "id": "53b21ccb852c02f7dc55a6f0"
+        },
+        "listAfter": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "member": {
+          "id": "52deedfc7ba097f3143d4f1d",
+          "fullName": "Ruth Cosgrove",
+          "avatarHash": "25d65528d73be698a87c4901197413de"
+        }
+      },
+      {
+        "id": "57634c67b36c2e5c96c73cf6",
+        "date": "2016-06-17T01:03:35.003Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "listAfter": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "member": {
+          "id": "52deedfc7ba097f3143d4f1d",
+          "fullName": "Ruth Cosgrove",
+          "avatarHash": "25d65528d73be698a87c4901197413de"
+        }
+      },
+      {
+        "id": "5763d4855daea4185298e263",
+        "date": "2016-06-17T10:44:21.440Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "listAfter": {
+          "name": "Deployed to Prod",
+          "id": "53b21ccb852c02f7dc55a6f0"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      }
+    ]
+  },
+  {
+    "id": "57481d7a8b1426c396fb95d2",
+    "name": "(#1750) (CHRISTO) 'Remove pin' doesn't work",
+    "description": "https://github.com/lonelyplanet/atlas/issues/1750",
+    "dateLastActivity": "2016-06-20T07:42:57.402Z",
+    "labels": [
+      "Bug or Minor Feature",
+      "SPP"
+    ],
+    "members": [
+      {
+        "id": "5253449c782668513e005ee6",
+        "fullName": "spp_peer_reviewed",
+        "avatarHash": "1d027b05589ea204bf493f0bbb11366a"
+      }
+    ],
+    "actions": [
+      {
+        "id": "5756dd8f422d235a037ef70a",
+        "date": "2016-06-07T14:43:27.978Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "SPP Queue (priority order)",
+          "id": "5371b2e896298ed4704f0c32"
+        },
+        "listAfter": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "member": {
+          "id": "561bcc37b9d356b6680c2bb4",
+          "fullName": "Gary Rafferty",
+          "avatarHash": "c48963567978c7d36880496565a03292"
+        }
+      },
+      {
+        "id": "5756e3052935afd7c7dcde16",
+        "date": "2016-06-07T15:06:45.733Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "listAfter": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "member": {
+          "id": "561bcc37b9d356b6680c2bb4",
+          "fullName": "Gary Rafferty",
+          "avatarHash": "c48963567978c7d36880496565a03292"
+        }
+      },
+      {
+        "id": "575aace0c7f691bf7349acb9",
+        "date": "2016-06-10T12:04:48.010Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "listAfter": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "member": {
+          "id": "55afaa04963bca7c7c9f02ba",
+          "fullName": "Jane Grisman",
+          "avatarHash": "bdf2c9d99b8253c3559d97238fd24b70"
+        }
+      },
+      {
+        "id": "5762a6d0e889e14db3a59cea",
+        "date": "2016-06-16T13:17:04.199Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "listAfter": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      },
+      {
+        "id": "57634c6358179adc48a34e28",
+        "date": "2016-06-17T01:03:31.944Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "listAfter": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "member": {
+          "id": "52deedfc7ba097f3143d4f1d",
+          "fullName": "Ruth Cosgrove",
+          "avatarHash": "25d65528d73be698a87c4901197413de"
+        }
+      },
+      {
+        "id": "5763d4853a40b8d818c94748",
+        "date": "2016-06-17T10:44:21.169Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "listAfter": {
+          "name": "Deployed to Prod",
+          "id": "53b21ccb852c02f7dc55a6f0"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      }
+    ]
+  },
+  {
+    "id": "57614972de6f52f011f5249f",
+    "name": "Bump FF version to 47 for Christo Extension 'current' test.",
+    "description": "https://github.com/lonelyplanet/christo-extension/pull/12",
+    "dateLastActivity": "2016-06-20T07:42:57.413Z",
+    "labels": [
+      "Tech",
+      "SPP"
+    ],
+    "members": [
+      {
+        "id": "524106562137992d770090eb",
+        "fullName": "spp_no_release_required",
+        "avatarHash": "cc1d0037059959d12a40ce5a2f45c488"
+      }
+    ],
+    "actions": [
+      {
+        "id": "5761498acb79b23c47d67e5a",
+        "date": "2016-06-15T12:26:50.762Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "listAfter": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      },
+      {
+        "id": "576342fbe11ab9c762b3e69e",
+        "date": "2016-06-17T00:23:23.977Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "listAfter": {
+          "name": "Deployed to Prod",
+          "id": "53b21ccb852c02f7dc55a6f0"
+        },
+        "member": {
+          "id": "52deedfc7ba097f3143d4f1d",
+          "fullName": "Ruth Cosgrove",
+          "avatarHash": "25d65528d73be698a87c4901197413de"
+        }
+      }
+    ]
+  },
+  {
+    "id": "56ec1658aafa7eed56180563",
+    "name": "(#1754) [CHRISTO] Export Place as a PDF",
+    "description": "https://github.com/lonelyplanet/atlas/issues/1754",
+    "dateLastActivity": "2016-06-20T07:42:57.404Z",
+    "labels": [
+      "Bug or Minor Feature",
+      "SPP"
+    ],
+    "members": [
+      {
+        "id": "5241059f00b76d0f03002aff",
+        "fullName": "spp_kicked_off",
+        "avatarHash": "3b492718da8409aae8ecbf715ea17d6e"
+      },
+      {
+        "id": "5253449c782668513e005ee6",
+        "fullName": "spp_peer_reviewed",
+        "avatarHash": "1d027b05589ea204bf493f0bbb11366a"
+      },
+      {
+        "id": "5232409955036de4030001e0",
+        "fullName": "spp_issue",
+        "avatarHash": "99dc34d9aa96a5e5201aa5bc214ad8a7"
+      }
+    ],
+    "actions": [
+      {
+        "id": "575800ebb4b82c74fab96eb0",
+        "date": "2016-06-08T11:26:35.103Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "SPP Queue (priority order)",
+          "id": "5371b2e896298ed4704f0c32"
+        },
+        "listAfter": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "member": {
+          "id": "522448fd236fd3ef12001a40",
+          "fullName": "David Hodges",
+          "avatarHash": "8146e98e4c346be9c1476147af11f8e1"
+        }
+      },
+      {
+        "id": "575976c8e9d8fcecd5fe6cee",
+        "date": "2016-06-09T14:01:44.605Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "listAfter": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "member": {
+          "id": "522448fd236fd3ef12001a40",
+          "fullName": "David Hodges",
+          "avatarHash": "8146e98e4c346be9c1476147af11f8e1"
+        }
+      },
+      {
+        "id": "575ad33fa585b2674270587b",
+        "date": "2016-06-10T14:48:31.542Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "listAfter": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "member": {
+          "id": "55afaa04963bca7c7c9f02ba",
+          "fullName": "Jane Grisman",
+          "avatarHash": "bdf2c9d99b8253c3559d97238fd24b70"
+        }
+      },
+      {
+        "id": "575ecfebefeb2538abb57afe",
+        "date": "2016-06-13T15:23:23.106Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "listAfter": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "member": {
+          "id": "561bcc37b9d356b6680c2bb4",
+          "fullName": "Gary Rafferty",
+          "avatarHash": "c48963567978c7d36880496565a03292"
+        }
+      },
+      {
+        "id": "575fd8d419959e2b5706a6f3",
+        "date": "2016-06-14T10:13:40.057Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "listAfter": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "member": {
+          "id": "55afaa04963bca7c7c9f02ba",
+          "fullName": "Jane Grisman",
+          "avatarHash": "bdf2c9d99b8253c3559d97238fd24b70"
+        }
+      },
+      {
+        "id": "57611f42360af2e4e6d5262c",
+        "date": "2016-06-15T09:26:26.753Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "listAfter": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      },
+      {
+        "id": "576163c82be0d35c16963928",
+        "date": "2016-06-15T14:18:48.027Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "DOING",
+          "id": "5216845a71c39a6f640005d2"
+        },
+        "listAfter": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "member": {
+          "id": "522448fd236fd3ef12001a40",
+          "fullName": "David Hodges",
+          "avatarHash": "8146e98e4c346be9c1476147af11f8e1"
+        }
+      },
+      {
+        "id": "576271e4e59a4b4262e5a362",
+        "date": "2016-06-16T09:31:16.142Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "TESTING",
+          "id": "5216845a71c39a6f640005d3"
+        },
+        "listAfter": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "member": {
+          "id": "55afaa04963bca7c7c9f02ba",
+          "fullName": "Jane Grisman",
+          "avatarHash": "bdf2c9d99b8253c3559d97238fd24b70"
+        }
+      },
+      {
+        "id": "57627759d2277eea48fe524e",
+        "date": "2016-06-16T09:54:33.351Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Waiting for DC to merge",
+          "id": "554b423e26c7e49d537a329e"
+        },
+        "listAfter": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      },
+      {
+        "id": "57634c6469bdce840295f8d5",
+        "date": "2016-06-17T01:03:32.935Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Sent to Master",
+          "id": "521684bdbeaa3db464000a41"
+        },
+        "listAfter": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "member": {
+          "id": "52deedfc7ba097f3143d4f1d",
+          "fullName": "Ruth Cosgrove",
+          "avatarHash": "25d65528d73be698a87c4901197413de"
+        }
+      },
+      {
+        "id": "5763d485943a9f231956ed78",
+        "date": "2016-06-17T10:44:21.173Z",
+        "type": "updateCard",
+        "listBefore": {
+          "name": "Deployed to Devint",
+          "id": "530e75bf4ef9f9d44a04af98"
+        },
+        "listAfter": {
+          "name": "Deployed to Prod",
+          "id": "53b21ccb852c02f7dc55a6f0"
+        },
+        "member": {
+          "id": "518200405c213bca34007150",
+          "fullName": "Daniel Corbett",
+          "avatarHash": "7deb11bc1a2ecd564778637452536f61"
+        }
+      }
+    ]
+  }
+]

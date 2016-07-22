@@ -24,7 +24,7 @@ const find_latest_date = (json_data) => {
 }
 
 const startedDoing = (action) => {
-  return action.listAfter.name == 'DOING'
+  return action.listAfter.name.startsWith('DOING')
 }
 
 const find_earliest_date = (json_data) => {
@@ -36,15 +36,25 @@ const find_earliest_date = (json_data) => {
   }).sort(byDate)[0]
 }
 
+const jsonEscape = (str) =>  {
+  return str.replace(/\n/g, "\\\\n")
+            .replace(/\r/g, "\\\\r")
+            .replace(/\t/g, "\\\\t")
+}
+
 const prepare = (json_data) => {
   return {
     meta: {
       earliest_date: find_earliest_date(json_data),
       latest_date:   find_latest_date(json_data)
     },
-    cards: json_data,
+    cards: json_data.map((card) => {
+      card.description = jsonEscape(card.description)
+      return card
+    })
   }
 }
 
 module.exports.prepare = prepare
+module.exports.jsonEscape = jsonEscape
 module.exports.dateComparator = dateComparator

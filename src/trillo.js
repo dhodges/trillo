@@ -57,13 +57,17 @@ const updateDb = (card) => {
   })
 }
 
-const oneMonthAgo = () => new Date(new Date() - 86400000*30)
+const monthsAgo = (n) => {
+  let d = new Date()
+  d.setMonth(d.getMonth() - n)
+  return d
+}
 
 const dumpjson = () => {
   db_query("SELECT data FROM archived_cards WHERE archived > $1::timestamp",
-           [oneMonthAgo().toISOString()], (err, rows) => {
+           [monthsAgo(3).toISOString()], (err, rows) => {
     if (err) throw err
-    jsonf.writeFileSync('archived_cards.json', utils.prepare(rows.map((row) => row.data)))
+    jsonf.writeFileSync('archived_cards.json', utils.prepare(rows.map((row) => row.data)), {spaces: 2})
   })
 }
 
@@ -86,7 +90,7 @@ const gatherArchivedCards = (boardId) => {
     actions: 'updateCard',
     members: 'true',
     fields:  'desc,labels,name,dateLastActivity',
-    since:   '2016-06-17'
+    since:   '2016-01-01'
   })
 }
 

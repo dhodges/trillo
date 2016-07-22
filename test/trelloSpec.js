@@ -2,8 +2,8 @@
 
 const {expect, trello} = require('./spec_helper')
 
-describe('getting card field', () => {
-  it ('for an invalid field', () => {
+describe('getting', () => {
+  it ('an invalid field', () => {
     expect(() => trello.getCardField(123, 'jungle')).to.throw(/field.*invalid/)
   })
 })

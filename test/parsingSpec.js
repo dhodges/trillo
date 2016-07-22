@@ -9,11 +9,11 @@ const fixture = (fname) => {
 describe ('selecting fields', () => {
   const card = trillo.selectFields(fixture('example_card_fields.json'))
 
-  it ('gets the action count', () => {
+  it ('action count', () => {
     expect(card.actions.length).to.equal(5)
   })
 
-  it ('gets the action IDs', () => {
+  it ('action IDs', () => {
     expect(card.actions.map((action) => action.id)).to.deep.equal([
       '57833c62cd950e7e15457953',
       '578439d58c96e01ba3bf7494',
@@ -23,7 +23,7 @@ describe ('selecting fields', () => {
     ])
   })
 
-  it ('sorts the actions', () => {
+  it ('action sorting', () => {
     const dates = card.actions.map((action) => action.date)
     expect(dates[0]).to.be.below(dates[1])
     expect(dates[1]).to.be.below(dates[2])
@@ -31,12 +31,12 @@ describe ('selecting fields', () => {
     expect(dates[3]).to.be.below(dates[4])
   })
 
-  it ('only returns actions with "listBefore" and "listAfter"', () => {
+  it ('action filters', () => {
     const actions = card.actions.filter((action) => (action.listBefore && action.listAfter))
     expect(actions.length).to.equal(5)
   })
 
-  it ('gets the main properties', () => {
+  it ('main properties', () => {
     expect(_.keys(card.actions[0])).to.deep.equal([
       'id',
       'date',
@@ -47,19 +47,19 @@ describe ('selecting fields', () => {
     ])
   })
 
-  it ('gets the label count', () => {
+  it ('label count', () => {
     expect(card.labels.length).to.equal(1)
   })
 
-  it ('gets the labels', () => {
+  it ('labels', () => {
     expect(card.labels).to.include('Tech')
   })
 
-  it ('gets the member count', () => {
+  it ('member count', () => {
     expect(card.members.length).to.equal(2)
   })
 
-  it ('gets the members', () => {
+  it ('members', () => {
     expect(card.members).to.include({
       avatarHash: '0ff01919582c01e27a00a52efa8c44c3',
       fullName:   'Spaceman Bob',
@@ -72,11 +72,11 @@ describe ('selecting fields', () => {
     })
   })
 
-  it ('gets the description', () => {
+  it ('description', () => {
     expect(card.description).to.equal('https://github.com/lonelyplanet/spp_dashboard/issues/15\nhttps://github.com/lonelyplanet/spp_aws/issues/34\n\nThe auto shutdown script may cause devbox update to fail.\n\nDevelop a new way to maintain devbox `running` status for devbox update')
   })
 
-  it ('gets the last activity date', () => {
+  it ('dateLastActivity', () => {
     expect(card.dateLastActivity).to.equal('2016-07-04T12:45:06.207Z')
   })
 })

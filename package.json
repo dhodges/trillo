@@ -30,6 +30,7 @@
     "dumpjson": "bin/dumpjson",
     "expect": "^1.20.2",
     "http-server": "node ./node_modules/http-server/bin/http-server -o",
+    "jasmine-runner": "open http://127.0.0.1:8080/lib/jasmine-2.4.1/SpecRunner.html",
     "mocha": "^2.5.3",
     "test": "mocha --compilers js:babel-register",
     "test-watch": "mocha --compilers js:babel-register --recursive --watch",

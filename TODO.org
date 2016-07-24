@@ -4,7 +4,6 @@
 ** TODO how to get an image from a member avatarHash?
 ** TODO how to get the colour from a label?
 
-
 *  Features
 ** group by epic?
 ** filter by:
@@ -13,6 +12,10 @@
   - blue bug
   - spp
   - remixer
-** stats:
+** card stats:
+  - labels
   - duration
-  - number of times moved from testing to doing
+  - number of times bounced back from testing
+  - associated people?
+** month stats:
+  - per label, number of cards deployed

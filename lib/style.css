@@ -9,6 +9,20 @@
 #main_graph {
   overflow-x: scroll; }
 
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis line,
+.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+
 #y_axis {
   width: 55px;
   height: 400px;

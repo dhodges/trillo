@@ -13,7 +13,9 @@ const dateComparator = (a1, a2) => {
 const byDate = dateComparator
 
 const deployedToProd = (action) => {
-  return action.listAfter.name == 'Deployed to Prod'
+  return action.listAfter &&
+    action.listAfter.name == 'Deployed to Prod'
+}
 
 const deployedCards = (cards) => {
   return cards.filter((card) => _.some(card.actions, deployedToProd))
@@ -29,7 +31,8 @@ const find_latest_date = (json_data) => {
 }
 
 const startedDoing = (action) => {
-  return action.listAfter.name.startsWith('DOING')
+  return action.listAfter &&
+    action.listAfter.name.startsWith('DOING')
 }
 
 const find_earliest_date = (json_data) => {

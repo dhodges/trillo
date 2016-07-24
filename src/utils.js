@@ -1,5 +1,7 @@
 'use strict';
 
+const _ = require('lodash')
+
 const dateComparator = (a1, a2) => {
   const d1 = new Date(a1)
   const d2 = new Date(a2)
@@ -12,6 +14,9 @@ const byDate = dateComparator
 
 const deployedToProd = (action) => {
   return action.listAfter.name == 'Deployed to Prod'
+
+const deployedCards = (cards) => {
+  return cards.filter((card) => _.some(card.actions, deployedToProd))
 }
 
 const find_latest_date = (json_data) => {
@@ -58,3 +63,4 @@ const prepare = (json_data) => {
 module.exports.prepare = prepare
 module.exports.jsonEscape = jsonEscape
 module.exports.dateComparator = dateComparator
+module.exports.deployedCards  = deployedCards

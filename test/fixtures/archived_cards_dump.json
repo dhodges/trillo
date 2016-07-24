@@ -115,14 +115,6 @@
         "id": "5763d48521249b0439bcf371",
         "date": "2016-06-17T10:44:21.155Z",
         "type": "updateCard",
-        "listBefore": {
-          "name": "Deployed to Devint",
-          "id": "530e75bf4ef9f9d44a04af98"
-        },
-        "listAfter": {
-          "name": "Deployed to Prod",
-          "id": "53b21ccb852c02f7dc55a6f0"
-        },
         "member": {
           "id": "518200405c213bca34007150",
           "fullName": "Daniel Corbett",

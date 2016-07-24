@@ -33,7 +33,7 @@
     "jasmine-runner": "open http://127.0.0.1:8080/lib/jasmine-2.4.1/SpecRunner.html",
     "mocha": "^2.5.3",
     "test": "mocha --compilers js:babel-register",
-    "test-watch": "mocha --compilers js:babel-register --recursive --watch",
+    "test-watch": "mocha --compilers js:babel-register --reporter min --recursive --watch",
     "updatedb": "bin/updatedb"
   },
   "version": "0.0.1"

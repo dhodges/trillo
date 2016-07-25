@@ -65,7 +65,7 @@ const updateDb = (card) => {
 const oneMonthAgo = () => new Date(new Date() - 86400000*30)
 
 const dumpjson = () => {
-  db_query("SELECT data FROM archived_cards WHERE archived < $1::timestamp",
+  db_query("SELECT data FROM archived_cards WHERE archived > $1::timestamp",
            [oneMonthAgo().toISOString()], (err, rows) => {
     if (err) throw err
     jsonf.writeFileSync('archived_cards.json', utils.prepare(rows.map((row) => row.data)))

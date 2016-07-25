@@ -21,6 +21,16 @@ const deployedCards = (cards) => {
   return cards.filter((card) => _.some(card.actions, deployedToProd))
 }
 
+const dateDeployed = (card) => {
+  const action = card.actions.filter(deployedToProd)[0]
+  return action ? action.date : null
+}
+
+const dateStartedDoing = (card) => {
+  const action = card.actions.filter(startedDoing)[0]
+  return action ? action.date : null
+}
+
 const find_latest_date = (json_data) => {
   return json_data.map((card) => {
     return card.actions
@@ -56,10 +66,13 @@ const prepare = (json_data) => {
       earliest_date: find_earliest_date(json_data),
       latest_date:   find_latest_date(json_data)
     },
-    cards: json_data.map((card) => {
-      card.description = jsonEscape(card.description)
-      return card
-    })
+    cards: json_data.map((card) => _.merge({
+      name:             card.name,
+      description:      jsonEscape(card.description),
+      dateDeployed:     dateDeployed(card),
+      dateStartedDoing: dateStartedDoing(card),
+      dateLastActivity: card.dateLastActivity
+    }, card))
   }
 }
 
@@ -67,3 +80,5 @@ module.exports.prepare = prepare
 module.exports.jsonEscape = jsonEscape
 module.exports.dateComparator = dateComparator
 module.exports.deployedCards  = deployedCards
+module.exports.dateDeployed   = dateDeployed
+module.exports.dateStartedDoing = dateStartedDoing

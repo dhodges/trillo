@@ -20,6 +20,11 @@ try {
     it ('for date started Doing', () => {
       expect(utils.dateStartedDoing(chart_data.cards[0])).to.equal('2016-06-10T08:48:52.445Z')
     })
+
+    it ('for determining previous month', () => {
+      const monthDates = utils.monthPreviousTo(new Date('2016-08-10 0:00 UTC'))
+      expect(monthDates).to.deep.equal([new Date('2016-07-01'), new Date('2016-07-31')])
+    })
   })
 }
 catch(err) {

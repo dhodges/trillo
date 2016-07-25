@@ -76,9 +76,17 @@ const prepare = (json_data) => {
   }
 }
 
+const monthPreviousTo = (thisDate) => {
+  const endDay   = new Date(thisDate.setDate(0))
+  const startDay = new Date(endDay)
+  startDay.setDate(1)
+  return [startDay, endDay]
+}
+
 module.exports.prepare = prepare
 module.exports.jsonEscape = jsonEscape
 module.exports.dateComparator = dateComparator
 module.exports.deployedCards  = deployedCards
 module.exports.dateDeployed   = dateDeployed
 module.exports.dateStartedDoing = dateStartedDoing
+module.exports.monthPreviousTo  = monthPreviousTo

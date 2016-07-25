@@ -17,6 +17,11 @@ const deployedToProd = (action) => {
     action.listAfter.name == 'Deployed to Prod'
 }
 
+const startedDoing = (action) => {
+  return action.listAfter &&
+    action.listAfter.name.startsWith('DOING')
+}
+
 const deployedCards = (cards) => {
   return cards.filter((card) => _.some(card.actions, deployedToProd))
 }
@@ -38,11 +43,6 @@ const find_latest_date = (json_data) => {
       .map((action) => action.date)
       .sort(byDate)[0]
   }).sort(byDate)[0]
-}
-
-const startedDoing = (action) => {
-  return action.listAfter &&
-    action.listAfter.name.startsWith('DOING')
 }
 
 const find_earliest_date = (json_data) => {

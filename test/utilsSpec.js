@@ -5,7 +5,7 @@ const {expect, fixture} = require('./spec_helper')
 const utils = require('../dist/utils.js')
 
 try {
-  describe ('filtering data', () => {
+  describe ('utils', () => {
     const chart_data = utils.prepare(fixture('archived_cards_dump.json'))
 
     it ('for cards deployed to prod', () => {

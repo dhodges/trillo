@@ -13,6 +13,7 @@ const Trello = require('../dist/trello').Trello,
       repl   = require('repl').start({prompt: '> '})
 
 repl.context.jsonf   = require('jsonfile')
+repl.context._       = require('lodash')
 repl.context.utils   = require('../src/utils')
 repl.context.trillo  = require('../src/trillo')
 repl.context.trello  = new Trello({

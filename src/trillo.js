@@ -4,6 +4,7 @@ require('dotenv').config()
 
 const db_query = require('./trillo_pg_query').query,
       jsonf    = require('jsonfile'),
+      _        = require('lodash'),
       Trello   = require('./trello').Trello,
       utils    = require('./utils'),
       trello   = new Trello({
@@ -62,7 +63,12 @@ const dumpPreviousMonthJson = (fromDate, toDate) => {
             WHERE $1::timestamp <= archived AND archived <= $2::timestamp`,
            [fromDate.toISOString(), toDate.toISOString()], (err, rows) => {
     if (err) throw err
-    jsonf.writeFileSync('archived_cards.json', utils.prepare(rows.map((row) => row.data)), {spaces: 2})
+    let cards = utils.prepare(rows.map((row) => row.data))
+    _.merge(cards.meta, {
+      chart_from_date: fromDate.toISOString(),
+      chart_to_date:   toDate.toISOString()
+    })
+    jsonf.writeFileSync('archived_cards.json', cards, {spaces: 2})
   })
 }
 

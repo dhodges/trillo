@@ -63,8 +63,6 @@ const jsonEscape = (str) =>  {
 const prepare = (json_data) => {
   return {
     meta: {
-      earliest_date: find_earliest_date(json_data),
-      latest_date:   find_latest_date(json_data)
     },
     cards: json_data.map((card) => _.merge({
       name:             card.name,

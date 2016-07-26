@@ -71,25 +71,11 @@ const dumpjson = () => {
   })
 }
 
-const gatherCardsFromList = (listId) => {
-  trello.getCardsOnList(listId).then((cards) => {
-    cards.map((c) => {
-      trello.getCard(c.id, {
-        actions: 'updateCard',
-        members: 'true',
-        fields:  'desc,labels,name,'
-      }).then((card) => {
-        updateDb(selectFields(card))
-      })
-    })
-  })
-}
-
 const gatherArchivedCards = (boardId) => {
   return trello.getArchivedCards(boardId, {
     actions: 'updateCard',
     members: 'true',
-    fields:  'desc,labels,name,dateLastActivity',
+    fields:  'desc,labels,name,dateLastActivity,idMembers',
     since:   '2016-01-01'
   })
 }

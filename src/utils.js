@@ -76,6 +76,12 @@ const prepare = (json_data) => {
   }
 }
 
+const monthsAgo = (n) => {
+  let d = new Date()
+  d.setMonth(d.getMonth() - n)
+  return d
+}
+
 const monthPreviousTo = (thisDate) => {
   const endDay   = new Date(thisDate.setDate(0))
   const startDay = new Date(endDay)
@@ -89,4 +95,5 @@ module.exports.dateComparator = dateComparator
 module.exports.deployedCards  = deployedCards
 module.exports.dateDeployed   = dateDeployed
 module.exports.dateStartedDoing = dateStartedDoing
+module.exports.monthsAgo        = monthsAgo
 module.exports.monthPreviousTo  = monthPreviousTo

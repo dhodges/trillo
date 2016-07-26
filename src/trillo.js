@@ -57,15 +57,9 @@ const updateDb = (card) => {
   })
 }
 
-const monthsAgo = (n) => {
-  let d = new Date()
-  d.setMonth(d.getMonth() - n)
-  return d
-}
-
 const dumpjson = () => {
   db_query("SELECT data FROM archived_cards WHERE archived > $1::timestamp",
-           [monthsAgo(3).toISOString()], (err, rows) => {
+           [utils.monthsAgo(3).toISOString()], (err, rows) => {
     if (err) throw err
     jsonf.writeFileSync('archived_cards.json', utils.prepare(rows.map((row) => row.data)), {spaces: 2})
   })

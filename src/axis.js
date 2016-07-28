@@ -9,21 +9,25 @@ class XAxis {
     this.t3 = d3.time.week.offset(date2, +1)
   }
 
+  makeXScale(width) {
+    return d3.time.scale()
+      .domain([this.t0, this.t3])
+      .range( [this.t0, this.t3].map(
+        d3.time.scale()
+          .domain([this.t1, this.t2])
+          .range([0, width])
+      ))
+  }
+
   show(parent_frame) {
-    const parent_width  = parent_frame.attr('width')
-    const parent_height = parent_frame.attr('height')
-    const x = d3.time.scale()
-                .domain([this.t0, this.t3])
-                .range( [this.t0, this.t3].map(
-                  d3.time.scale()
-                    .domain([this.t1, this.t2])
-                    .range([0, parent_width])
-                ))
-    this.xAxis = d3.svg.axis().scale(x)
+    const width = $('#main_graph').width()
+    this.xAxis  = d3.svg.axis().scale(this.makeXScale(width))
     return parent_frame
+      .append('svg')
+      .attr('class', 'axis')
       .append('g')
-      .attr('class', 'x axis')
-      .attr('transform', `translate(0,${+parent_height - 40})`)
+      .attr('class', 'x')
+      .attr('transform', `translate(20,10)`)
       .call(this.xAxis)
   }
 }

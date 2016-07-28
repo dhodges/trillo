@@ -10,23 +10,22 @@
   overflow-x: scroll; }
 
 
+svg.axis {
+    height: 40px;
+}
+
 .axis text {
-  font: 10px sans-serif;
+  font-family: sans-serif;
+  font-size:   12px;
+  fill:        steelblue;
 }
 
 .axis line,
 .axis path {
-  fill: none;
-  stroke: #000;
+  fill:   none;
+  stroke: steelblue;
   shape-rendering: crispEdges;
 }
-
-
-
-#y_axis {
-  width: 55px;
-  height: 400px;
-  float: left; }
 
 #test_names {
   padding-left: 10px; }
@@ -40,13 +39,3 @@ svg {
   height: 400px;
   width: 450px;
   padding: 10px; }
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: steelblue;
-  shape-rendering: crispEdges; }
-
-.axis text {
-  font-family: sans-serif;
-  font-size: 11px; }

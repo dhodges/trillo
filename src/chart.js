@@ -24,12 +24,14 @@ class Chart {
   }
 
   show() {
-    this.xaxis =
-      new XAxis(this.meta.earliest, this.meta.latest)
-        .show(d3.select('#content'))
-
+    this.showXAxis()
     this.showCards()
     return this
+  }
+
+  showXAxis() {
+    new XAxis(this.meta.earliest, this.meta.latest)
+      .show(d3.select('#content'))
   }
 
   showCards() {
@@ -38,6 +40,10 @@ class Chart {
       const start = scaleX(d.dateStartedDoing)
       const end   = scaleX(d.dateDeployed || d.dateLastActivity)
       return (end - start) < 50 ? 50 : (end - start)
+    }
+    const textX = (d) => {
+      const x = scaleX(d.dateStartedDoing)+5
+      return Math.max(x, 5)
     }
 
     let cards = d3.select('#main_graph')
@@ -55,13 +61,28 @@ class Chart {
       .attr('width', (d) => scaleWidth(d))
       .attr('height', 20)
 
-    cards.append('g')
-      .attr('width', (d) => scaleWidth(d))
-      .append('svg:text')
+    cards.append('svg:text')
       .text((d) => d.name)
-      .attr('x',     (d) => scaleX(d.dateStartedDoing)+5)
+      .attr('x',     (d) => textX(d))
       .attr('y',     (d, i) => i*22+15)
+      .attr('width', (d) => scaleWidth(d))
       .attr('text-anchor', 'start')
+      .attr('clip-path', (d,i) => `url(#clip_${i})`)
+
+    d3.select('#main_graph')
+      .append('svg')
+      .attr('class', 'defs')
+      .selectAll('g')
+      .append('defs')
+      .data(this.card_data)
+      .enter()
+      .append('clipPath')
+      .attr('id', (d,i) => `clip_${i}`)
+      .append('rect')
+      .attr('x',     (d) => scaleX(d.dateStartedDoing))
+      .attr('y',     (d, i) => i*22)
+      .attr('width', (d) => scaleWidth(d))
+      .attr('height', 20)
   }
 
   prep(meta) {

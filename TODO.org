@@ -4,6 +4,7 @@
 ** TODO how to get an image from a member avatarHash?
 ** TODO how to get the colour from a label?
 
+** TODO sort cards in order of deployedDate
 *  Features
 ** group by epic?
 ** filter by:

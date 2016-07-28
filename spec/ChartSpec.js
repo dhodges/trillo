@@ -15,4 +15,10 @@ describe ('Chart', () => {
   it ('should exist', () => {
     expect(this.chart).not.toBeUndefined()
   })
+
+  describe ('cards', () => {
+    it ('should exist', () => {
+      expect($('rect.card').length).toEqual(47)
+    })
+  })
 })

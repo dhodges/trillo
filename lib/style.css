@@ -1,14 +1,34 @@
-#main_graph, #test_names {
-  width: 700px;
-  height: 430px;
-  float: left;
-  border: solid steelblue 1px;
-  border-radius: 5px;
+#content, #main_graph {
+  width:  700px;
+  height: 450px;
+  float:  left;
 }
 
 #main_graph {
-  overflow-x: scroll; }
+  height: 430px;
+  border: solid steelblue 1px;
+  border-radius: 5px;
+  overflow-x: scroll;
+}
 
+text {
+    font: 14px sans-serif;
+    fill: cornflowerblue;
+}
+
+svg {
+  width:  700px;
+  height: 430px;
+  border-radius: 5px;
+}
+
+rect {
+    fill: white;
+}
+
+svg.cards {
+  background-color: steelblue;
+}
 
 svg.axis {
     height: 40px;
@@ -26,16 +46,3 @@ svg.axis {
   stroke: steelblue;
   shape-rendering: crispEdges;
 }
-
-#test_names {
-  padding-left: 10px; }
-
-.test_chart {
-  width: 3000px;
-  font: 14px sans-serif;
-  text-align: left; }
-
-svg {
-  height: 400px;
-  width: 450px;
-  padding: 10px; }

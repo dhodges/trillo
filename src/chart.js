@@ -3,37 +3,71 @@
 class Chart {
   constructor(data) {
     if (!data) throw('card json data undefined!')
-    this.cards = data.cards
-    this.meta  = this.prep(data.meta)
-    this.frame = this.makeFrame()
+    this.card_data = data.cards
+    this.meta      = this.prep(data.meta)
+    this.width     = $('#main_graph').width()
+    this.xscale    = this.makeXScale(this.width)
     this.sanityCheck()
   }
 
   sanityCheck() {
-    if (!this.cards)         throw('cards undefined!')
+    if (!this.card_data)     throw('cards undefined!')
     if (!this.meta.earliest) throw('earliest date undefined!')
     if (!this.meta.latest)   throw('latest date undefined!')
   }
 
-  makeFrame() {
-    return d3.select('#main_graph')
-             .append('svg')
-             .attr('width',  $('#main_graph').width())
-             .attr('height', $('#main_graph').height())
-             .attr('class', 'test_chart')
+  makeXScale(width) {
+    return d3.scale.linear()
+      .domain([this.meta.earliest.getTime(),
+               this.meta.latest.getTime()])
+      .range( [0, width])
   }
 
   show() {
-    new XAxis(this.meta.earliest, this.meta.latest)
-      .show(this.frame)
+    this.xaxis =
+      new XAxis(this.meta.earliest, this.meta.latest)
+        .show(d3.select('#content'))
 
+    this.showCards()
     return this
+  }
+
+  showCards() {
+    const scaleX = (dStr) => this.xscale(new Date(dStr).getTime())
+    const scaleWidth = (d) => {
+      const start = scaleX(d.dateStartedDoing)
+      const end   = scaleX(d.dateDeployed || d.dateLastActivity)
+      return (end - start) < 50 ? 50 : (end - start)
+    }
+
+    let cards = d3.select('#main_graph')
+      .append('svg')
+      .attr('class', 'cards')
+      .selectAll('g')
+      .data(this.card_data)
+      .enter()
+
+    cards.append('rect')
+      .attr('class', 'card')
+      .attr('name',  (d) => d.name)
+      .attr('x',     (d) => scaleX(d.dateStartedDoing))
+      .attr('y',     (d, i) => i*22)
+      .attr('width', (d) => scaleWidth(d))
+      .attr('height', 20)
+
+    cards.append('g')
+      .attr('width', (d) => scaleWidth(d))
+      .append('svg:text')
+      .text((d) => d.name)
+      .attr('x',     (d) => scaleX(d.dateStartedDoing)+5)
+      .attr('y',     (d, i) => i*22+15)
+      .attr('text-anchor', 'start')
   }
 
   prep(meta) {
     return {
-      earliest: new Date(meta.earliest_date),
-      latest:   new Date(meta.latest_date)
+      earliest: new Date(meta.chart_from_date),
+      latest:   new Date(meta.chart_to_date)
     }
   }
 }

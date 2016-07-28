@@ -1,29 +1,22 @@
-#content, #main_graph {
-  width:  700px;
-  height: 450px;
-  float:  left;
+#content, #main_graph, svg {
+  width:  790px;
+  height: 700px;
 }
 
 #main_graph {
-  height: 430px;
+  height: 680px;
   border: solid steelblue 1px;
   border-radius: 5px;
-  overflow-x: scroll;
+  overflow: hidden;
 }
 
 text {
-    font: 12px sans-serif;
-    fill: cornflowerblue;
-}
-
-svg {
-  width:  700px;
-  height: 430px;
-  border-radius: 5px;
+  font: 12px sans-serif;
+  fill: cornflowerblue;
 }
 
 rect {
-    fill: white;
+  fill: white;
 }
 
 svg.cards {
@@ -31,7 +24,7 @@ svg.cards {
 }
 
 svg.axis {
-    height: 40px;
+  height: 40px;
 }
 
 .axis text {

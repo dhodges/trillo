@@ -59,16 +59,14 @@ const updateDb = (card) => {
 }
 
 const dumpPreviousMonthJson = (fromDate, toDate) => {
-  db_query(`SELECT data FROM archived_cards
-            WHERE $1::timestamp <= archived AND archived <= $2::timestamp`,
+  db_query(`SELECT $1::timestamp as fromDate,
+                   $2::timestamp as toDate,
+                   data FROM archived_cards
+             WHERE $1::timestamp <= archived
+               AND archived <= $2::timestamp`,
            [fromDate.toISOString(), toDate.toISOString()], (err, rows) => {
     if (err) throw err
-    let cards = utils.prepare(rows.map((row) => row.data))
-    _.merge(cards.meta, {
-      chart_from_date: fromDate.toISOString(),
-      chart_to_date:   toDate.toISOString()
-    })
-    jsonf.writeFileSync('archived_cards.json', cards, {spaces: 2})
+    jsonf.writeFileSync('archived_cards.json', utils.prepare(rows), {spaces: 2})
   })
 }
 

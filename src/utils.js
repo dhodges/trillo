@@ -60,19 +60,20 @@ const jsonEscape = (str) =>  {
             .replace(/\t/g, "\\\\t")
 }
 
-const prepare = (json_data) => {
-  return {
-    meta: {
-    },
-    cards: json_data.map((card) => _.merge({
-      name:             card.name,
-      description:      jsonEscape(card.description),
-      dateDeployed:     dateDeployed(card),
-      dateStartedDoing: dateStartedDoing(card),
-      dateLastActivity: card.dateLastActivity
-    }, card))
-  }
-}
+const prepare = (rows) => ({
+  meta: {
+    chart_from_date: rows[0].fromdate,
+    chart_to_date:   rows[0].todate
+  },
+  cards: rows.map((row) => _.merge({
+    name:             row.data.name,
+    id:               row.data.id,
+    description:      jsonEscape(row.data.description),
+    dateDeployed:     dateDeployed(row.data),
+    dateStartedDoing: dateStartedDoing(row.data),
+    dateLastActivity: row.data.dateLastActivity
+  }, row.data))
+})
 
 const monthsAgo = (n) => {
   let d = new Date()

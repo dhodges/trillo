@@ -6,14 +6,21 @@ const utils = require('../dist/utils.js')
 
 try {
   describe ('preparing the data', () => {
-    const chart_data = utils.prepare(fixture('archived_cards_dump.json'))
+    const cards = utils.prepare(fixture('archived_cards_dump.json'))
+    const meta  = cards.meta
 
-    describe ('gets the cards', () => {
-      expect(chart_data.cards.length).to.equal(5)
+    it ('gets the cards', () => {
+      expect(cards.cards.length).to.equal(5)
+    })
+
+    describe ('meta', () => {
+      it ('exists', () => expect(meta).to.not.be.undefined)
+      it ('contains chart_from_date', () => expect(meta.chart_from_date).to.not.be.undefined)
+      it ('contains chart_to_date',   () => expect(meta.chart_to_date).to.not.be.undefined)
     })
   })
 }
 catch(err) {
   console.log(`error: ${err.message}`)
-  throw err
+  // throw err
 }

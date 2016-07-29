@@ -34,7 +34,7 @@
     "mocha": "^2.5.3",
     "repl": "bin/repl",
     "test": "mocha --compilers js:babel-register",
-    "test-watch": "mocha --compilers js:babel-register --reporter min --recursive --watch",
+    "test-watch": "mocha --compilers js:babel-register --recursive --watch",
     "updatedb": "bin/updatedb"
   },
   "version": "0.0.1"

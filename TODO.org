@@ -5,6 +5,10 @@
 ** TODO how to get the colour from a label?
 
 ** TODO sort cards in order of deployedDate
+** TODO unique list of labels in meta
+** TODO X Axis ticks marked with day, beginning weeks on Mondays
+** TODO check (rgb) of 'Trello blue'
+** TODO dash docsets: jasmine, chai
 *  Features
 ** group by epic?
 ** filter by:

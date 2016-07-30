@@ -81,9 +81,9 @@ const prepare = (rows) => ({
     name:             row.data.name,
     id:               row.data.id,
     description:      jsonEscape(row.data.description),
-    dateDeployed:     dateDeployed(row.data),
-    dateStartedDoing: dateStartedDoing(row.data),
     dateFirstActivity: dateFirstActivity(row.data),
+    dateStartedDoing:  dateStartedDoing(row.data),
+    dateDeployed:      dateDeployed(row.data),
     dateLastActivity: row.data.dateLastActivity
   }, row.data))
 })

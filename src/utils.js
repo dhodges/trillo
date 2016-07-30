@@ -36,6 +36,11 @@ const dateStartedDoing = (card) => {
   return action ? action.date : null
 }
 
+const dateFirstActivity = (card) => {
+  return card.actions.map((a) => a.date)
+    .sort(byDate)[0]
+}
+
 const find_latest_date = (json_data) => {
   return json_data.map((card) => {
     return card.actions
@@ -78,6 +83,7 @@ const prepare = (rows) => ({
     description:      jsonEscape(row.data.description),
     dateDeployed:     dateDeployed(row.data),
     dateStartedDoing: dateStartedDoing(row.data),
+    dateFirstActivity: dateFirstActivity(row.data),
     dateLastActivity: row.data.dateLastActivity
   }, row.data))
 })
@@ -103,3 +109,4 @@ module.exports.dateDeployed   = dateDeployed
 module.exports.dateStartedDoing = dateStartedDoing
 module.exports.monthsAgo        = monthsAgo
 module.exports.monthPreviousTo  = monthPreviousTo
+module.exports.dateFirstActivity = dateFirstActivity

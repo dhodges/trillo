@@ -3,15 +3,14 @@
 class Chart {
   constructor(data) {
     if (!data) throw('card json data undefined!')
-    this.card_data = data.cards
-    this.meta      = this.prep(data.meta)
-    this.width     = $('#main_graph').width()
-    this.xscale    = this.makeXScale(this.width)
+    this.data   = data.cards
+    this.meta   = this.prep(data.meta)
+    this.xscale = this.makeXScale($('#main_graph').width())
     this.sanityCheck()
   }
 
   sanityCheck() {
-    if (!this.card_data)     throw('cards undefined!')
+    if (!this.data)          throw('card data undefined!')
     if (!this.meta.earliest) throw('earliest date undefined!')
     if (!this.meta.latest)   throw('latest date undefined!')
   }
@@ -50,7 +49,7 @@ class Chart {
       .append('svg')
       .attr('class', 'cards')
       .selectAll('g')
-      .data(this.card_data)
+      .data(this.data)
       .enter()
 
     cards.append('rect')
@@ -74,7 +73,7 @@ class Chart {
       .attr('class', 'defs')
       .selectAll('g')
       .append('defs')
-      .data(this.card_data)
+      .data(this.data)
       .enter()
       .append('clipPath')
       .attr('id', (d,i) => `clip_${i}`)

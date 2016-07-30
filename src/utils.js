@@ -60,10 +60,17 @@ const jsonEscape = (str) =>  {
             .replace(/\t/g, "\\\\t")
 }
 
+const gatherLabels = (rows) => {
+  return _.uniq(
+    _.flatten(rows.map((r) => r.data.labels)))
+      .map(_.lowerCase).sort()
+}
+
 const prepare = (rows) => ({
   meta: {
     dateFrom: rows[0].fromdate,
-    dateTo:   rows[0].todate
+    dateTo:   rows[0].todate,
+    labels:   gatherLabels(rows),
   },
   cards: rows.map((row) => _.merge({
     name:             row.data.name,

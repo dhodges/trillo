@@ -85,7 +85,10 @@ const prepare = (rows) => ({
     dateStartedDoing:  dateStartedDoing(row.data),
     dateDeployed:      dateDeployed(row.data),
     dateLastActivity: row.data.dateLastActivity
-  }, row.data))
+  }, row.data)).sort((a,b) => byDate(
+    a.dateDeployed || a.dateLastActivity,
+    b.dateDeployed || b.dateLastActivity
+  ))
 })
 
 const monthsAgo = (n) => {
@@ -101,6 +104,7 @@ const monthPreviousTo = (thisDate) => {
   return [startDay, endDay]
 }
 
+module.exports.byDate  = byDate
 module.exports.prepare = prepare
 module.exports.jsonEscape = jsonEscape
 module.exports.dateComparator = dateComparator

@@ -12,13 +12,11 @@ const db_query = require('./trillo_pg_query').query,
         token: process.env.TRELLO_API_TOKEN
       })
 
-const selectMemberFields = (member) => {
-  return {
-    id:         member.id,
-    fullName:   member.fullName,
-    avatarHash: member.avatarHash
-  }
-}
+const selectMemberFields = (member) => ({
+  id:         member.id,
+  fullName:   member.fullName,
+  avatarHash: member.avatarHash
+})
 
 const selectActionFields = (actions) => {
   return actions.filter((action) => {
@@ -34,27 +32,37 @@ const selectActionFields = (actions) => {
   })).sort((a1, a2) => utils.dateComparator(a1.date, a2.date))
 }
 
-const selectFields = (card) => {
-  return {
-    id:      card.id,
-    name:    card.name,
-    description: card.desc,
-    dateLastActivity: card.dateLastActivity,
-    labels:  card.labels.map((label) => label.name),
-    members: card.members.map((member) => selectMemberFields(member)),
-    actions: selectActionFields(card.actions)
-  }
-}
+const selectFields = (card) => ({
+  id:      card.id,
+  name:    card.name,
+  description:      card.desc,
+  dateLastActivity: card.dateLastActivity,
+  labels:  card.labels.map((label)  => label.name),
+  members: card.members.map((member) => selectMemberFields(member)),
+  actions: selectActionFields(card.actions)
+})
 
 const updateDb = (card) => {
-  db_query("SELECT * FROM archived_cards WHERE id = $1::varchar(24)", [card.id], (err, rows) => {
+  db_query(`SELECT * FROM archived_cards
+            WHERE id = $1::varchar(24)`,
+           [card.id], (err, rows) => {
     if (err) throw err
 
     const sql = (rows.length > 0)
-      ? "UPDATE archived_cards SET name = $2::varchar(255), archived = $3::timestamp, data = $4::json WHERE id = $1::varchar(24)"
-      : "INSERT INTO archived_cards (id, name, archived, data) VALUES ($1::varchar(24), $2::varchar(255), $3::timestamp, $4::json)"
+      ? `UPDATE archived_cards
+         SET name = $2::varchar(255),
+         archived = $3::timestamp,
+             data = $4::json
+         WHERE id = $1::varchar(24)`
 
-    db_query(sql, [card.id, card.name, card.dateLastActivity, card], (err, rows) => {if (err) throw err})
+      : `INSERT INTO archived_cards (id, name, archived, data)
+              VALUES ($1::varchar(24),
+                      $2::varchar(255),
+              $3::timestamp, $4::json)`
+
+    db_query(sql, [card.id, card.name, card.dateLastActivity, card], (err, rows) => {
+      if (err) throw err
+    })
   })
 }
 

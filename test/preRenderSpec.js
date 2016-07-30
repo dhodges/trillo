@@ -33,5 +33,5 @@ try {
 }
 catch(err) {
   console.log(`error: ${err.message}`)
-  // throw err
+  throw err.message
 }

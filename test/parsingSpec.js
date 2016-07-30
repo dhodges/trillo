@@ -1,10 +1,6 @@
 'use strict'
 
-const {_, expect, jsonf, trillo} = require('./spec_helper')
-
-const fixture = (fname) => {
-  return jsonf.readFileSync(__dirname+'/fixtures/'+fname)
-}
+const {_, expect, jsonf, trillo, fixture} = require('./spec_helper')
 
 describe ('selecting fields', () => {
   const card = trillo.selectFields(fixture('example_card_fields.json'))

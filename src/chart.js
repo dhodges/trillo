@@ -87,8 +87,8 @@ class Chart {
 
   prep(meta) {
     return {
-      earliest: new Date(meta.chart_from_date),
-      latest:   new Date(meta.chart_to_date)
+      earliest: new Date(meta.dateFrom),
+      latest:   new Date(meta.dateTo)
     }
   }
 }

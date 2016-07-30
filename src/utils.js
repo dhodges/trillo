@@ -62,8 +62,8 @@ const jsonEscape = (str) =>  {
 
 const prepare = (rows) => ({
   meta: {
-    chart_from_date: rows[0].fromdate,
-    chart_to_date:   rows[0].todate
+    dateFrom: rows[0].fromdate,
+    dateTo:   rows[0].todate
   },
   cards: rows.map((row) => _.merge({
     name:             row.data.name,

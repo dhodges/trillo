@@ -15,8 +15,8 @@ try {
 
     describe ('meta', () => {
       it ('exists', () => expect(meta).to.not.be.undefined)
-      it ('contains chart_from_date', () => expect(meta.chart_from_date).to.equal('2016-05-31T17:19:22.405Z'))
-      it ('contains chart_to_date',   () => expect(meta.chart_to_date).to.equal('2016-06-29T17:19:22.405Z'))
+      it ('contains dateFrom', () => expect(meta.dateFrom).to.equal('2016-05-31T17:19:22.405Z'))
+      it ('contains dateTo',   () => expect(meta.dateTo).to.equal('2016-06-29T17:19:22.405Z'))
     })
   })
 }

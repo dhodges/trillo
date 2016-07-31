@@ -14,11 +14,11 @@ try {
     })
 
     describe ('meta', () => {
-      it ('exists', () => expect(meta).to.not.be.undefined)
-      it ('has card count',    () => expect(meta.cardCount).to.equal(47))
-      it ('contains dateFrom', () => expect(meta.dateFrom).to.equal('2016-05-31T17:19:22.405Z'))
-      it ('contains dateTo',   () => expect(meta.dateTo).to.equal('2016-06-29T17:19:22.405Z'))
-      it ('contains labels',   () => {
+      it ('exists',         () => expect(meta).to.not.be.undefined)
+      it ('has card count', () => expect(meta.cardCount).to.equal(47))
+      it ('has dateFrom',   () => expect(meta.dateFrom).to.equal('2016-05-31T17:19:22.405Z'))
+      it ('has dateTo',     () => expect(meta.dateTo).to.equal('2016-06-29T17:19:22.405Z'))
+      it ('has labels',     () => {
         expect(meta.labels).to.deep.equal([
           'best of',
           'bug or minor feature',

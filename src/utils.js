@@ -73,19 +73,19 @@ const gatherLabels = (rows) => {
 
 const prepare = (rows) => ({
   meta: {
-    dateFrom: rows[0].fromdate,
-    dateTo:   rows[0].todate,
+    dateFrom:  rows[0].fromdate,
+    dateTo:    rows[0].todate,
     cardCount: rows.length,
-    labels:   gatherLabels(rows),
+    labels:    gatherLabels(rows),
   },
   cards: rows.map((row) => _.merge({
-    name:             row.data.name,
-    id:               row.data.id,
-    description:      jsonEscape(row.data.description),
+    name:              row.data.name,
+    id:                row.data.id,
+    description:       jsonEscape(row.data.description),
     dateFirstActivity: dateFirstActivity(row.data),
     dateStartedDoing:  dateStartedDoing(row.data),
     dateDeployed:      dateDeployed(row.data),
-    dateLastActivity: row.data.dateLastActivity
+    dateLastActivity:  row.data.dateLastActivity
   }, row.data)).sort((a,b) => byDate(
     a.dateDeployed || a.dateLastActivity,
     b.dateDeployed || b.dateLastActivity

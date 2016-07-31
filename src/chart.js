@@ -25,6 +25,7 @@ class Chart {
   show() {
     this.showXAxis()
     this.showCards()
+    this.setupClippaths()
     return this
   }
 
@@ -33,18 +34,22 @@ class Chart {
       .show(d3.select('#content'))
   }
 
-  showCards() {
-    const scaleX = (dStr) => this.xscale(new Date(dStr).getTime())
-    const scaleWidth = (d) => {
-      const start = scaleX(d.dateStartedDoing)
-      const end   = scaleX(d.dateDeployed || d.dateLastActivity)
-      return (end - start) < 50 ? 50 : (end - start)
-    }
-    const textX = (d) => {
-      const x = scaleX(d.dateStartedDoing)+5
-      return Math.max(x, 5)
-    }
+  scaleX(dStr) {
+    return this.xscale(new Date(dStr).getTime())
+  }
 
+  scaleWidth(d) {
+    const start = this.scaleX(d.dateStartedDoing)
+    const end   = this.scaleX(d.dateDeployed || d.dateLastActivity)
+    return (end - start) < 50 ? 50 : (end - start)
+  }
+
+  textX(d) {
+    const x = this.scaleX(d.dateStartedDoing)+5
+    return Math.max(x, 5)
+  }
+
+  showCards() {
     let cards = d3.select('#main_graph')
       .append('svg')
       .attr('class', 'cards')
@@ -55,19 +60,21 @@ class Chart {
     cards.append('rect')
       .attr('class', 'card')
       .attr('name',  (d) => d.name)
-      .attr('x',     (d) => scaleX(d.dateStartedDoing))
+      .attr('x',     (d) => this.scaleX(d.dateStartedDoing))
       .attr('y',     (d, i) => i*22)
-      .attr('width', (d) => scaleWidth(d))
+      .attr('width', (d) => this.scaleWidth(d))
       .attr('height', 20)
 
     cards.append('svg:text')
       .text((d) => d.name)
-      .attr('x',     (d) => textX(d))
+      .attr('x',     (d) => this.textX(d))
       .attr('y',     (d, i) => i*22+15)
-      .attr('width', (d) => scaleWidth(d))
+      .attr('width', (d) => this.scaleWidth(d))
       .attr('text-anchor', 'start')
       .attr('clip-path', (d,i) => `url(#clip_${i})`)
+  }
 
+  setupClippaths() {
     d3.select('#main_graph')
       .append('svg')
       .attr('class', 'defs')
@@ -78,9 +85,9 @@ class Chart {
       .append('clipPath')
       .attr('id', (d,i) => `clip_${i}`)
       .append('rect')
-      .attr('x',     (d) => scaleX(d.dateStartedDoing))
+      .attr('x',     (d) => this.scaleX(d.dateStartedDoing))
       .attr('y',     (d, i) => i*22)
-      .attr('width', (d) => scaleWidth(d))
+      .attr('width', (d) => this.scaleWidth(d))
       .attr('height', 20)
   }
 

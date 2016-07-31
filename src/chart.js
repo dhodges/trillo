@@ -11,14 +11,14 @@ class Chart {
 
   sanityCheck() {
     if (!this.data)          throw('card data undefined!')
-    if (!this.meta.earliest) throw('earliest date undefined!')
-    if (!this.meta.latest)   throw('latest date undefined!')
+    if (!this.meta.dateFrom) throw('dateFrom date undefined!')
+    if (!this.meta.dateTo)   throw('dateTo date undefined!')
   }
 
   makeXScale(width) {
     return d3.scale.linear()
-      .domain([this.meta.earliest.getTime(),
-               this.meta.latest.getTime()])
+      .domain([this.meta.dateFrom.getTime(),
+               this.meta.dateTo.getTime()])
       .range( [0, width])
   }
 
@@ -29,7 +29,7 @@ class Chart {
   }
 
   showXAxis() {
-    new XAxis(this.meta.earliest, this.meta.latest)
+    new XAxis(this.meta.dateFrom, this.meta.dateTo)
       .show(d3.select('#content'))
   }
 
@@ -85,9 +85,9 @@ class Chart {
   }
 
   prep(meta) {
-    return {
-      earliest: new Date(meta.dateFrom),
-      latest:   new Date(meta.dateTo)
-    }
+    return _.merge(meta, {
+      dateFrom: new Date(meta.dateFrom),
+      dateTo:   new Date(meta.dateTo)
+    })
   }
 }

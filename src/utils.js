@@ -75,6 +75,7 @@ const prepare = (rows) => ({
   meta: {
     dateFrom: rows[0].fromdate,
     dateTo:   rows[0].todate,
+    cardCount: rows.length,
     labels:   gatherLabels(rows),
   },
   cards: rows.map((row) => _.merge({

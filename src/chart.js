@@ -6,6 +6,7 @@ class Chart {
     this.data   = data.cards
     this.meta   = this.prep(data.meta)
     this.xscale = this.makeXScale($('#main_graph').width())
+    this.cardHeight = Math.floor($('#main_graph').height() / this.meta.cardCount) - 2
     this.sanityCheck()
   }
 
@@ -49,6 +50,11 @@ class Chart {
     return Math.max(x, 5)
   }
 
+  textY(i) {
+    const yOffset = Math.floor(3*this.cardHeight/4)
+    return i*(this.cardHeight+2) + yOffset
+  }
+
   showCards() {
     let cards = d3.select('#main_graph')
       .append('svg')
@@ -61,14 +67,14 @@ class Chart {
       .attr('class', 'card')
       .attr('name',  (d) => d.name)
       .attr('x',     (d) => this.scaleX(d.dateStartedDoing))
-      .attr('y',     (d, i) => i*22)
+      .attr('y',     (d, i) => i*(this.cardHeight+2))
       .attr('width', (d) => this.scaleWidth(d))
-      .attr('height', 20)
+      .attr('height', this.cardHeight)
 
     cards.append('svg:text')
       .text((d) => d.name)
       .attr('x',     (d) => this.textX(d))
-      .attr('y',     (d, i) => i*22+15)
+      .attr('y',     (d,i) => this.textY(i))
       .attr('width', (d) => this.scaleWidth(d))
       .attr('text-anchor', 'start')
       .attr('clip-path', (d,i) => `url(#clip_${i})`)
@@ -86,9 +92,9 @@ class Chart {
       .attr('id', (d,i) => `clip_${i}`)
       .append('rect')
       .attr('x',     (d) => this.scaleX(d.dateStartedDoing))
-      .attr('y',     (d, i) => i*22)
+      .attr('y',     (d, i) => i*(this.cardHeight+2))
       .attr('width', (d) => this.scaleWidth(d))
-      .attr('height', 20)
+      .attr('height', this.cardHeight)
   }
 
   prep(meta) {

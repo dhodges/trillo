@@ -5,8 +5,8 @@
 ** TODO how to get the colour from a label?
 
 ** TODO X Axis ticks marked with day, beginning weeks on Mondays
-** TODO check (rgb) of 'Trello blue'
 *  Features
+** toggle hide/show by label
 ** group by epic?
 ** filter by:
   - label

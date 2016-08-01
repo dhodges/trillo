@@ -17,5 +17,8 @@ describe ('Chart', () => {
   describe ('cards', () => {
     it ('should exist', () => expect($('rect.card').length).toEqual(55))
 
+    it ('should contain their ID', () => {
+      expect($(`rect#${this.chart.data[0].id}`).length).toEqual(1)
+    })
   })
 })

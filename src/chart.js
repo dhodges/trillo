@@ -66,6 +66,7 @@ class Chart {
     cards.append('rect')
       .attr('class', 'card')
       .attr('name',  (d) => d.name)
+      .attr('id',    (d) => d.id)
       .attr('x',     (d) => this.scaleX(d.dateStartedDoing))
       .attr('y',     (d, i) => i*(this.cardHeight+2))
       .attr('width', (d) => this.scaleWidth(d))

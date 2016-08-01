@@ -6,33 +6,56 @@ const utils = require('../dist/utils.js')
 
 try {
   describe ('preparing the data', () => {
-    const cards = utils.prepare(fixture('archived_cards_dump.json'))
+    const cards = utils.prepare(fixture('rows_dump.json'))
     const meta  = cards.meta
 
     it ('gets the cards', () => {
-      expect(cards.cards.length).to.equal(47)
+      expect(cards.cards.length).to.equal(55)
     })
 
     describe ('meta', () => {
       it ('exists',         () => expect(meta).to.not.be.undefined)
-      it ('has card count', () => expect(meta.cardCount).to.equal(47))
-      it ('has dateFrom',   () => expect(meta.dateFrom).to.equal('2016-05-31T17:19:22.405Z'))
-      it ('has dateTo',     () => expect(meta.dateTo).to.equal('2016-06-29T17:19:22.405Z'))
+      it ('has card count', () => expect(meta.cardCount).to.equal(55))
+      it ('has dateFrom',   () => expect(meta.dateFrom).to.equal('2016-07-01T01:14:21.538Z'))
+      it ('has dateTo',     () => expect(meta.dateTo).to.equal('2016-07-31T01:14:21.538Z'))
       it ('has labels',     () => {
         expect(meta.labels).to.deep.equal([
-          'best of',
-          'bug or minor feature',
-          'city',
-          'epic',
-          'open planet',
-          'product',
-          'spp',
-          'tech'])
-        })
+          {
+            "name": "bug or minor feature",
+            "color": "red"
+          },
+          {
+            "name": "city",
+            "color": "red"
+          },
+          {
+            "name": "dev",
+            "color": "black"
+          },
+          {
+            "name": "epic",
+            "color": "blue"
+          },
+          {
+            "name": "product",
+            "color": "lime"
+          },
+          {
+            "name": "spp",
+            "color": "purple"
+          },
+          {
+            "name": "tech",
+            "color": "yellow"
+          }
+        ]
+      )
+      })
     })
   })
 }
 catch(err) {
   console.log(`error: ${err.message}`)
-  throw err.message
+  // throw err.message
+  throw err
 }

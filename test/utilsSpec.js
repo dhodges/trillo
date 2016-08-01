@@ -6,22 +6,22 @@ const utils = require('../dist/utils.js')
 
 try {
   describe ('utils', () => {
-    const chart_data = utils.prepare(fixture('archived_cards_dump.json'))
+    const chart_data = utils.prepare(fixture('rows_dump.json'))
 
     it ('deployedCards', () => {
-      expect(utils.deployedCards(chart_data.cards).length).to.equal(42)
+      expect(utils.deployedCards(chart_data.cards).length).to.equal(47)
     })
 
     it ('dateDeployed', () => {
-      expect(utils.dateDeployed(chart_data.cards[3])).to.equal('2016-06-07T13:29:47.374Z')
+      expect(utils.dateDeployed(chart_data.cards[3])).to.equal('2016-07-04T00:50:58.636Z')
     })
 
     it ('dateStartedDoing', () => {
-      expect(utils.dateStartedDoing(chart_data.cards[0])).to.equal('2016-05-26T10:24:04.211Z')
+      expect(utils.dateStartedDoing(chart_data.cards[0])).to.equal(null)
     })
 
     it ('dateFirstActivity', () => {
-      expect(utils.dateFirstActivity(chart_data.cards[0])).to.equal('2016-05-26T10:24:04.211Z')
+      expect(utils.dateFirstActivity(chart_data.cards[0])).to.equal('2016-06-28T19:50:37.748Z')
     })
 
     it ('monthPreviousTo', () => {
@@ -33,12 +33,12 @@ try {
       expect(_.take(chart_data.cards.map(
         (card) => card.dateDeployed || card.dateLastActivity
       ), 6)).to.deep.equal([
-        '2016-06-03T00:55:58.824Z',
-        '2016-06-03T00:56:00.857Z',
-        '2016-06-07T04:19:24.803Z',
-        '2016-06-07T13:29:47.374Z',
-        '2016-06-07T13:29:47.405Z',
-        '2016-06-07T13:29:47.427Z'
+        '2016-06-30T08:45:21.629Z',
+        '2016-06-30T08:45:23.515Z',
+        '2016-06-30T08:45:24.660Z',
+        '2016-07-04T00:50:58.636Z',
+        '2016-07-04T08:57:36.527Z',
+        '2016-07-04T09:10:35.359Z'
       ])
     })
   })

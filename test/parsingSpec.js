@@ -48,7 +48,7 @@ describe ('selecting fields', () => {
   })
 
   it ('labels', () => {
-    expect(card.labels).to.include('Tech')
+    expect(card.labels).to.include({name:'Tech', color:'yellow'})
   })
 
   it ('member count', () => {

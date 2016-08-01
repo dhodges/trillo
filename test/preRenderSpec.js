@@ -13,6 +13,13 @@ try {
       expect(data.cards.length).to.equal(55)
     })
 
+    it ('only gathers names for card labels', () => {
+      expect(data.cards[0].labels).to.deep.equal([
+        'bug or minor feature',
+        'spp'
+      ])
+    })
+
     describe ('meta', () => {
       it ('exists',         () => expect(meta).to.not.be.undefined)
       it ('has card count', () => expect(meta.cardCount).to.equal(55))

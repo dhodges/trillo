@@ -65,7 +65,7 @@ const jsonEscape = (str) =>  {
             .replace(/\t/g, "\\\\t")
 }
 
-const gatherLabels = (rows) => {
+const gatherLabelsNameAndColor = (rows) => {
   return _.uniqBy(_.flatten(rows.map((r) => r.data.labels)), 'name')
     .map((label) => ({
       name:  label.name.toLowerCase(),
@@ -73,22 +73,29 @@ const gatherLabels = (rows) => {
     })).sort((a,b) => a.name.localeCompare(b.name))
 }
 
+const gatherLabelsNameOnly = (labels) => {
+  return _.uniq(labels.map((label) => label.name.toLowerCase()))
+    .sort((a,b) => a.localeCompare(b))
+}
+
 const prepare = (rows) => ({
   meta: {
     dateFrom:  rows[0].fromdate,
     dateTo:    rows[0].todate,
     cardCount: rows.length,
-    labels:    gatherLabels(rows),
+    labels:    gatherLabelsNameAndColor(rows),
   },
-  cards: rows.map((row) => _.merge({
+  cards: rows.map((row) => ({
     name:              row.data.name,
     id:                row.data.id,
     description:       jsonEscape(row.data.description),
     dateFirstActivity: dateFirstActivity(row.data),
     dateStartedDoing:  dateStartedDoing(row.data),
     dateDeployed:      dateDeployed(row.data),
-    dateLastActivity:  row.data.dateLastActivity
-  }, row.data)).sort((a,b) => byDate(
+    dateLastActivity:  row.data.dateLastActivity,
+    labels:            gatherLabelsNameOnly(row.data.labels),
+    actions:           row.data.actions
+  })).sort((a,b) => byDate(
     a.dateDeployed || a.dateLastActivity,
     b.dateDeployed || b.dateLastActivity
   ))

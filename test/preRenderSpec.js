@@ -5,12 +5,12 @@ const {_, expect, fixture} = require('./spec_helper')
 const utils = require('../dist/utils.js')
 
 try {
-  describe ('preparing the data', () => {
-    const cards = utils.prepare(fixture('rows_dump.json'))
-    const meta  = cards.meta
+  describe ('utils.prepare()', () => {
+    const data = utils.prepare(fixture('rows_dump.json'))
+    const meta = data.meta
 
     it ('gets the cards', () => {
-      expect(cards.cards.length).to.equal(55)
+      expect(data.cards.length).to.equal(55)
     })
 
     describe ('meta', () => {
@@ -20,36 +20,14 @@ try {
       it ('has dateTo',     () => expect(meta.dateTo).to.equal('2016-07-31T01:14:21.538Z'))
       it ('has labels',     () => {
         expect(meta.labels).to.deep.equal([
-          {
-            "name": "bug or minor feature",
-            "color": "red"
-          },
-          {
-            "name": "city",
-            "color": "red"
-          },
-          {
-            "name": "dev",
-            "color": "black"
-          },
-          {
-            "name": "epic",
-            "color": "blue"
-          },
-          {
-            "name": "product",
-            "color": "lime"
-          },
-          {
-            "name": "spp",
-            "color": "purple"
-          },
-          {
-            "name": "tech",
-            "color": "yellow"
-          }
-        ]
-      )
+          {"name": "bug or minor feature", "color": "red"},
+          {"name": "city",    "color": "red"},
+          {"name": "dev",     "color": "black"},
+          {"name": "epic",    "color": "blue"},
+          {"name": "product", "color": "lime"},
+          {"name": "spp",     "color": "purple"},
+          {"name": "tech",    "color": "yellow"}
+        ])
       })
     })
   })

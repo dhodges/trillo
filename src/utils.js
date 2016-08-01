@@ -67,10 +67,11 @@ const jsonEscape = (str) =>  {
 
 const gatherLabelsNameAndColor = (rows) => {
   return _.uniqBy(_.flatten(rows.map((r) => r.data.labels)), 'name')
-    .map((label) => ({
-      name:  label.name.toLowerCase(),
-      color: label.color.toLowerCase()
-    })).sort((a,b) => a.name.localeCompare(b.name))
+    .map((label) => {
+      let obj = {}
+      obj[label.name.toLowerCase()] = label.color.toLowerCase()
+      return obj
+    }).reduce(((accum, obj) => _.merge(accum, obj)), {})
 }
 
 const gatherLabelsNameOnly = (labels) => {

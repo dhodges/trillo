@@ -25,16 +25,16 @@ try {
       it ('has card count', () => expect(meta.cardCount).to.equal(55))
       it ('has dateFrom',   () => expect(meta.dateFrom).to.equal('2016-07-01T01:14:21.538Z'))
       it ('has dateTo',     () => expect(meta.dateTo).to.equal('2016-07-31T01:14:21.538Z'))
-      it ('has labels',     () => {
-        expect(meta.labels).to.deep.equal([
-          {"name": "bug or minor feature", "color": "red"},
-          {"name": "city",    "color": "red"},
-          {"name": "dev",     "color": "black"},
-          {"name": "epic",    "color": "blue"},
-          {"name": "product", "color": "lime"},
-          {"name": "spp",     "color": "purple"},
-          {"name": "tech",    "color": "yellow"}
-        ])
+      it ('has labels as an object', () => {
+        expect(meta.labels).to.deep.equal({
+          "bug or minor feature": "red",
+          "city": "red",
+          "dev": "black",
+          "epic": "blue",
+          "product": "lime",
+          "spp": "purple",
+          "tech": "yellow"
+        })
       })
     })
   })

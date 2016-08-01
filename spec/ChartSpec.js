@@ -12,13 +12,11 @@ describe ('Chart', () => {
 
   afterAll(() => $('#main_graph').remove())
 
-  it ('should exist', () => {
-    expect(this.chart).not.toBeUndefined()
-  })
+  it ('should exist', () => expect(this.chart).not.toBeUndefined())
 
   describe ('cards', () => {
-    it ('should exist', () => {
-      expect($('rect.card').length).toEqual(47)
-    })
+    it ('should exist', () => expect($('rect.card').length).toEqual(47))
+
+
   })
 })

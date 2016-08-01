@@ -66,9 +66,11 @@ const jsonEscape = (str) =>  {
 }
 
 const gatherLabels = (rows) => {
-  return _.uniq(
-    _.flatten(rows.map((r) => r.data.labels)))
-      .map(_.lowerCase).sort()
+  return _.uniqBy(_.flatten(rows.map((r) => r.data.labels)), 'name')
+    .map((label) => ({
+      name:  label.name.toLowerCase(),
+      color: label.color.toLowerCase()
+    })).sort((a,b) => a.name.localeCompare(b.name))
 }
 
 const prepare = (rows) => ({

@@ -12,6 +12,11 @@ const db_query = require('./trillo_pg_query').query,
         token: process.env.TRELLO_API_TOKEN
       })
 
+const selectLabelFields = (label) => ({
+  name:  label.name,
+  color: label.color
+})
+
 const selectMemberFields = (member) => ({
   id:         member.id,
   fullName:   member.fullName,
@@ -37,8 +42,8 @@ const selectFields = (card) => ({
   name:    card.name,
   description:      card.desc,
   dateLastActivity: card.dateLastActivity,
-  labels:  card.labels.map((label)  => label.name),
-  members: card.members.map((member) => selectMemberFields(member)),
+  labels:  card.labels.map(selectLabelFields),
+  members: card.members.map(selectMemberFields),
   actions: selectActionFields(card.actions)
 })
 

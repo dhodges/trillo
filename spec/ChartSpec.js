@@ -3,7 +3,7 @@
 describe ('Chart', () => {
   beforeAll((done) => {
     $('<div id="main_graph"></div>').appendTo('body')
-    d3.json('../../spec/fixtures/cards.json', (err, data) => {
+    d3.json('../../spec/fixtures/archived_cards.json', (err, data) => {
       if (err) throw err
       this.chart = new Chart(data).show()
       done()
@@ -15,8 +15,7 @@ describe ('Chart', () => {
   it ('should exist', () => expect(this.chart).not.toBeUndefined())
 
   describe ('cards', () => {
-    it ('should exist', () => expect($('rect.card').length).toEqual(47))
-
+    it ('should exist', () => expect($('rect.card').length).toEqual(55))
 
   })
 })

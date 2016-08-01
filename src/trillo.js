@@ -72,6 +72,7 @@ const updateDb = (card) => {
 }
 
 const dumpPreviousMonthJson = (fromDate, toDate) => {
+  console.log('gathering cards from db...')
   db_query(`SELECT $1::timestamp as fromDate,
                    $2::timestamp as toDate,
                    data FROM archived_cards
@@ -79,6 +80,7 @@ const dumpPreviousMonthJson = (fromDate, toDate) => {
                AND archived <= $2::timestamp`,
            [fromDate.toISOString(), toDate.toISOString()], (err, rows) => {
     if (err) throw err
+    console.log('writing cards to disk...')
     jsonf.writeFileSync('archived_cards.json', utils.prepare(rows), {spaces: 2})
   })
 }

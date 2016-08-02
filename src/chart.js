@@ -35,24 +35,34 @@ class Chart {
       .show(d3.select('#content'))
   }
 
-  scaleX(dStr) {
-    return this.xscale(new Date(dStr).getTime())
+  scaleDate(dStr) {
+    return Math.floor(this.xscale(new Date(dStr).getTime()))
+  }
+
+  scaleXstart(d) {
+    return Math.max(0, this.scaleDate(d.dateStartedDoing || d.dateFirstActivity || this.meta.dateFrom))
+  }
+
+  scaleXend(d) {
+    return this.scaleDate(d.dateDeployed || d.dateLastActivity || this.meta.dateTo)
+  }
+
+  scaleY(d, i) {
+    return i*(this.cardHeight+2)
   }
 
   scaleWidth(d) {
-    const start = this.scaleX(d.dateStartedDoing)
-    const end   = this.scaleX(d.dateDeployed || d.dateLastActivity)
-    return (end - start) < 50 ? 50 : (end - start)
+    return Math.max(50, this.scaleXend(d) - this.scaleXstart(d))
   }
 
   textX(d) {
-    const x = this.scaleX(d.dateStartedDoing)+5
-    return Math.max(x, 5)
+    return Math.max(5, this.scaleXstart(d)+5) + d.labels.length*10
   }
 
-  textY(i) {
-    const yOffset = Math.floor(3*this.cardHeight/4)
-    return i*(this.cardHeight+2) + yOffset
+  textY(d, i) {
+    return this.scaleY(d, i) + Math.floor(3*this.cardHeight/4)
+  }
+
   }
 
   showCards() {
@@ -65,17 +75,16 @@ class Chart {
 
     cards.append('rect')
       .attr('class', 'card')
-      .attr('name',  (d) => d.name)
       .attr('id',    (d) => d.id)
-      .attr('x',     (d) => this.scaleX(d.dateStartedDoing))
-      .attr('y',     (d, i) => i*(this.cardHeight+2))
+      .attr('x',     (d) => this.scaleXstart(d))
+      .attr('y',     (d, i) => this.scaleY(d,i))
       .attr('width', (d) => this.scaleWidth(d))
       .attr('height', this.cardHeight)
 
     cards.append('svg:text')
       .text((d) => d.name)
       .attr('x',     (d) => this.textX(d))
-      .attr('y',     (d,i) => this.textY(i))
+      .attr('y',     (d,i) => this.textY(d,i))
       .attr('width', (d) => this.scaleWidth(d))
       .attr('text-anchor', 'start')
       .attr('clip-path', (d,i) => `url(#clip_${i})`)
@@ -92,8 +101,8 @@ class Chart {
       .append('clipPath')
       .attr('id', (d,i) => `clip_${i}`)
       .append('rect')
-      .attr('x',     (d) => this.scaleX(d.dateStartedDoing))
-      .attr('y',     (d, i) => i*(this.cardHeight+2))
+      .attr('x',     (d) => this.scaleXstart(d))
+      .attr('y',     (d, i) => this.scaleY(d,i))
       .attr('width', (d) => this.scaleWidth(d))
       .attr('height', this.cardHeight)
   }

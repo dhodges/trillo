@@ -19,6 +19,34 @@ rect {
   fill: white;
 }
 
+rect {
+  fill: white;
+}
+
+rect.purple {
+  fill: purple
+}
+
+rect.yellow {
+  fill: yellow;
+}
+
+rect.red {
+  fill: red;
+}
+
+rect.lime {
+  fill: lime;
+}
+
+rect.blue {
+  fill: blue;
+}
+
+rect.black {
+  fill: black;
+}
+
 svg.cards {
   background-color: steelblue;
 }

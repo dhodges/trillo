@@ -26,6 +26,7 @@ class Chart {
   show() {
     this.showXAxis()
     this.showCards()
+    this.addLabels()
     this.setupClippaths()
     return this
   }
@@ -63,6 +64,25 @@ class Chart {
     return this.scaleY(d, i) + Math.floor(3*this.cardHeight/4)
   }
 
+  colorOf(label) {
+    return this.meta.labels[label]
+  }
+
+  addLabels() {
+    this.data.forEach((d, di) => {
+      const labelWidth = this.scaleWidth(d) / Math.max(1, d.labels.length)
+      d3.select('svg')
+        .selectAll('g')
+        .data(d.labels)
+        .enter()
+        .append('rect')
+          .attr('class', 'label')
+          .attr('class',  (label) => this.colorOf(label))
+          .attr('width',  labelWidth)
+          .attr('height', this.cardHeight)
+          .attr('x',      (label, li) => this.scaleXstart(d)+(li*labelWidth))
+          .attr('y',      (label) => this.scaleY(d,di))
+    })
   }
 
   showCards() {

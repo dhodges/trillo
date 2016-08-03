@@ -3,6 +3,12 @@
 ** TODO extract a decent amount of archived cards (>= six months?)
 ** TODO how to get an image from a member avatarHash?
 ** TODO X Axis ticks marked with day, beginning weeks on Mondays
+** TODO simplify card dates in json export
+** TODO setup SASS
+** TODO adjust vertical card layout: no need for one row per card
+** TODO list all (i.e. not just final) card members
+** TODO any other actions?
+** TODO do we need to store 'type' with each action?
 *  Features
 ** toggle hide/show by label
 ** group by epic?

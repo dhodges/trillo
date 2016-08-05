@@ -89,19 +89,19 @@ const gatherLabelsNameOnly = (labels) => {
 
 const prepare = (rows) => ({
   meta: {
-    dateFrom:  rows[0].fromdate,
-    dateTo:    rows[0].todate,
-    cardCount: rows.length,
-    labels:    gatherLabelsNameAndColor(rows),
+    dateFrom:     rows[0].fromdate,
+    dateTo:       rows[0].todate,
+    cardCount:    rows.length,
+    labels:       gatherLabelsNameAndColor(rows),
   },
   cards: rows.map((row) => ({
-    name:              row.data.name,
-    id:                row.data.id,
-    description:       jsonEscape(row.data.description),
-    dateBegun:         dateBegun(row.data),
-    dateFinished:      dateFinished(row.data),
-    labels:            gatherLabelsNameOnly(row.data.labels),
-    actions:           row.data.actions
+    name:         row.data.name,
+    id:           row.data.id,
+    description:  jsonEscape(row.data.description),
+    dateBegun:    dateBegun(row.data),
+    dateFinished: dateFinished(row.data),
+    labels:       gatherLabelsNameOnly(row.data.labels),
+    actions:      row.data.actions
   })).sort((a,b) => byDate(a.dateFinished, b.dateFinished))
 })
 

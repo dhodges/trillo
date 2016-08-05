@@ -41,11 +41,11 @@ class Chart {
   }
 
   scaleXstart(d) {
-    return Math.max(0, this.scaleDate(d.dateStartedDoing || d.dateFirstActivity || this.meta.dateFrom))
+    return Math.max(0, this.scaleDate(d.dateBegun || this.meta.dateFrom))
   }
 
   scaleXend(d) {
-    return this.scaleDate(d.dateDeployed || d.dateLastActivity || this.meta.dateTo)
+    return this.scaleDate(d.dateFinished || this.meta.dateTo)
   }
 
   scaleY(d, i) {

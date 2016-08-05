@@ -31,6 +31,10 @@ const dateDeployed = (card) => {
   return action ? action.date : null
 }
 
+const dateFinished = (card) => {
+  return dateDeployed(card) || card.dateLastActivity
+}
+
 const dateStartedDoing = (card) => {
   const action = card.actions.filter(startedDoing)[0]
   return action ? action.date : null
@@ -39,6 +43,10 @@ const dateStartedDoing = (card) => {
 const dateFirstActivity = (card) => {
   return card.actions.map((a) => a.date)
     .sort(byDate)[0]
+}
+
+const dateBegun = (card) => {
+  return dateStartedDoing(card) || dateFirstActivity(card)
 }
 
 const find_latest_date = (json_data) => {
@@ -90,16 +98,11 @@ const prepare = (rows) => ({
     name:              row.data.name,
     id:                row.data.id,
     description:       jsonEscape(row.data.description),
-    dateFirstActivity: dateFirstActivity(row.data),
-    dateStartedDoing:  dateStartedDoing(row.data),
-    dateDeployed:      dateDeployed(row.data),
-    dateLastActivity:  row.data.dateLastActivity,
+    dateBegun:         dateBegun(row.data),
+    dateFinished:      dateFinished(row.data),
     labels:            gatherLabelsNameOnly(row.data.labels),
     actions:           row.data.actions
-  })).sort((a,b) => byDate(
-    a.dateDeployed || a.dateLastActivity,
-    b.dateDeployed || b.dateLastActivity
-  ))
+  })).sort((a,b) => byDate(a.dateFinished, b.dateFinished))
 })
 
 const monthsAgo = (n) => {
@@ -122,6 +125,8 @@ module.exports.dateComparator = dateComparator
 module.exports.deployedCards  = deployedCards
 module.exports.dateDeployed   = dateDeployed
 module.exports.dateStartedDoing = dateStartedDoing
+module.exports.dateBegun        = dateBegun
+module.exports.dateFinished     = dateFinished
 module.exports.monthsAgo        = monthsAgo
 module.exports.monthPreviousTo  = monthPreviousTo
 module.exports.dateFirstActivity = dateFirstActivity

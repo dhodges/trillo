@@ -30,9 +30,8 @@ try {
     })
 
     it ('card sort order', () => {
-      expect(_.take(chart_data.cards.map(
-        (card) => card.dateDeployed || card.dateLastActivity
-      ), 6)).to.deep.equal([
+      expect(_.take(chart_data.cards.map((card) => card.dateFinished), 6))
+        .to.deep.equal([
         '2016-06-30T08:45:21.629Z',
         '2016-06-30T08:45:23.515Z',
         '2016-06-30T08:45:24.660Z',

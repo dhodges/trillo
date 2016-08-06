@@ -3,10 +3,11 @@
 class Chart {
   constructor(data) {
     if (!data) throw('card json data undefined!')
-    this.data   = this.prepCards(data.cards)
     this.meta   = this.prepMeta(data.meta)
     this.xscale = this.makeXScale($('#main_graph').width())
-    this.cardHeight = Math.floor($('#main_graph').height() / this.meta.cardCount) - 2
+    this.data   = data.cards
+    this.cardbox = new Cardbox()
+    this.prepCards()
     this.sanityCheck()
   }
 
@@ -48,10 +49,6 @@ class Chart {
     return this.scaleDate(d.dateFinished || this.meta.dateTo)
   }
 
-  scaleY(d, i) {
-    return i*(this.cardHeight+2)
-  }
-
   scaleWidth(d) {
     return Math.max(50, this.scaleXend(d) - this.scaleXstart(d))
   }
@@ -81,7 +78,7 @@ class Chart {
           .attr('width',  labelWidth)
           .attr('height', this.cardHeight)
           .attr('x',      (label, li) => this.scaleXstart(d)+(li*labelWidth))
-          .attr('y',      (label) => this.scaleY(d,di))
+          .attr('y',      (label) => d.y)
     })
   }
 
@@ -97,7 +94,7 @@ class Chart {
       .attr('class', 'card')
       .attr('id',    (d) => d.id)
       .attr('x',     (d) => this.scaleXstart(d))
-      .attr('y',     (d, i) => this.scaleY(d,i))
+      .attr('y',     (d) => d.y)
       .attr('width', (d) => this.scaleWidth(d))
       .attr('height', this.cardHeight)
 
@@ -122,19 +119,45 @@ class Chart {
       .attr('id', (d) => `clip_${d.index}`)
       .append('rect')
       .attr('x',     (d) => this.scaleXstart(d))
-      .attr('y',     (d, i) => this.scaleY(d,i))
+      .attr('y',     (d) => d.y)
       .attr('width', (d) => this.scaleWidth(d))
       .attr('height', this.cardHeight)
   }
 
-  prepCards(data) {
-    data.forEach((card, index) => {
+  prepCards() {
+    this.data.forEach((card, index) => {
       if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
       if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
       card.index = index
     })
+    return this.prepCardsY()
+  }
+
+  anyPreviousCardOverlaps(card) {
+    return this.data.slice(0, card.index).some((d) => this.scaleXend(d) >= this.scaleXstart(card))
+  }
+
+  calcCardHeight() {
+    let uniqueRowCount = 0
+    this.data.forEach((card, ndx) => {
+      if (this.anyPreviousCardOverlaps(card)) {uniqueRowCount += 1}
     })
-    return data
+    return Math.floor($('#main_graph').height() / uniqueRowCount) - 2
+  }
+
+  prepCardsY() {
+    this.cardHeight = this.calcCardHeight()
+    const yOffset   = this.cardHeight+2
+    let   i = 0
+    return this.data.forEach((card, ndx) => {
+      if (!this.anyPreviousCardOverlaps(card)) {
+        card.y = (i-1)*yOffset
+      }
+      else {
+        card.y = i*yOffset
+        i += 1
+      }
+    })
   }
 
   prepMeta(meta) {

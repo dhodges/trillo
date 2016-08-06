@@ -60,8 +60,8 @@ class Chart {
     return Math.max(5, this.scaleXstart(d)+5) + d.labels.length*10
   }
 
-  textY(d, i) {
-    return this.scaleY(d, i) + Math.floor(3*this.cardHeight/4)
+  textY(d) {
+    return d.y + Math.floor(3*this.cardHeight/4)
   }
 
   colorOf(label) {
@@ -69,7 +69,7 @@ class Chart {
   }
 
   addLabels() {
-    this.data.forEach((d, di) => {
+    this.data.forEach((d) => {
       const labelWidth = this.scaleWidth(d) / Math.max(1, d.labels.length)
       d3.select('svg')
         .selectAll('g')
@@ -104,10 +104,10 @@ class Chart {
     cards.append('svg:text')
       .text((d) => d.name)
       .attr('x',     (d) => this.textX(d))
-      .attr('y',     (d,i) => this.textY(d,i))
+      .attr('y',     (d) => this.textY(d))
       .attr('width', (d) => this.scaleWidth(d))
       .attr('text-anchor', 'start')
-      .attr('clip-path', (d,i) => `url(#clip_${i})`)
+      .attr('clip-path', (d) => `url(#clip_${d.index})`)
   }
 
   setupClippaths() {
@@ -119,7 +119,7 @@ class Chart {
       .data(this.data)
       .enter()
       .append('clipPath')
-      .attr('id', (d,i) => `clip_${i}`)
+      .attr('id', (d) => `clip_${d.index}`)
       .append('rect')
       .attr('x',     (d) => this.scaleXstart(d))
       .attr('y',     (d, i) => this.scaleY(d,i))
@@ -128,9 +128,11 @@ class Chart {
   }
 
   prepCards(data) {
-    data.forEach((card) => {
+    data.forEach((card, index) => {
       if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
       if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
+      card.index = index
+    })
     })
     return data
   }

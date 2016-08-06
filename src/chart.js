@@ -3,8 +3,8 @@
 class Chart {
   constructor(data) {
     if (!data) throw('card json data undefined!')
-    this.data   = data.cards
-    this.meta   = this.prep(data.meta)
+    this.data   = this.prepCards(data.cards)
+    this.meta   = this.prepMeta(data.meta)
     this.xscale = this.makeXScale($('#main_graph').width())
     this.cardHeight = Math.floor($('#main_graph').height() / this.meta.cardCount) - 2
     this.sanityCheck()
@@ -36,8 +36,8 @@ class Chart {
       .show(d3.select('#content'))
   }
 
-  scaleDate(dStr) {
-    return Math.floor(this.xscale(new Date(dStr).getTime()))
+  scaleDate(d) {
+    return Math.floor(this.xscale(d.getTime()))
   }
 
   scaleXstart(d) {
@@ -127,7 +127,15 @@ class Chart {
       .attr('height', this.cardHeight)
   }
 
-  prep(meta) {
+  prepCards(data) {
+    data.forEach((card) => {
+      if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
+      if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
+    })
+    return data
+  }
+
+  prepMeta(meta) {
     return _.merge(meta, {
       dateFrom: new Date(meta.dateFrom),
       dateTo:   new Date(meta.dateTo)

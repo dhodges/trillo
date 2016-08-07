@@ -79,6 +79,8 @@ class Chart {
           .attr('height', d.height)
           .attr('x',      (label, li) => d.x+(li*labelWidth))
           .attr('y',      (label) => d.y)
+          .on('mouseover', () => this.cardbox.show(d))
+          .on('mouseout',  () => this.cardbox.hide())
     })
   }
 

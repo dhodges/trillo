@@ -76,8 +76,8 @@ class Chart {
           .attr('class', 'label')
           .attr('class',  (label) => this.colorOf(label))
           .attr('width',  labelWidth)
-          .attr('height', this.cardHeight)
-          .attr('x',      (label, li) => this.scaleXstart(d)+(li*labelWidth))
+          .attr('height', d.height)
+          .attr('x',      (label, li) => d.x+(li*labelWidth))
           .attr('y',      (label) => d.y)
     })
   }
@@ -93,16 +93,16 @@ class Chart {
     cards.append('rect')
       .attr('class', 'card')
       .attr('id',    (d) => d.id)
-      .attr('x',     (d) => this.scaleXstart(d))
+      .attr('x',     (d) => d.x)
       .attr('y',     (d) => d.y)
-      .attr('width', (d) => this.scaleWidth(d))
-      .attr('height', this.cardHeight)
+      .attr('width', (d) => d.width)
+      .attr('height', (d) => d.height)
 
     cards.append('svg:text')
       .text((d) => d.name)
-      .attr('x',     (d) => this.textX(d))
+      .attr('x',     (d) => d.x)
       .attr('y',     (d) => this.textY(d))
-      .attr('width', (d) => this.scaleWidth(d))
+      .attr('width', (d) => d.width)
       .attr('text-anchor', 'start')
       .attr('clip-path', (d) => `url(#clip_${d.index})`)
   }
@@ -118,16 +118,18 @@ class Chart {
       .append('clipPath')
       .attr('id', (d) => `clip_${d.index}`)
       .append('rect')
-      .attr('x',     (d) => this.scaleXstart(d))
+      .attr('x',     (d) => d.x)
       .attr('y',     (d) => d.y)
-      .attr('width', (d) => this.scaleWidth(d))
-      .attr('height', this.cardHeight)
+      .attr('width', (d) => d.width)
+      .attr('height', (d) => d.height)
   }
 
   prepCards() {
     this.data.forEach((card, index) => {
       if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
       if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
+      card.x     = this.scaleXstart(card)
+      card.width = this.scaleWidth(card)
       card.index = index
     })
     return this.prepCardsY()
@@ -149,7 +151,7 @@ class Chart {
     this.cardHeight = this.calcCardHeight()
     const yOffset   = this.cardHeight+2
     let   i = 0
-    return this.data.forEach((card, ndx) => {
+    this.data.forEach((card, ndx) => {
       if (!this.anyPreviousCardOverlaps(card)) {
         card.y = (i-1)*yOffset
       }
@@ -157,6 +159,7 @@ class Chart {
         card.y = i*yOffset
         i += 1
       }
+      card.height = this.cardHeight
     })
   }
 

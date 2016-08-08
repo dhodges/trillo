@@ -3,9 +3,9 @@
 class Chart {
   constructor(data) {
     if (!data) throw('card json data undefined!')
-    this.meta   = this.prepMeta(data.meta)
-    this.xscale = this.makeXScale($('#main_graph').width())
-    this.data   = data.cards
+    this.meta    = this.prepMeta(data.meta)
+    this.xscale  = this.makeXScale($('#main_graph').width())
+    this.data    = data.cards
     this.cardbox = new Cardbox()
     this.prepCards()
     this.sanityCheck()
@@ -73,12 +73,12 @@ class Chart {
         .data(d.labels)
         .enter()
         .append('rect')
-          .attr('class', 'label')
-          .attr('class',  (label) => this.colorOf(label))
-          .attr('width',  labelWidth)
-          .attr('height', d.height)
-          .attr('x',      (label, li) => d.x+(li*labelWidth))
-          .attr('y',      (label) => d.y)
+          .attr('class',   'label')
+          .attr('class',   (label) => this.colorOf(label))
+          .attr('width',   labelWidth)
+          .attr('height',  d.height)
+          .attr('x',       (label, li) => d.x+(li*labelWidth))
+          .attr('y',       (label) => d.y)
           .on('mouseover', () => this.cardbox.show(d))
           .on('mouseout',  () => this.cardbox.hide())
     })
@@ -94,10 +94,10 @@ class Chart {
 
     cards.append('rect')
       .attr('class', 'card')
-      .attr('id',    (d) => d.id)
-      .attr('x',     (d) => d.x)
-      .attr('y',     (d) => d.y)
-      .attr('width', (d) => d.width)
+      .attr('id',     (d) => d.id)
+      .attr('x',      (d) => d.x)
+      .attr('y',      (d) => d.y)
+      .attr('width',  (d) => d.width)
       .attr('height', (d) => d.height)
 
     cards.append('svg:text')
@@ -120,9 +120,9 @@ class Chart {
       .append('clipPath')
       .attr('id', (d) => `clip_${d.index}`)
       .append('rect')
-      .attr('x',     (d) => d.x)
-      .attr('y',     (d) => d.y)
-      .attr('width', (d) => d.width)
+      .attr('x',      (d) => d.x)
+      .attr('y',      (d) => d.y)
+      .attr('width',  (d) => d.width)
       .attr('height', (d) => d.height)
   }
 

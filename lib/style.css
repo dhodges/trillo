@@ -28,6 +28,10 @@
   pointer-events: none;
 }
 
+.card_highlight {
+  opacity: 0.0;
+}
+
 text {
   font: 12px sans-serif;
   fill: cornflowerblue;

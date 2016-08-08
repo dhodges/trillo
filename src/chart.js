@@ -28,6 +28,7 @@ class Chart {
     this.showXAxis()
     this.showCards()
     this.addLabels()
+    this.addHighlights()
     this.setupClippaths()
     return this
   }
@@ -79,9 +80,33 @@ class Chart {
           .attr('height',  d.height)
           .attr('x',       (label, li) => d.x+(li*labelWidth))
           .attr('y',       (label) => d.y)
-          .on('mouseover', () => this.cardbox.show(d))
-          .on('mouseout',  () => this.cardbox.hide())
     })
+  }
+
+  mouseEnter(d, i) {
+    $(`.card_highlight_${i}`).css('opacity', 0.6)
+    this.cardbox.show(d)
+  }
+
+  mouseOut(i) {
+    this.cardbox.hide()
+    $(`.card_highlight_${i}`).css('opacity', 0.0)
+  }
+
+  addHighlights() {
+    d3.select('svg')
+      .selectAll('g')
+      .data(this.data)
+      .enter()
+      .append('rect')
+        .attr('class',   (d,i) => `card_highlight_${i}`)
+        .attr('width',   (d) => d.width)
+        .attr('height',  (d) => d.height)
+        .attr('x',       (d) => d.x)
+        .attr('y',       (d) => d.y)
+        .style('opacity', 0.0)
+        .on('mouseenter',(d,i) => this.mouseEnter(d,i))
+        .on('mouseout',  (d,i) => this.mouseOut(i))
   }
 
   showCards() {

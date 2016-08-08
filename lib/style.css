@@ -11,13 +11,13 @@
 }
 
 .cardbox {
-  font: 10px sans-serif;
+  font: 12px sans-serif;
   fill: white;
   border: solid steelblue 1px;
   border-radius: 5px;
   background-color: lightsteelblue;
-  height: 48px;
-  width: 200px;
+  height: 90px;
+  width: 250px;
   padding-top: 2px;
   padding-left: 5px;
   padding-bottom: 5px;
@@ -32,9 +32,13 @@
   opacity: 0.0;
 }
 
-text {
+text, table {
   font: 12px sans-serif;
   fill: cornflowerblue;
+}
+
+table {
+  vertical-align: baseline;
 }
 
 rect {

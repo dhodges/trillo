@@ -31,6 +31,13 @@ class Cardbox {
     const name     = card.name
     const begun    = card.dateBegun
     const finished = card.dateFinished
-    return `${name}<br/>begun: ${begun}<br/>finished: ${finished}<br/>`
+    return `
+    ${name}<BR/>
+    <HR/>
+    <TABLE>
+      <TR><TD>begun:</TD><TD>${begun}</TD></TR>
+      <TR><TD>finished:</TD><TD>${finished}</TD></TR>
+    </TABLE>
+    `
   }
 }

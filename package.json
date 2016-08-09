@@ -18,7 +18,8 @@
     "babel-core": "^6.10.4",
     "babel-preset-es2015": "^6.9.0",
     "chai": "^3.5.0",
-    "growl": "^1.9.2"
+    "growl": "^1.9.2",
+    "watch": "^0.19.1"
   },
   "keywords": [],
   "main": "main.js",
@@ -36,6 +37,8 @@
     "compile-watch": "babel -w src/ -d dist/ --source-maps",
     "test": "mocha --compilers js:babel-register",
     "test-watch": "mocha --compilers js:babel-register --recursive --watch --growl",
+    "build": "npm run compile && npm run test",
+    "build-watch": "watch 'npm run build' ./src ./spec ./test ./lib"
   },
   "version": "0.0.1"
 }

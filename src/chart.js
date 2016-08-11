@@ -29,7 +29,6 @@ class Chart {
     this.showCards()
     this.addLabels()
     this.addHighlights()
-    this.setupClippaths()
     return this
   }
 
@@ -52,14 +51,6 @@ class Chart {
 
   scaleWidth(d) {
     return Math.max(50, this.scaleXend(d) - this.scaleXstart(d))
-  }
-
-  textX(d) {
-    return Math.max(5, this.scaleXstart(d)+5) + d.labels.length*10
-  }
-
-  textY(d) {
-    return d.y + Math.floor(3*this.cardHeight/4)
   }
 
   colorOf(label) {
@@ -124,14 +115,6 @@ class Chart {
       .attr('y',      (d) => d.y)
       .attr('width',  (d) => d.width)
       .attr('height', (d) => d.height)
-
-    cards.append('svg:text')
-      .text((d) => d.name)
-      .attr('x',     (d) => d.x)
-      .attr('y',     (d) => this.textY(d))
-      .attr('width', (d) => d.width)
-      .attr('text-anchor', 'start')
-      .attr('clip-path', (d) => `url(#clip_${d.index})`)
   }
 
   setupClippaths() {

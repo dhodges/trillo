@@ -29,6 +29,7 @@ class Chart {
     this.addLabels()
     this.addHighlights()
     this.showXAxis()
+    this.labelbox = new Labelbox(this.meta.labels).show()
     return this
   }
 

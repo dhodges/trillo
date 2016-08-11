@@ -7,7 +7,6 @@
   width:  790px;
   height: 750px;
   float:  left;
-  border: solid steelblue 1px;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -28,6 +27,39 @@ svg.axis {
   width: 100%
 }
 
+td.color {
+  width: 50px;
+}
+
+td.label {
+  width: 200px;
+  padding-left: 5px;
+}
+
+.yellow {
+  background-color: yellow
+}
+
+td.purple {
+  background-color: purple
+}
+
+td.blue {
+  background-color: blue
+}
+
+td.red {
+  background-color: red
+}
+
+td.lime {
+  background-color: lime
+}
+
+td.black {
+  background-color: black
+}
+
 .cardbox {
   font: 12px sans-serif;
   fill: white;
@@ -44,6 +76,10 @@ svg.axis {
   position: absolute;
   overflow: hidden;
   pointer-events: none;
+}
+
+#labelbox {
+  display: none;
 }
 
 .card_highlight {

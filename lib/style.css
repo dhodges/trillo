@@ -1,13 +1,31 @@
-#content, #main_graph, svg {
-  width:  790px;
-  height: 700px;
+#content {
+  width:  100%;
+  height: 900px;
 }
 
 #main_graph {
-  height: 680px;
+  width:  790px;
+  height: 750px;
+  float:  left;
   border: solid steelblue 1px;
   border-radius: 5px;
   overflow: hidden;
+}
+
+#cards {
+  width:  100%;
+  height: 715px
+}
+
+svg.cards {
+  background-color: steelblue;
+  width:  100%;
+  height: 100%;
+}
+
+svg.axis {
+  height: 40px;
+  width: 100%
 }
 
 .cardbox {
@@ -72,14 +90,6 @@ rect.blue {
 
 rect.black {
   fill: black;
-}
-
-svg.cards {
-  background-color: steelblue;
-}
-
-svg.axis {
-  height: 40px;
 }
 
 .axis text {

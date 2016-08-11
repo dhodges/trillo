@@ -25,16 +25,15 @@ class Chart {
   }
 
   show() {
-    this.showXAxis()
     this.showCards()
     this.addLabels()
     this.addHighlights()
+    this.showXAxis()
     return this
   }
 
   showXAxis() {
-    new XAxis(this.meta.dateFrom, this.meta.dateTo)
-      .show(d3.select('#content'))
+    new XAxis(this.meta.dateFrom, this.meta.dateTo).show()
   }
 
   scaleDate(d) {
@@ -101,7 +100,7 @@ class Chart {
   }
 
   showCards() {
-    let cards = d3.select('#main_graph')
+    let cards = d3.select('#cards')
       .append('svg')
       .attr('class', 'cards')
       .selectAll('g')
@@ -135,6 +134,9 @@ class Chart {
   }
 
   prepCards() {
+    d3.select('#main_graph')
+      .append('div')
+      .attr('id', 'cards')
     this.data.forEach((card, index) => {
       if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
       if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
@@ -154,7 +156,7 @@ class Chart {
     this.data.forEach((card, ndx) => {
       if (this.anyPreviousCardOverlaps(card)) {uniqueRowCount += 1}
     })
-    return Math.floor($('#main_graph').height() / uniqueRowCount) - 2
+    return Math.floor($('#cards').height() / uniqueRowCount) - 2
   }
 
   prepCardsY() {

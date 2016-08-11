@@ -9,20 +9,19 @@ class XAxis {
     this.t3 = d3.time.week.offset(date2, +1)
   }
 
-  makeXScale(width) {
+  makeXScale() {
     return d3.time.scale()
       .domain([this.t0, this.t3])
       .range( [this.t0, this.t3].map(
         d3.time.scale()
           .domain([this.t1, this.t2])
-          .range([0, width])
+          .range([0, $('#main_graph').width()])
       ))
   }
 
-  show(parent_frame) {
-    const width = $('#main_graph').width()
-    this.xAxis  = d3.svg.axis().scale(this.makeXScale(width))
-    return parent_frame
+  show() {
+    this.xAxis = d3.svg.axis().scale(this.makeXScale())
+    return d3.select('#main_graph')
       .append('svg')
       .attr('class', 'axis')
       .append('g')

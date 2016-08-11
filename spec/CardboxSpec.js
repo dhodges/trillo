@@ -1,17 +1,15 @@
 'use strict'
 
 describe ('Cardbox', () => {
-  beforeAll(() => {
+  beforeAll((done) => {
     $('<div id="main_graph"></div>').appendTo('body')
-    this.card = {
-      id: 1111,
-      x:  100,
-      y:  100,
-      name: 'Virginia Wolf',
-      dateBegun: '2016-08-01',
-      dateFinished: '2016-08-02'
-    }
-    this.cardbox = new Cardbox()
+      d3.json('../../spec/fixtures/archived_cards.json', (err, data) => {
+      if (err) throw err
+      this.chart   = new Chart(data)
+      this.cardbox = this.chart.cardbox
+      this.card    = this.chart.data[5]
+      done()
+    })
   })
 
   afterAll(() => $('#main_graph').remove())
@@ -34,16 +32,22 @@ describe ('Cardbox', () => {
     })
 
     it ('shows the card start date', () => {
-      expect($('.cardbox').text()).toContain(this.card.dateBegun)
+      const startDate = this.cardbox.format_date(this.card.dateBegun)
+      expect($('.cardbox').text()).toContain(startDate)
     })
 
     it ('shows the card finish date', () => {
-      expect($('.cardbox').text()).toContain(this.card.dateFinished)
+      const finishDate = this.cardbox.format_date(this.card.dateFinished)
+      expect($('.cardbox').text()).toContain(finishDate)
     })
 
     it ('is hidden when asked', () => {
       this.cardbox.hide()
       expect($('.cardbox').css('display')).toEqual('none')
+    })
+
+    it ('can format a date', () => {
+      expect(this.cardbox.format_date(new Date('2016/08/11'))).toEqual('Thu Aug 11')
     })
   })
 })

@@ -35,9 +35,17 @@ class Cardbox {
     ${name}<BR/>
     <HR/>
     <TABLE>
-      <TR><TD>begun:</TD><TD>${begun}</TD></TR>
-      <TR><TD>finished:</TD><TD>${finished}</TD></TR>
+      <TR><TD>begun:</TD><TD>${this.format_date(begun)}</TD></TR>
+      <TR><TD>finished:</TD><TD>${this.format_date(finished)}</TD></TR>
     </TABLE>
     `
+  }
+
+  format_date(date) {
+    if (!date) return ''
+    const days   = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    return `${days[date.getDay()]} ${months[date.getMonth()]} ${date.getDate()}`
   }
 }

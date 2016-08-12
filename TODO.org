@@ -1,24 +1,18 @@
 
 *  Tasks
+** TODO BUGFIX cards of short duration (mere hours) overlap rendering
+** TODO config optionally specify 'begin' and 'finished' columns
+** TODO compress archived_cards.json?
+** TODO page back and forward, month-by-month
 ** TODO extract a decent amount of archived cards (>= six months?)
 ** TODO how to get an image from a member avatarHash?
 ** TODO setup SASS
-** TODO list all (i.e. not just final) card members
+** TODO list all card members (i.e. not just final)
 ** TODO any other actions?
 ** TODO do we need to store 'type' with each action?
 *  Features
-** toggle hide/show by label
-** group by epic?
-** filter by:
-  - label
-  - member
-  - blue bug
-  - spp
-  - remixer
 ** card stats:
   - labels
   - duration
   - number of times bounced back from testing
   - associated people?
-** month stats:
-  - per label, number of cards deployed

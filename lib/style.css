@@ -33,7 +33,16 @@ text, table {
 }
 
 table {
+  width: 100%;
   vertical-align: baseline;
+}
+
+td.duration {
+  text-align: center;
+}
+
+td.finished {
+  text-align: right;
 }
 
 td.color {
@@ -75,7 +84,6 @@ td.black {
   border: solid steelblue 1px;
   border-radius: 5px;
   background-color: lightsteelblue;
-  height: 90px;
   width: 250px;
   padding-top: 2px;
   padding-left: 5px;

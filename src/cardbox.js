@@ -27,6 +27,25 @@ class Cardbox {
             .style('display', 'block')
   }
 
+  duration(card) {
+    if (!card.dateBegun || ! card.dateFinished) {
+      return 'unknown'
+    }
+    const days   = 86400000
+    const hours  = 3600000
+    const millis = card.dateFinished - card.dateBegun
+    if (Math.round(millis / days) > 1) {
+      return `${Math.round(millis / days)} days`
+    }
+    if (Math.round(millis / days) == 1) {
+      return `1 day`
+    }
+    if (Math.round(millis / hours) > 1) {
+      return `${Math.round(millis / hours)} hours`
+    }
+    return '1 hour'
+  }
+
   format_html(card) {
     const name     = card.name
     const begun    = card.dateBegun
@@ -35,8 +54,11 @@ class Cardbox {
     ${name}<BR/>
     <HR/>
     <TABLE>
-      <TR><TD>begun:</TD><TD>${this.format_date(begun)}</TD></TR>
-      <TR><TD>finished:</TD><TD>${this.format_date(finished)}</TD></TR>
+      <TR>
+        <TD class='begun'>${this.format_date(begun)}</TD>
+        <TD class='duration'>(${this.duration(card)})</TD>
+        <TD class='finished'>${this.format_date(finished)}</TD>
+      </TR>
     </TABLE>
     `
   }

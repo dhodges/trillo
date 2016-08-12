@@ -25,6 +25,7 @@ describe ('X Axis', () => {
 
   it ('should generate ticks', () => {
     expect($('.tick text').toArray().map((t) => t.textContent))
-      .toEqual(['Sep 29', 'Oct 06', 'Oct 13', 'Oct 20', 'Oct 27', 'Nov 03'])
+      .toEqual(['Mon Sep 23', 'Mon Sep 30', 'Mon Oct 07', 'Mon Oct 14',
+                'Mon Oct 21', 'Mon Oct 28', 'Mon Nov 04'])
   })
 })

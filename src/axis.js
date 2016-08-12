@@ -19,8 +19,42 @@ class XAxis {
       ))
   }
 
+  addDaysToDate(n, date) {
+    let date2 = new Date(date)
+    date2.setDate(date2.getDate() + n)
+    return date2
+  }
+
+  nextDay(date) {
+    return this.addDaysToDate(1, date)
+  }
+
+  isMonday(date) {
+    return 1 == date.getDay()
+  }
+
+  ticks() {
+    let day = this.t0
+    while (!this.isMonday(day)) {
+      day = this.nextDay(day)
+    }
+    let ticks = []
+    while (day < this.t3) {
+      ticks.push(day)
+      day = this.addDaysToDate(7, day)
+    }
+    return ticks
+  }
+
+  tickFormat(date) {
+    const str = date.toDateString()
+    return str.substr(0, str.lastIndexOf(' '))
+  }
+
   show() {
     this.xAxis = d3.svg.axis().scale(this.makeXScale())
+                   .tickValues(this.ticks())
+                   .tickFormat(this.tickFormat)
     return d3.select('#main_graph')
       .append('svg')
       .attr('class', 'axis')

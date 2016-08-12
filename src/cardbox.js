@@ -13,7 +13,7 @@ class Cardbox {
   }
 
   findX(card) {
-    return Math.max(0, card.x + (card.width/2) - (this.width/2))
+    return Math.max(10, card.x + (card.width/2) - (this.width/2))
   }
 
   findY(card) {

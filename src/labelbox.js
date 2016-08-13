@@ -33,7 +33,7 @@ class Labelbox {
   }
 
   format_html() {
-    _.keys(this.labels).forEach((label) => {
+    _.keys(this.labels).sort().forEach((label) => {
       $(`
         <tr>
           <td class='color ${this.labels[label]}'></td>

@@ -117,52 +117,46 @@ class Chart {
       .attr('height', (d) => d.height)
   }
 
-  prepCards() {
-    d3.select('#main_graph')
-      .append('div')
-      .attr('id', 'cards')
-    this.cards.forEach((card, index) => {
-      if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
-      if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
-      card.x     = this.scaleXstart(card)
-      card.width = this.scaleWidth(card)
-      card.index = index
-    })
-    return this.prepCardsY()
-  }
-
-  anyPreviousCardOverlaps(card) {
-    return this.cards.slice(0, card.index).some((d) => (d.x + d.width) >= this.scaleXstart(card))
-  }
-
-  calcCardHeight() {
-    let uniqueRowCount = 0
-    this.cards.forEach((card, ndx) => {
-      if (this.anyPreviousCardOverlaps(card)) {uniqueRowCount += 1}
-    })
-    return Math.floor($('#cards').height() / uniqueRowCount) - 2
-  }
-
-  prepCardsY() {
-    this.cardHeight = this.calcCardHeight()
-    const yOffset   = this.cardHeight+2
-    let   i = 0
-    this.cards.forEach((card, ndx) => {
-      if (!this.anyPreviousCardOverlaps(card)) {
-        card.y = (i-1)*yOffset
-      }
-      else {
-        card.y = i*yOffset
-        i += 1
-      }
-      card.height = this.cardHeight
-    })
-  }
-
   prepMeta(meta) {
     return _.merge(meta, {
       dateFrom: new Date(meta.dateFrom),
       dateTo:   new Date(meta.dateTo)
+    })
+  }
+
+  prepCards() {
+    d3.select('#main_graph')
+      .append('div')
+      .attr('id', 'cards')
+
+    let rows = []
+
+    this.cards.forEach((card, index) => {
+      if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
+      if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
+
+      card.index = index
+      card.x     = this.scaleXstart(card)
+      card.width = this.scaleWidth(card)
+
+      find_row: {
+        for (let ndx=0; ndx<rows.length; ndx++) {
+          if (rows[ndx].extent < card.x) {
+            card.rowNdx = ndx
+            rows[ndx].extent = card.x + card.width + 10
+            break find_row
+          }
+        }
+        rows.push({extent: card.x + card.width + 10})
+        card.rowNdx = rows.length-1
+      }
+
+      this.cardHeight = Math.floor($('#cards').height() / rows.length) - 5
+      const yOffset   = this.cardHeight + 5
+      this.cards.forEach((card) => {
+        card.y      = card.rowNdx * yOffset
+        card.height = this.cardHeight
+      })
     })
   }
 }

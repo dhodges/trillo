@@ -1,6 +1,5 @@
 
 *  Tasks
-** TODO BUGFIX cards of short duration (mere hours) overlap rendering
 ** TODO config optionally specify 'begin' and 'finished' columns
 ** TODO compress archived_cards.json?
 ** TODO page back and forward, month-by-month

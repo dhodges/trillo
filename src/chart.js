@@ -149,7 +149,7 @@ class Chart {
   }
 
   anyPreviousCardOverlaps(card) {
-    return this.data.slice(0, card.index).some((d) => this.scaleXend(d) >= this.scaleXstart(card))
+    return this.data.slice(0, card.index).some((d) => (d.x + d.width) >= this.scaleXstart(card))
   }
 
   calcCardHeight() {

@@ -3,7 +3,7 @@
 describe ('Chart', () => {
   beforeAll((done) => {
     $('<div id="main_graph"></div>').appendTo('body')
-    d3.json('../../spec/fixtures/archived_cards.json', (err, data) => {
+    d3.json('../../spec/fixtures/archived_cards_fixture.json', (err, data) => {
       if (err) throw err
       this.chart = new Chart(data).show()
       done()

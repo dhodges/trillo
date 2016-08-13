@@ -1,5 +1,5 @@
 dist/*
-*.json
+archived_cards.json
 node_modules/*
 npm-debug.log
 **/*.js.map

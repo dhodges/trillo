@@ -1,0 +1,17 @@
+{
+  "spec_dir": "spec",
+  "spec_files": [
+    "**/*[sS]pec.js"
+  ],
+  "helpers": [
+    "helpers/**/*.js",
+    "../lib/d3.v3.5.16.js",
+    "../lib/jquery-3.1.0.js",
+    "../lib/lodash-4.14.1.js",
+    "../dist/axis.js",
+    "../dist/cardbox.js",
+    "../dist/chart.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": false
+}

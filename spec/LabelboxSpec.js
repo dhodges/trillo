@@ -3,7 +3,7 @@
 describe ('Labelbox', () => {
   beforeAll((done) => {
     $('<div id="content"></div>').appendTo('body')
-    d3.json('../../spec/fixtures/archived_cards.json', (err, data) => {
+    d3.json('../../spec/fixtures/archived_cards_fixture.json', (err, data) => {
       if (err) throw err
       this.labelbox = new Labelbox(data.meta.labels)
       done()

@@ -117,23 +117,6 @@ class Chart {
       .attr('height', (d) => d.height)
   }
 
-  setupClippaths() {
-    d3.select('#main_graph')
-      .append('svg')
-      .attr('class', 'defs')
-      .selectAll('g')
-      .append('defs')
-      .data(this.data)
-      .enter()
-      .append('clipPath')
-      .attr('id', (d) => `clip_${d.index}`)
-      .append('rect')
-      .attr('x',      (d) => d.x)
-      .attr('y',      (d) => d.y)
-      .attr('width',  (d) => d.width)
-      .attr('height', (d) => d.height)
-  }
-
   prepCards() {
     d3.select('#main_graph')
       .append('div')

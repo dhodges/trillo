@@ -39,7 +39,7 @@ describe ('Chart', () => {
         this.chart.mouseOut(0)
       })
 
-      it ('display a muted line', () => {
+      it ('remove the muted line', () => {
         expect($('.card_highlight_0').css('opacity')).toEqual('0')
       })
     })

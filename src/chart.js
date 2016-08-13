@@ -5,14 +5,14 @@ class Chart {
     if (!data) throw('card json data undefined!')
     this.meta    = this.prepMeta(data.meta)
     this.xscale  = this.makeXScale($('#main_graph').width())
-    this.data    = data.cards
+    this.cards   = data.cards
     this.cardbox = new Cardbox()
     this.prepCards()
     this.sanityCheck()
   }
 
   sanityCheck() {
-    if (!this.data)          throw('card data undefined!')
+    if (!this.cards)         throw('card data undefined!')
     if (!this.meta.dateFrom) throw('dateFrom date undefined!')
     if (!this.meta.dateTo)   throw('dateTo date undefined!')
   }
@@ -29,7 +29,7 @@ class Chart {
     this.addLabels()
     this.addHighlights()
     this.showXAxis()
-    this.labelbox = new Labelbox(this.meta.labels, this.data).show()
+    this.labelbox = new Labelbox(this.meta.labels, this.cards).show()
     return this
   }
 
@@ -58,7 +58,7 @@ class Chart {
   }
 
   addLabels() {
-    this.data.forEach((d) => {
+    this.cards.forEach((d) => {
       const labelWidth = this.scaleWidth(d) / Math.max(1, d.labels.length)
       d3.select('svg')
         .selectAll('g')
@@ -87,7 +87,7 @@ class Chart {
   addHighlights() {
     d3.select('svg')
       .selectAll('g')
-      .data(this.data)
+      .data(this.cards)
       .enter()
       .append('rect')
         .attr('class',   (d,i) => `card_highlight_${i}`)
@@ -105,7 +105,7 @@ class Chart {
       .append('svg')
       .attr('class', 'cards')
       .selectAll('g')
-      .data(this.data)
+      .data(this.cards)
       .enter()
 
     cards.append('rect')
@@ -121,7 +121,7 @@ class Chart {
     d3.select('#main_graph')
       .append('div')
       .attr('id', 'cards')
-    this.data.forEach((card, index) => {
+    this.cards.forEach((card, index) => {
       if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
       if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
       card.x     = this.scaleXstart(card)
@@ -132,12 +132,12 @@ class Chart {
   }
 
   anyPreviousCardOverlaps(card) {
-    return this.data.slice(0, card.index).some((d) => (d.x + d.width) >= this.scaleXstart(card))
+    return this.cards.slice(0, card.index).some((d) => (d.x + d.width) >= this.scaleXstart(card))
   }
 
   calcCardHeight() {
     let uniqueRowCount = 0
-    this.data.forEach((card, ndx) => {
+    this.cards.forEach((card, ndx) => {
       if (this.anyPreviousCardOverlaps(card)) {uniqueRowCount += 1}
     })
     return Math.floor($('#cards').height() / uniqueRowCount) - 2
@@ -147,7 +147,7 @@ class Chart {
     this.cardHeight = this.calcCardHeight()
     const yOffset   = this.cardHeight+2
     let   i = 0
-    this.data.forEach((card, ndx) => {
+    this.cards.forEach((card, ndx) => {
       if (!this.anyPreviousCardOverlaps(card)) {
         card.y = (i-1)*yOffset
       }

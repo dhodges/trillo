@@ -45,8 +45,18 @@ const dateFirstActivity = (card) => {
     .sort(byDate)[0]
 }
 
+const dateFirstAction = (card) => {
+  if (card.actions.length < 1) {
+    return null
+  }
+  return card.actions.sort((a,b) => byDate(a.date, b.date))[0].date
+}
+
 const dateBegun = (card) => {
-  return dateStartedDoing(card) || dateFirstActivity(card)
+  return dateStartedDoing(card)  ||
+         dateFirstActivity(card) ||
+         dateFirstAction(card)   ||
+         dateFinished(card)
 }
 
 const find_latest_date = (json_data) => {

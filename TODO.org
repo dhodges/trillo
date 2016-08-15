@@ -1,6 +1,5 @@
 
 *  Tasks
-** TODO BUGFIX some cards are missing dateBegun
 ** TODO add favicon?
 ** TODO config optionally specify 'begin' and 'finished' columns
 ** TODO compress archived_cards.json?

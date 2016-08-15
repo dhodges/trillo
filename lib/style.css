@@ -1,11 +1,11 @@
 #content {
   width:  100%;
-  height: 900px;
+  height: 700px;
 }
 
 #main_graph {
   width:  790px;
-  height: 750px;
+  height: 85%;
   float:  left;
   border-radius: 5px;
   overflow: hidden;
@@ -14,7 +14,7 @@
 #cards {
   background-color: steelblue;
   width:  100%;
-  height: 715px
+  height:  80%;
 }
 
 svg.cards {

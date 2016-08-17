@@ -1,11 +1,12 @@
 
 *  Tasks
-** TODO add favicon?
-** TODO config optionally specify 'begin' and 'finished' columns
-** TODO reduce the size of archived_cards.json
-** TODO rename to 'trellis'
 ** TODO page back and forward, month-by-month
 ** TODO extract a decent amount of archived cards (>= six months?)
+** TODO reduce the size of archived_cards.json
+** TODO headless jasmine?
+** TODO add favicon?
+** TODO config optionally specify 'begin' and 'finished' columns
+** TODO rename to 'trellis'
 ** TODO how to get an image from a member avatarHash?
 ** TODO setup SASS? Haml?
 ** TODO list all card members (i.e. not just final)

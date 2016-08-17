@@ -1,6 +1,5 @@
 
 *  Tasks
-** TODO trillo.gatherArchivedCards should not be hard-coded for 2016-01-01
 ** TODO add favicon?
 ** TODO config optionally specify 'begin' and 'finished' columns
 ** TODO reduce the size of archived_cards.json

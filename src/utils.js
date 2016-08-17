@@ -1,6 +1,7 @@
 'use strict';
 
-const _ = require('lodash')
+const _          = require('lodash'),
+      dateFormat = require('dateformat')
 
 const dateComparator = (a1, a2) => {
   const d1 = new Date(a1)
@@ -128,6 +129,12 @@ const monthPreviousTo = (thisDate) => {
   return [startDay, endDay]
 }
 
+const dateOneMonthAgoStr = () => {
+  let date = new Date()
+  date.setMonth(date.getMonth()-1)
+  return dateFormat(date, 'yyyy-mm-dd')
+}
+
 module.exports.byDate  = byDate
 module.exports.prepare = prepare
 module.exports.jsonEscape = jsonEscape
@@ -140,3 +147,4 @@ module.exports.dateFinished     = dateFinished
 module.exports.monthsAgo        = monthsAgo
 module.exports.monthPreviousTo  = monthPreviousTo
 module.exports.dateFirstActivity = dateFirstActivity
+module.exports.dateOneMonthAgoStr = dateOneMonthAgoStr

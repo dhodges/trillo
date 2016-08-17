@@ -7,6 +7,7 @@ const db_query = require('./trillo_pg_query').query,
       _        = require('lodash'),
       Trello   = require('./trello').Trello,
       utils    = require('./utils'),
+      fmt      = require('dateformat'),
       trello   = new Trello({
         key:   process.env.TRELLO_API_KEY,
         token: process.env.TRELLO_API_TOKEN
@@ -95,12 +96,12 @@ const gatherArchivedCards = (boardId) => {
     actions: 'updateCard',
     members: 'true',
     fields:  'desc,labels,name,dateLastActivity,idMembers',
-    since:   '2016-01-01'
+    since:   utils.dateOneMonthAgoStr()
   })
 }
 
 const updateDbWithArchivedCards = function() {
-  console.log('gathering archived cards from trello...')
+  console.log(`gathering archived trello cards since ${utils.dateOneMonthAgoStr()}...`)
 
   gatherArchivedCards(process.env.TRELLO_BOARD_ID).then((cards) => {
     console.log('updating the db...')

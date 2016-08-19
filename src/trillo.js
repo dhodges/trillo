@@ -72,23 +72,46 @@ const updateDb = (card) => {
   })
 }
 
-const dumpPreviousMonthJson = (fromDate, toDate) => {
-  console.log('gathering cards from db...')
-  db_query(`SELECT $1::timestamp as fromDate,
-                   $2::timestamp as toDate,
-                   data FROM archived_cards
-             WHERE $1::timestamp <= archived
-               AND archived <= $2::timestamp`,
-           [fromDate.toISOString(), toDate.toISOString()], (err, rows) => {
-    if (err) throw err
-    console.log('writing cards to disk...')
-    jsonf.writeFileSync('archived_cards.json', utils.prepare(rows), {spaces: 2})
+const getCardsInDateRange = (fromDate, toDate) => {
+  console.log(`gathering cards from db: ${fmt(fromDate, 'yyyy-mm-dd')} to ${fmt(toDate, 'yyyy-mm-dd')}...`)
+  return db_query(`SELECT data FROM archived_cards
+                    WHERE $1::timestamp <= archived
+                      AND archived <= $2::timestamp`,
+                  [fromDate.toISOString(), toDate.toISOString()])
+}
+
+const dumpPreviousMonthJson = () => {
+  const [fromDate, toDate] = utils.monthPreviousTo(new Date())
+  getCardsInDateRange(fromDate, toDate)
+    .then((result) => {
+      console.log(`writing cards to 'archived_cards.json'...`)
+      jsonf.writeFileSync('archived_cards.json', utils.prepare(result[0]), {spaces: 2})
   })
 }
 
+const dumpPreviousMonthsJson = (numMonths) => {
+  let toDate   = new Date()
+  let fromDate = utils.monthsAgo(numMonths)
+  fromDate.setDate(1)
+  getCardsInDateRange(fromDate, toDate)
+    .then((result) => {
+      console.log(`partitioning ${result[0].length} cards...`)
+      const cards_by_month = _.groupBy(result[0], (card) => fmt(card.data.dateLastActivity, 'mmmm yyyy'))
+      const filtered_cards = _.mapValues(cards_by_month, (value) => utils.prepare(value))
+
+      const cards = _.keys(filtered_cards).map((key) => ({
+        label: key,
+        meta:  filtered_cards[key].meta,
+        cards: filtered_cards[key].cards
+      })).sort((a, b) => utils.dateComparator(new Date(a.label), new Date(b.label)))
+
+      console.log(`writing partitioned cards to 'archived_cards.json'...`)
+      jsonf.writeFileSync('archived_cards.json', cards, {spaces: 2})
+    })
+}
+
 const dumpjson = () => {
-  const [fromDate, toDate] = utils.monthPreviousTo(new Date())
-  dumpPreviousMonthJson(fromDate, toDate)
+  dumpPreviousMonthsJson(1)
 }
 
 const gatherArchivedCards = (boardId) => {

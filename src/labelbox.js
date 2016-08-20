@@ -1,14 +1,19 @@
 'use strict';
 
 class Labelbox {
-  constructor(labels, cards) {
+  constructor() {
+    this.table =
+      d3.select('#content')
+        .append('table')
+        .attr('id', 'labelbox')
+  }
+
+  update(labels, cards) {
     this.labels = labels
     this.cards  = cards
-    this.table  = d3.select('#content')
-                    .append('table')
-                    .attr('id', 'labelbox')
     this.count_cards()
-    this.format_html()
+    this.update_html()
+    return this
   }
 
   show() {
@@ -32,7 +37,8 @@ class Labelbox {
     })
   }
 
-  format_html() {
+  update_html() {
+    $('#labelbox').empty()
     _.keys(this.labels).sort().forEach((label) => {
       $(`
         <tr>

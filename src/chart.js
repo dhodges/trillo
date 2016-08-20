@@ -3,7 +3,8 @@
 class Chart {
   constructor(data) {
     this.prepLayout()
-    this.cardbox = new Cardbox()
+    this.cardbox  = new Cardbox()
+    this.labelbox = new Labelbox()
 
     if (!data) throw('card json data undefined!')
     this.meta    = this.prepMeta(data.meta)
@@ -30,7 +31,7 @@ class Chart {
     this.addLabels()
     this.addHighlights()
     this.showXAxis()
-    this.labelbox = new Labelbox(this.meta.labels, this.cards).show()
+    this.labelbox.update(this.meta.labels, this.cards).show()
     return this
   }
 

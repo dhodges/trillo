@@ -5,7 +5,8 @@ describe ('Labelbox', () => {
     $('<div id="content"></div>').appendTo('body')
     d3.json('../../spec/fixtures/archived_cards_fixture.json', (err, data) => {
       if (err) throw err
-      this.labelbox = new Labelbox(data.meta.labels)
+      this.labelbox = new Labelbox()
+      this.labelbox.update(data.meta.labels)
       done()
     })
   })

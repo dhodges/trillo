@@ -10,7 +10,8 @@ class Chart {
     this.meta    = this.prepMeta(data.meta)
     this.xscale  = this.makeXScale($('#main_graph').width())
     this.cards   = data.cards
-    this.prepCards()
+    this.prepCards(this.cards)
+
     this.sanityCheck()
   }
 
@@ -141,11 +142,12 @@ class Chart {
     d3.select('#main_graph')
       .append('div')
       .attr('id', 'cards')
+  }
 
-  prepCards() {
+  prepCards(cards) {
     let rows = []
 
-    this.cards.forEach((card, index) => {
+    cards.forEach((card, index) => {
       if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
       if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
 
@@ -167,7 +169,7 @@ class Chart {
 
       this.cardHeight = Math.floor($('#cards').height() / rows.length) - 5
       const yOffset   = this.cardHeight + 5
-      this.cards.forEach((card) => {
+      cards.forEach((card) => {
         card.y      = card.rowNdx * yOffset
         card.height = this.cardHeight
       })

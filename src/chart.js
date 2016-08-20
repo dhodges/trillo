@@ -28,7 +28,7 @@ class Chart {
 
   show() {
     this.showCards()
-    this.addLabels()
+    this.overlayCardLabels()
     this.addHighlights()
     this.showXAxis()
     this.labelbox.update(this.meta.labels, this.cards).show()
@@ -59,7 +59,7 @@ class Chart {
     return this.meta.labels[label]
   }
 
-  addLabels() {
+  overlayCardLabels() {
     this.cards.forEach((d) => {
       const labelWidth = this.scaleWidth(d) / Math.max(1, d.labels.length)
       d3.select('svg')

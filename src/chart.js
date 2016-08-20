@@ -19,8 +19,7 @@ class Chart {
 
   makeXScale(width) {
     return d3.scale.linear()
-      .domain([this.meta.dateFrom.getTime(),
-               this.meta.dateTo.getTime()])
+      .domain([this.meta.dateFrom.getTime(), this.meta.dateTo.getTime()])
       .range( [0, width])
   }
 
@@ -117,10 +116,21 @@ class Chart {
       .attr('height', (d) => d.height)
   }
 
+  ensureFullMonth(startDate, endDate) {
+    startDate.setDate(1)
+
+    endDate.setMonth(endDate.getMonth()+1)
+    endDate.setDate(0)
+
+    return [startDate, endDate]
+  }
+
   prepMeta(meta) {
+    const [dateFrom, dateTo] =
+      this.ensureFullMonth(new Date(meta.dateFrom), new Date(meta.dateTo))
     return _.merge(meta, {
-      dateFrom: new Date(meta.dateFrom),
-      dateTo:   new Date(meta.dateTo)
+      dateFrom: dateFrom,
+      dateTo:   dateTo
     })
   }
 

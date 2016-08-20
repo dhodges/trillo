@@ -2,11 +2,13 @@
 
 class Chart {
   constructor(data) {
+    this.prepLayout()
+    this.cardbox = new Cardbox()
+
     if (!data) throw('card json data undefined!')
     this.meta    = this.prepMeta(data.meta)
     this.xscale  = this.makeXScale($('#main_graph').width())
     this.cards   = data.cards
-    this.cardbox = new Cardbox()
     this.prepCards()
     this.sanityCheck()
   }
@@ -134,11 +136,12 @@ class Chart {
     })
   }
 
-  prepCards() {
+  prepLayout() {
     d3.select('#main_graph')
       .append('div')
       .attr('id', 'cards')
 
+  prepCards() {
     let rows = []
 
     this.cards.forEach((card, index) => {

@@ -7,9 +7,8 @@ class Chart {
     this.labelbox = new Labelbox()
 
     if (!data) throw('card json data undefined!')
-    this.meta    = this.prepMeta(data.meta)
-    this.cards   = data.cards
-    this.prepCards(this.cards)
+    this.meta  = this.prepMeta(data.meta)
+    this.cards = this.prepCards(data.cards, this.meta.dateFrom, this.meta.dateTo)
 
     this.sanityCheck()
   }
@@ -121,19 +120,19 @@ class Chart {
       .attr('id', 'cards')
   }
 
-  prepCards(cards) {
-    let rows = []
+  prepCards(cards, dateFrom, dateTo) {
+    let   rows   = []
     const width  = $('#main_graph').width()
-    const scaler = new XScaler(this.meta.dateFrom, this.meta.dateTo, width)
+    const scaler = new XScaler(dateFrom, dateTo, width)
 
-    cards.forEach((card, index) => {
-      if (card.dateBegun)    {card.dateBegun    = new Date(card.dateBegun)}
-      if (card.dateFinished) {card.dateFinished = new Date(card.dateFinished)}
+    cards.forEach((card) => {
+      card.dateBegun    = (card.dateBegun    && new Date(card.dateBegun)) || null
+      card.dateFinished = (card.dateFinished && new Date(card.dateFinished)) || null
+      card.x            = scaler.xStart(card)
+      card.width        = scaler.xWidth(card)
 
-      card.index = index
-      card.x     = scaler.xStart(card)
-      card.width = scaler.xWidth(card)
-
+      // fit as many cards into as few rows as possible
+      // then the row count (vertically within the page div) determines the card height
       find_row: {
         for (let ndx=0; ndx<rows.length; ndx++) {
           if (rows[ndx].extent < card.x) {
@@ -145,13 +144,13 @@ class Chart {
         rows.push({extent: card.x + card.width + 10})
         card.rowNdx = rows.length-1
       }
-
-      this.cardHeight = Math.floor($('#cards').height() / rows.length) - 5
-      const yOffset   = this.cardHeight + 5
-      cards.forEach((card) => {
-        card.y      = card.rowNdx * yOffset
-        card.height = this.cardHeight
-      })
     })
+
+    const cardHeight = Math.floor($('#cards').height() / rows.length) - 5
+    cards.forEach((card) => {
+      card.y      = card.rowNdx * (cardHeight + 5)
+      card.height = cardHeight
+    })
+    return cards
   }
 }

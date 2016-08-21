@@ -6,17 +6,18 @@ class Chart {
     this.cardbox  = new Cardbox()
     this.labelbox = new Labelbox()
 
-    if (!data) throw('card json data undefined!')
     this.meta  = this.prepMeta(data.meta)
     this.cards = this.prepCards(data.cards, this.meta.dateFrom, this.meta.dateTo)
+    this.sanityCheck(data)
 
-    this.sanityCheck()
   }
 
-  sanityCheck() {
-    if (!this.cards)         throw('card data undefined!')
-    if (!this.meta.dateFrom) throw('dateFrom date undefined!')
-    if (!this.meta.dateTo)   throw('dateTo date undefined!')
+  sanityCheck(data) {
+    if (!data)                  throw('data undefined!')
+    if (!data[0].cards)         throw('card data undefined!')
+    if (!data[0].meta)          throw('data.meta undefined!')
+    if (!data[0].meta.dateFrom) throw('meta.dateFrom undefined!')
+    if (!data[0].meta.dateTo)   throw('meta.dateTo undefined!')
   }
 
   show() {

@@ -27,7 +27,7 @@ class Chart {
   show(cards, meta) {
     this.showCards(cards)
     this.overlayCardLabels(cards, meta)
-    this.addHighlights()
+    this.addHighlights(cards)
     this.showXAxis(meta)
     this.labelbox.update(meta.labels, cards).show()
     return this
@@ -67,10 +67,10 @@ class Chart {
     $(`.card_highlight_${i}`).css('opacity', 0.0)
   }
 
-  addHighlights() {
+  addHighlights(cards) {
     d3.select('svg')
       .selectAll('g')
-      .data(this.cards)
+      .data(cards)
       .enter()
       .append('rect')
         .attr('class',   (d,i) => `card_highlight_${i}`)

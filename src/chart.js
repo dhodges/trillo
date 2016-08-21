@@ -6,10 +6,14 @@ class Chart {
     this.cardbox  = new Cardbox()
     this.labelbox = new Labelbox()
 
-    this.meta  = this.prepMeta(data.meta)
-    this.cards = this.prepCards(data.cards, this.meta.dateFrom, this.meta.dateTo)
     this.sanityCheck(data)
+    data.forEach((month) => {
+      month.meta  = this.prepMeta(month.meta)
+      month.cards = this.prepCards(month.cards, month.meta.dateFrom, month.meta.dateTo)
+    })
 
+    this.show(data[data.length-1].cards,
+              data[data.length-1].meta)
   }
 
   sanityCheck(data) {
@@ -20,12 +24,12 @@ class Chart {
     if (!data[0].meta.dateTo)   throw('meta.dateTo undefined!')
   }
 
-  show() {
-    this.overlayCardLabels()
+  show(cards, meta) {
     this.showCards(cards)
+    this.overlayCardLabels(cards, meta)
     this.addHighlights()
     this.showXAxis()
-    this.labelbox.update(this.meta.labels, this.cards).show()
+    this.labelbox.update(meta.labels, cards).show()
     return this
   }
 

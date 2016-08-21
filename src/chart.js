@@ -123,7 +123,7 @@ class Chart {
   prepCards(cards, dateFrom, dateTo) {
     let   rows   = []
     const width  = $('#main_graph').width()
-    const scaler = new XScaler(dateFrom, dateTo, width)
+    const scaler = new XScaler(width, dateFrom, dateTo)
 
     cards.forEach((card) => {
       card.dateBegun    = (card.dateBegun    && new Date(card.dateBegun)) || null

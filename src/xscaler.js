@@ -2,7 +2,7 @@
 
 class XScaler {
 
-  constructor(dateFrom, dateTo, divWidth) {
+  constructor(divWidth, dateFrom, dateTo) {
     this.dateFrom = dateFrom
     this.dateTo   = dateTo
     this.xscale   = this.makeXScale(divWidth)

@@ -33,12 +33,11 @@ class Chart {
     new XAxis(this.meta.dateFrom, this.meta.dateTo).show()
   }
 
-  colorOf(label) {
-    return this.meta.labels[label]
-  }
-
-  overlayCardLabels() {
-    this.cards.forEach((d) => {
+  overlayCardLabels(cards, meta) {
+    const colorOf = (label) => {
+      return meta.labels[label]
+    }
+    cards.forEach((d) => {
       const labelWidth = d.width / Math.max(1, d.labels.length)
       d3.select('svg')
         .selectAll('g')
@@ -46,7 +45,7 @@ class Chart {
         .enter()
         .append('rect')
           .attr('class',   'label')
-          .attr('class',   (label) => this.colorOf(label))
+          .attr('class',   (label) => colorOf(label))
           .attr('width',   labelWidth)
           .attr('height',  d.height)
           .attr('x',       (label, li) => d.x+(li*labelWidth))

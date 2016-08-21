@@ -21,8 +21,8 @@ class Chart {
   }
 
   show() {
-    this.showCards()
     this.overlayCardLabels()
+    this.showCards(cards)
     this.addHighlights()
     this.showXAxis()
     this.labelbox.update(this.meta.labels, this.cards).show()
@@ -79,15 +79,14 @@ class Chart {
         .on('mouseout',  (d,i) => this.mouseOut(i))
   }
 
-  showCards() {
-    let cards = d3.select('#cards')
+  showCards(cards) {
+    d3.select('#cards')
       .append('svg')
       .attr('class', 'cards')
       .selectAll('g')
-      .data(this.cards)
+      .data(cards)
       .enter()
-
-    cards.append('rect')
+      .append('rect')
       .attr('class', 'card')
       .attr('id',     (d) => d.id)
       .attr('x',      (d) => d.x)

@@ -28,13 +28,13 @@ class Chart {
     this.showCards(cards)
     this.overlayCardLabels(cards, meta)
     this.addHighlights()
-    this.showXAxis()
+    this.showXAxis(meta)
     this.labelbox.update(meta.labels, cards).show()
     return this
   }
 
-  showXAxis() {
-    new XAxis(this.meta.dateFrom, this.meta.dateTo).show()
+  showXAxis(meta) {
+    new XAxis(meta.dateFrom, meta.dateTo).show()
   }
 
   overlayCardLabels(cards, meta) {

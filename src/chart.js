@@ -96,7 +96,8 @@ class Chart {
       .attr('height', (d) => d.height)
   }
 
-  ensureFullMonth(startDate, endDate) {
+  ensureFullMonth(endDate) {
+    let startDate = new Date(endDate)
     startDate.setDate(1)
 
     endDate.setMonth(endDate.getMonth()+1)
@@ -106,8 +107,7 @@ class Chart {
   }
 
   prepMeta(meta) {
-    const [dateFrom, dateTo] =
-      this.ensureFullMonth(new Date(meta.dateFrom), new Date(meta.dateTo))
+    const [dateFrom, dateTo] = this.ensureFullMonth(new Date(meta.dateTo))
     return _.merge(meta, {
       dateFrom: dateFrom,
       dateTo:   dateTo

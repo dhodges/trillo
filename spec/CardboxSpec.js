@@ -7,7 +7,7 @@ describe ('Cardbox', () => {
       if (err) throw err
       this.chart   = new Chart(data)
       this.cardbox = this.chart.cardbox
-      this.card    = this.chart.cards[5]
+      this.card    = data[0].cards[5]
       done()
     })
   })

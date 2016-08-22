@@ -5,7 +5,8 @@ describe ('Chart', () => {
     $('<div id="main_graph"></div>').appendTo('body')
     d3.json('../../spec/fixtures/archived_cards_fixture.json', (err, data) => {
       if (err) throw err
-      this.chart = new Chart(data).show()
+      this.chart = new Chart(data)
+      this.cards = data[data.length-1].cards
       done()
     })
   })
@@ -15,15 +16,15 @@ describe ('Chart', () => {
   it ('should exist', () => expect(this.chart).not.toBeUndefined())
 
   describe ('cards', () => {
-    it ('should exist', () => expect($('rect.card').length).toEqual(55))
+    it ('should exist', () => expect($('rect.card').length).toEqual(31))
 
     it ('should contain their ID', () => {
-      expect($(`rect#${this.chart.cards[0].id}`).length).toEqual(1)
+      expect($(`rect#${this.cards[0].id}`).length).toEqual(1)
     })
 
     describe ('when the mouse enters', () => {
       beforeAll(() => {
-        this.d = this.chart.cards[0]
+        this.d = this.cards[0]
         this.chart.mouseEnter(this.d, 0)
       })
 
@@ -34,7 +35,7 @@ describe ('Chart', () => {
 
     describe ('when the mouse leaves', () => {
       beforeAll(() => {
-        this.d = this.chart.cards[0]
+        this.d = this.cards[0]
         this.chart.mouseEnter(this.d, 0)
         this.chart.mouseOut(0)
       })

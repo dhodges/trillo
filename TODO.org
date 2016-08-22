@@ -1,9 +1,10 @@
 
 *  Tasks
+** TODO headless jasmine?
 ** TODO page back and forward, month-by-month
+** TODO measure cards in work days, not calendar days
 ** TODO extract a decent amount of archived cards (>= six months?)
 ** TODO reduce the size of archived_cards.json
-** TODO headless jasmine?
 ** TODO add favicon?
 ** TODO config optionally specify 'begin' and 'finished' columns
 ** TODO rename to 'trellis'

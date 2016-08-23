@@ -9,11 +9,11 @@ class Chart {
     this.sanityCheck(data)
     data.forEach((month) => {
       month.meta  = this.prepMeta(month.meta)
-      month.cards = this.prepCards(month.cards, month.meta.dateFrom, month.meta.dateTo)
+      month.cards = this.prepCards(month)
     })
+    this.months   = new Months(data)
 
-    this.show(data[data.length-1].cards,
-              data[data.length-1].meta)
+    this.show(this.months.current())
   }
 
   sanityCheck(data) {
@@ -24,12 +24,12 @@ class Chart {
     if (!data[0].meta.dateTo)   throw('meta.dateTo undefined!')
   }
 
-  show(cards, meta) {
-    this.showCards(cards)
-    this.overlayCardLabels(cards, meta)
-    this.addHighlights(cards)
-    this.showXAxis(meta)
-    this.labelbox.update(meta.labels, cards).show()
+  show(month) {
+    this.showCards(month.cards)
+    this.overlayCardLabels(month)
+    this.addHighlights(month.cards)
+    this.showXAxis(month.meta)
+    this.labelbox.update(month).show()
     return this
   }
 
@@ -37,11 +37,11 @@ class Chart {
     new XAxis(meta.dateFrom, meta.dateTo).show()
   }
 
-  overlayCardLabels(cards, meta) {
+  overlayCardLabels(month) {
     const colorOf = (label) => {
-      return meta.labels[label]
+      return month.meta.labels[label]
     }
-    cards.forEach((d) => {
+    month.cards.forEach((d) => {
       const labelWidth = d.width / Math.max(1, d.labels.length)
       d3.select('svg')
         .selectAll('g')
@@ -123,12 +123,12 @@ class Chart {
       .attr('id', 'cards')
   }
 
-  prepCards(cards, dateFrom, dateTo) {
+  prepCards(month) {
     let   rows   = []
     const width  = $('#main_graph').width()
-    const scaler = new XScaler(width, dateFrom, dateTo)
+    const scaler = new XScaler(width, month.meta.dateFrom, month.meta.dateTo)
 
-    cards.forEach((card) => {
+    month.cards.forEach((card) => {
       card.dateBegun    = (card.dateBegun    && new Date(card.dateBegun)) || null
       card.dateFinished = (card.dateFinished && new Date(card.dateFinished)) || null
       card.x            = scaler.xStart(card)
@@ -150,10 +150,10 @@ class Chart {
     })
 
     const cardHeight = Math.floor($('#cards').height() / rows.length) - 5
-    cards.forEach((card) => {
+    month.cards.forEach((card) => {
       card.y      = card.rowNdx * (cardHeight + 5)
       card.height = cardHeight
     })
-    return cards
+    return month.cards
   }
 }

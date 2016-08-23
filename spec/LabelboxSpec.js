@@ -6,7 +6,7 @@ describe ('Labelbox', () => {
     d3.json('../../spec/fixtures/archived_cards_fixture.json', (err, data) => {
       if (err) throw err
       this.labelbox = new Labelbox()
-      this.labelbox.update(data[0].meta.labels, data[0].cards)
+      this.labelbox.update(data[0])
       done()
     })
   })

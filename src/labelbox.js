@@ -8,9 +8,9 @@ class Labelbox {
         .attr('id', 'labelbox')
   }
 
-  update(labels, cards) {
-    this.labels = labels
-    this.cards  = cards
+  update(month) {
+    this.labels = month.meta.labels
+    this.cards  = month.cards
     this.count_cards()
     this.update_html()
     return this

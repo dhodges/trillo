@@ -41,25 +41,25 @@ class Chart {
     const colorOf = (label) => {
       return month.meta.labels[label]
     }
-    month.cards.forEach((d) => {
-      const labelWidth = d.width / Math.max(1, d.labels.length)
+    month.cards.forEach((card) => {
+      const labelWidth = card.width / Math.max(1, card.labels.length)
       d3.select('svg')
         .selectAll('g')
-        .data(d.labels)
+        .data(card.labels)
         .enter()
         .append('rect')
           .attr('class',   'label')
           .attr('class',   (label) => colorOf(label))
           .attr('width',   labelWidth)
-          .attr('height',  d.height)
-          .attr('x',       (label, li) => d.x+(li*labelWidth))
-          .attr('y',       (label) => d.y)
+          .attr('height',  card.height)
+          .attr('x',       (label, li) => card.x+(li*labelWidth))
+          .attr('y',       (label) => card.y)
     })
   }
 
-  mouseEnter(d, i) {
+  mouseEnter(card, i) {
     $(`.card_highlight_${i}`).css('opacity', 0.6)
-    this.cardbox.show(d)
+    this.cardbox.show(card)
   }
 
   mouseOut(i) {
@@ -73,14 +73,14 @@ class Chart {
       .data(cards)
       .enter()
       .append('rect')
-        .attr('class',   (d,i) => `card_highlight_${i}`)
-        .attr('width',   (d) => d.width)
-        .attr('height',  (d) => d.height)
-        .attr('x',       (d) => d.x)
-        .attr('y',       (d) => d.y)
+        .attr('class',   (card,i) => `card_highlight_${i}`)
+        .attr('width',   (card) => card.width)
+        .attr('height',  (card) => card.height)
+        .attr('x',       (card) => card.x)
+        .attr('y',       (card) => card.y)
         .style('opacity', 0.0)
-        .on('mouseenter',(d,i) => this.mouseEnter(d,i))
-        .on('mouseout',  (d,i) => this.mouseOut(i))
+        .on('mouseenter',(card,i) => this.mouseEnter(card,i))
+        .on('mouseout',  (card,i) => this.mouseOut(i))
   }
 
   showCards(month) {
@@ -91,11 +91,11 @@ class Chart {
       .enter()
       .append('rect')
       .attr('class', 'card')
-      .attr('id',     (d) => d.id)
-      .attr('x',      (d) => d.x)
-      .attr('y',      (d) => d.y)
-      .attr('width',  (d) => d.width)
-      .attr('height', (d) => d.height)
+      .attr('id',     (card) => card.id)
+      .attr('x',      (card) => card.x)
+      .attr('y',      (card) => card.y)
+      .attr('width',  (card) => card.width)
+      .attr('height', (card) => card.height)
   }
 
   ensureFullMonth(endDate) {

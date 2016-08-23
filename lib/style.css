@@ -13,10 +13,8 @@
 #title {
   font-family: sans-serif;
   font-size:   14pt;
-  width:      790px;
   color:       steelblue;
   text-align:  center;
-  margin-bottom: 7pt
 }
 
 #cards {
@@ -32,6 +30,23 @@
   display: none;
 }
 
+.title {
+  width: 790px;
+  float: right;
+  color: steelblue;
+  margin-bottom: 10pt
+}
+
+.arrow {
+  cursor: pointer;
+}
+
+.arrow.left {
+  margin-right: 5px;
+}
+
+.arrow.right {
+  margin-left: 5px;
 }
 
 svg.cards {

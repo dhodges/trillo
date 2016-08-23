@@ -3,6 +3,7 @@
 class Chart {
   constructor(data) {
     this.prepLayout()
+    this.title    = new Title()
     this.cardbox  = new Cardbox()
     this.labelbox = new Labelbox()
 
@@ -25,6 +26,7 @@ class Chart {
   }
 
   show(month) {
+    this.title.update(month)
     this.showCards(month)
     this.overlayCardLabels(month)
     this.addHighlights(month.cards)
@@ -84,7 +86,6 @@ class Chart {
   }
 
   showCards(month) {
-    $('#title').text(month.label)
     d3.select('svg.cards')
       .selectAll('g')
       .data(month.cards)
@@ -117,8 +118,6 @@ class Chart {
   }
 
   prepLayout() {
-    $('<div id="title"></div>').appendTo($('#main_graph'))
-
     d3.select('#main_graph')
       .append('div')
       .attr('id', 'cards')

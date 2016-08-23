@@ -48,7 +48,7 @@ class XAxis {
 
   tickFormat(date) {
     const str = date.toDateString()
-    return str.substr(0, str.lastIndexOf(' '))
+    return str.split(' ')[0] + ' ' + str.split(' ')[2]
   }
 
   show() {

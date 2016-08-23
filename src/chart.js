@@ -83,8 +83,6 @@ class Chart {
         .on('mouseout',  (d,i) => this.mouseOut(i))
   }
 
-      .append('svg')
-      .attr('class', 'cards')
   showCards(month) {
     $('#title').text(month.label)
     d3.select('svg.cards')

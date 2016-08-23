@@ -15,7 +15,7 @@ class XAxis {
       .range( [this.t0, this.t3].map(
         d3.time.scale()
           .domain([this.t1, this.t2])
-          .range([0, $('#main_graph').width()])
+          .range([0, $('#cards').width()])
       ))
   }
 
@@ -55,7 +55,7 @@ class XAxis {
     this.xAxis = d3.svg.axis().scale(this.makeXScale())
                    .tickValues(this.ticks())
                    .tickFormat(this.tickFormat)
-    return d3.select('#main_graph')
+    return d3.select('#cards')
       .append('svg')
       .attr('class', 'axis')
       .append('g')

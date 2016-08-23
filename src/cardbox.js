@@ -2,7 +2,7 @@
 
 class Cardbox {
   constructor() {
-    this.div = d3.select('#main_graph')
+    this.div = d3.select('#cards')
                  .append('div')
                  .attr('class', 'cardbox')
     this.width = 200
@@ -17,7 +17,7 @@ class Cardbox {
   }
 
   findY(card) {
-    return card.y + card.height*2
+    return card.y + 32 + card.height*2
   }
 
   show(card) {

@@ -11,6 +11,15 @@
   overflow: hidden;
 }
 
+#title {
+  font-family: sans-serif;
+  font-size:   14pt;
+  width:      790px;
+  color:       steelblue;
+  text-align:  center;
+  margin-bottom: 7pt
+}
+
 #cards {
   background-color: steelblue;
   width:  100%;

@@ -25,7 +25,7 @@ class Chart {
   }
 
   show(month) {
-    this.showCards(month.cards)
+    this.showCards(month)
     this.overlayCardLabels(month)
     this.addHighlights(month.cards)
     this.showXAxis(month.meta)
@@ -83,12 +83,13 @@ class Chart {
         .on('mouseout',  (d,i) => this.mouseOut(i))
   }
 
-  showCards(cards) {
-    d3.select('#cards')
       .append('svg')
       .attr('class', 'cards')
+  showCards(month) {
+    $('#title').text(month.label)
+    d3.select('svg.cards')
       .selectAll('g')
-      .data(cards)
+      .data(month.cards)
       .enter()
       .append('rect')
       .attr('class', 'card')
@@ -118,9 +119,15 @@ class Chart {
   }
 
   prepLayout() {
+    $('<div id="title"></div>').appendTo($('#main_graph'))
+
     d3.select('#main_graph')
       .append('div')
       .attr('id', 'cards')
+
+    d3.select('#cards')
+      .append('svg')
+      .attr('class', 'cards')
   }
 
   prepCards(month) {

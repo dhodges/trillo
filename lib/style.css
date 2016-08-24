@@ -88,28 +88,36 @@ td.label {
   padding-left: 5px;
 }
 
-td.yellow {
-  background-color: yellow
-}
-
-td.purple {
-  background-color: purple
+td.black {
+  background-color: black
 }
 
 td.blue {
   background-color: blue
 }
 
-td.red {
-  background-color: red
-}
-
 td.lime {
   background-color: lime
 }
 
-td.black {
-  background-color: black
+td.orange {
+  background-color: orange
+}
+
+td.purple {
+  background-color: purple
+}
+
+td.pink {
+  background-color: pink
+}
+
+td.red {
+  background-color: red
+}
+
+td.yellow {
+  background-color: yellow
 }
 
 .cardbox {

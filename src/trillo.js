@@ -110,9 +110,7 @@ const dumpPreviousMonthsJson = (numMonths) => {
     })
 }
 
-const dumpjson = () => {
-  dumpPreviousMonthsJson(1)
-}
+const dumpjson = () => dumpPreviousMonthsJson(8)
 
 const gatherArchivedCards = (boardId) => {
   return trello.getArchivedCards(boardId, {

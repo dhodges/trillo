@@ -12,6 +12,7 @@ class Chart {
       month.meta  = this.prepMeta(month.meta)
       month.cards = this.prepCards(month)
     })
+    this.prepTitleHandlers()
     this.months   = new Months(data)
 
     this.show(this.months.current())
@@ -23,6 +24,11 @@ class Chart {
     if (!data[0].meta)          throw('data.meta undefined!')
     if (!data[0].meta.dateFrom) throw('meta.dateFrom undefined!')
     if (!data[0].meta.dateTo)   throw('meta.dateTo undefined!')
+  }
+
+  prepTitleHandlers() {
+    $('.title .arrow.left').on('click',  () => this.show(this.months.previous()))
+    $('.title .arrow.right').on('click', () => this.show(this.months.next()))
   }
 
   show(month) {
@@ -42,8 +48,11 @@ class Chart {
   overlayCardLabels(month) {
     const colorOf = (label) => month.meta.labels[label]
 
+    d3.selectAll('rect.label').remove()
+
     month.cards.forEach((card) => {
       const labelWidth = card.width / Math.max(1, card.labels.length)
+
       d3.select('svg')
         .selectAll('g')
         .data(card.labels)
@@ -69,12 +78,14 @@ class Chart {
   }
 
   addHighlights(cards) {
+    d3.selectAll('rect.highlight').remove()
+
     d3.select('svg')
       .selectAll('g')
       .data(cards)
       .enter()
       .append('rect')
-        .attr('class',   (card,i) => `card_highlight_${i}`)
+        .attr('class',   (card,i) => `highlight card_highlight_${i}`)
         .attr('width',   (card) => card.width)
         .attr('height',  (card) => card.height)
         .attr('x',       (card) => card.x)
@@ -85,6 +96,8 @@ class Chart {
   }
 
   showCards(month) {
+    d3.selectAll('svg.cards rect').remove()
+
     d3.select('svg.cards')
       .selectAll('g')
       .data(month.cards)

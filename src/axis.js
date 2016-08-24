@@ -55,7 +55,10 @@ class XAxis {
     this.xAxis = d3.svg.axis().scale(this.makeXScale())
                    .tickValues(this.ticks())
                    .tickFormat(this.tickFormat)
-    return d3.select('#cards')
+    d3.select('svg.axis')
+      .remove()
+
+    d3.select('#cards')
       .append('svg')
       .attr('class', 'axis')
       .append('g')

@@ -40,9 +40,8 @@ class Chart {
   }
 
   overlayCardLabels(month) {
-    const colorOf = (label) => {
-      return month.meta.labels[label]
-    }
+    const colorOf = (label) => month.meta.labels[label]
+
     month.cards.forEach((card) => {
       const labelWidth = card.width / Math.max(1, card.labels.length)
       d3.select('svg')

@@ -141,7 +141,7 @@ class Chart {
 
   prepCards(month) {
     let   rows   = []
-    const width  = $('#main_graph').width()
+    const width  = $('#cards').width()
     const scaler = new XScaler(width, month.meta.dateFrom, month.meta.dateTo)
 
     month.cards.forEach((card) => {

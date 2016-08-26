@@ -35,7 +35,7 @@ class Cardbox {
     const hours  = 3600000
     const millis = card.dateFinished - card.dateBegun
     if (Math.round(millis / days) > 1) {
-      return `${Math.round(millis / days)} days`
+      return `${this.number_of_weekdays_between(card.dateBegun, card.dateFinished)} workdays`
     }
     if (Math.round(millis / days) == 1) {
       return `1 day`
@@ -44,6 +44,20 @@ class Cardbox {
       return `${Math.round(millis / hours)} hours`
     }
     return '1 hour'
+  }
+
+  number_of_weekdays_between(date1, date2) {
+    let d1 = new Date(date1),
+        d2 = new Date(date2),
+        total = 0
+
+    while (d1 < d2) {
+      d1.setDate(d1.getDate()+1)
+      if (0 < d1.getDay() && d1.getDay() < 6) {
+        total += 1
+      }
+    }
+    return total
   }
 
   format_html(card) {

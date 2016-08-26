@@ -1,7 +1,8 @@
 
 *  Tasks
+** TODO bug: all cards extend too far
+** TODO list frequency of cards bounced back from testing
 ** TODO headless jasmine?
-** TODO page back and forward, month-by-month
 ** TODO measure cards in work days, not calendar days
 ** TODO extract a decent amount of archived cards (>= six months?)
 ** TODO reduce the size of archived_cards.json

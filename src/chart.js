@@ -36,10 +36,11 @@ class Chart {
     this.title.update(month)
     this.showCards(month)
     this.overlayCardLabels(month)
-    this.addHighlights(month.cards)
-    this.showXAxis(month.meta)
     this.labelbox.update(month).show()
     this.bouncebox.update(month)
+    this.addHighlights(month.cards)
+    this.showXAxis(month.meta)
+
     return this
   }
 
@@ -74,9 +75,21 @@ class Chart {
     this.cardbox.show(card)
   }
 
+  mouseEnterBounced(event, cards) {
+    $(event.target).parent('tr').attr('style', 'background-color: lightsteelblue')
+    const card_id = $(event.target).parent('tr').data('card_id')
+    this.mouseEnter(cards.find((card) => card.id == card_id))
+  }
+
   mouseOut(card) {
     this.cardbox.hide()
     $(`.card_highlight_${card.id}`).css('opacity', 0.0)
+  }
+
+  mouseOutBounced(event, cards) {
+    $(event.target).parent('tr').removeAttr('style')
+    const card_id = $(event.target).parent('tr').data('card_id')
+    this.mouseOut(cards.find((card) => card.id == card_id))
   }
 
   addHighlights(cards) {
@@ -95,6 +108,10 @@ class Chart {
         .style('opacity', 0.0)
         .on('mouseenter',(card) => this.mouseEnter(card))
         .on('mouseout',  (card) => this.mouseOut(card))
+
+    $('tr.bounced_card')
+      .on('mouseenter', (event) => this.mouseEnterBounced(event, cards))
+      .on('mouseout',   (event) => this.mouseOutBounced(event, cards))
   }
 
   showCards(month) {

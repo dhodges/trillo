@@ -4,12 +4,11 @@
 
 class Bouncebox {
   update(month) {
-    this.update_html(
-      _(this.countTheBounce(month.cards))
-        .filter((card) => card.bouncedBack > 0)
-        .sortBy(['bouncedBack'])
-        .reverse()
-    )
+    this.cards = _(this.countTheBounce(month.cards))
+                   .filter((card) => card.bouncedBack > 0)
+                   .sortBy(['bouncedBack'])
+                   .reverse()
+    this.update_html(this.cards)
   }
 
   countTheBounce(cards) {
@@ -35,11 +34,12 @@ class Bouncebox {
 
     bouncedcards.forEach((card) => {
       $(`
-        <tr>
+        <tr class='bounced_card'>
           <td>${card.bouncedBack}</td>
           <td>${card.name}</td>
         </tr>
-      `).appendTo($('#bouncebox'))
+      `).data('card_id', card.id)
+        .appendTo($('#bouncebox'))
     })
   }
 }

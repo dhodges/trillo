@@ -100,6 +100,10 @@ td.blue {
   background-color: blue
 }
 
+td.green {
+  background-color: green
+}
+
 td.lime {
   background-color: lime
 }
@@ -118,6 +122,10 @@ td.pink {
 
 td.red {
   background-color: red
+}
+
+td.sky {
+  background-color: #6698FF /* 'sky blue' */
 }
 
 td.yellow {

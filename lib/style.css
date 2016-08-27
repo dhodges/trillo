@@ -24,9 +24,13 @@
   float:  left;
 }
 
-#labelbox {
+#sidebar {
   float: right;
   width: 300px;
+}
+
+#labelbox {
+  float: right;
   display: none;
 }
 

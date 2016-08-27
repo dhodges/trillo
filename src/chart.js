@@ -137,6 +137,10 @@ class Chart {
     d3.select('#cards')
       .append('svg')
       .attr('class', 'cards')
+
+    d3.select('#main_graph')
+      .append('div')
+      .attr('id', 'sidebar')
   }
 
   prepCards(month) {

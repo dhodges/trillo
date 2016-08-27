@@ -3,7 +3,7 @@
 class Labelbox {
   constructor() {
     this.table =
-      d3.select('#main_graph')
+      d3.select('#sidebar')
         .append('table')
         .attr('id', 'labelbox')
   }

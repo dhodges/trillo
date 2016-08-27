@@ -2,7 +2,7 @@
 
 describe ('Labelbox', () => {
   beforeAll((done) => {
-    $('<div id="main_graph"></div>').appendTo('body')
+    $('<div id="sidebar"></div>').appendTo('body')
     d3.json('../../spec/fixtures/archived_cards_fixture.json', (err, data) => {
       if (err) throw err
       this.labelbox = new Labelbox()

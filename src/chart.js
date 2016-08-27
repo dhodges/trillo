@@ -6,6 +6,7 @@ class Chart {
     this.title    = new Title()
     this.cardbox  = new Cardbox()
     this.labelbox = new Labelbox()
+    this.bouncebox = new Bouncebox()
 
     this.sanityCheck(data)
     data.forEach((month) => {
@@ -38,6 +39,7 @@ class Chart {
     this.addHighlights(month.cards)
     this.showXAxis(month.meta)
     this.labelbox.update(month).show()
+    this.bouncebox.update(month)
     return this
   }
 

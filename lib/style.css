@@ -34,6 +34,10 @@
   display: none;
 }
 
+#bouncebox td {
+  cursor: pointer;
+}
+
 .title {
   width: 790px;
   float: right;
@@ -72,7 +76,20 @@ text, table {
 
 table {
   width: 100%;
+  white-space: nowrap;
   vertical-align: baseline;
+  margin-bottom: 20px;
+}
+
+th {
+  color:      steelblue;
+  text-align: left;
+}
+
+td {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 td.duration {

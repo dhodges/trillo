@@ -1,16 +1,10 @@
 
 *  Tasks
 ** TODO headless jasmine?
-** TODO extract a decent amount of archived cards (>= six months?)
+** TODO setup SASS? Haml?
 ** TODO reduce the size of archived_cards.json
-** TODO add favicon?
 ** TODO config optionally specify 'begin' and 'finished' columns
 ** TODO how to get an image from a member avatarHash?
-** TODO setup SASS? Haml?
 ** TODO list all card members (i.e. not just final)
 ** TODO any other actions?
 ** TODO do we need to store 'type' with each action?
-*  Features
-** card stats:
-  - number of times bounced back from testing
-  - associated people?

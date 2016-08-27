@@ -25,23 +25,23 @@ describe ('Chart', () => {
     describe ('when the mouse enters', () => {
       beforeAll(() => {
         this.d = this.cards[0]
-        this.chart.mouseEnter(this.d, 0)
+        this.chart.mouseEnter(this.d)
       })
 
       it ('display a muted line', () => {
-        expect($('.card_highlight_0').css('opacity')).toEqual('0.6')
+        expect($(`.card_highlight_${this.cards[0].id}`).css('opacity')).toEqual('0.6')
       })
     })
 
     describe ('when the mouse leaves', () => {
       beforeAll(() => {
         this.d = this.cards[0]
-        this.chart.mouseEnter(this.d, 0)
-        this.chart.mouseOut(0)
+        this.chart.mouseEnter(this.d)
+        this.chart.mouseOut(this.d)
       })
 
       it ('remove the muted line', () => {
-        expect($('.card_highlight_0').css('opacity')).toEqual('0')
+        expect($(`.card_highlight_${this.cards[0].id}`).css('opacity')).toEqual('0')
       })
     })
   })

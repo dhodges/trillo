@@ -69,14 +69,14 @@ class Chart {
     })
   }
 
-  mouseEnter(card, i) {
-    $(`.card_highlight_${i}`).css('opacity', 0.6)
+  mouseEnter(card) {
+    $(`.card_highlight_${card.id}`).css('opacity', 0.6)
     this.cardbox.show(card)
   }
 
-  mouseOut(i) {
+  mouseOut(card) {
     this.cardbox.hide()
-    $(`.card_highlight_${i}`).css('opacity', 0.0)
+    $(`.card_highlight_${card.id}`).css('opacity', 0.0)
   }
 
   addHighlights(cards) {
@@ -87,14 +87,14 @@ class Chart {
       .data(cards)
       .enter()
       .append('rect')
-        .attr('class',   (card,i) => `highlight card_highlight_${i}`)
+        .attr('class',   (card) => `highlight card_highlight_${card.id}`)
         .attr('width',   (card) => card.width)
         .attr('height',  (card) => card.height)
         .attr('x',       (card) => card.x)
         .attr('y',       (card) => card.y)
         .style('opacity', 0.0)
-        .on('mouseenter',(card,i) => this.mouseEnter(card,i))
-        .on('mouseout',  (card,i) => this.mouseOut(i))
+        .on('mouseenter',(card) => this.mouseEnter(card))
+        .on('mouseout',  (card) => this.mouseOut(card))
   }
 
   showCards(month) {
